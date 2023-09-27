@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Nav = () => {
   return (
     <div>
@@ -54,10 +56,14 @@ const Nav = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
+              <Link to="/"><a>Home</a></Link>
+              
+            </li>
+            <li>
               <a>Buy Crypto</a>
             </li>
             <li>
-              <a>Markets</a>
+            <Link to="dashboard"><a>Dashboard</a></Link>
             </li>
             <li tabIndex={0}>
               <details>
@@ -73,7 +79,7 @@ const Nav = () => {
               </details>
             </li>
             <li>
-              <a>features</a>
+              <a>Features</a>
             </li>
             <li>
               <a>Earn</a>
@@ -82,7 +88,7 @@ const Nav = () => {
         </div>
         <div className="navbar-end">
           <div className="flex justify-center items-center gap-5 px-10">
-            <button
+            <Link to="login"><button
               type="button"
               className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
             >
@@ -97,7 +103,8 @@ const Nav = () => {
                 <path d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />{" "}
               </svg>
               Login
-            </button>
+            </button></Link>
+            <Link to="register">
             <button
               type="button"
               className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-sky-900 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
@@ -115,6 +122,8 @@ const Nav = () => {
               </svg>
               Register
             </button>
+            </Link>
+            
           </div>
         </div>
       </div>
