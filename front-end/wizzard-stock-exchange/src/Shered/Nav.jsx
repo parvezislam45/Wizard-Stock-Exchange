@@ -23,6 +23,13 @@ const Nav = () => {
     fetchProfile();
   }, []); // Empty dependency array ensures the effect runs once after the initial render
 
+  const handleLogout = () => {
+    // Clear the user's authentication token from localStorage
+    localStorage.removeItem("token");
+    window.location.href = "/";
+    // Redirect the user to the logout page or another relevant page
+    history.push("/logout"); // Replace "/logout" with your desired logout route
+  };
 
   return (
     <div>
@@ -125,6 +132,7 @@ const Nav = () => {
               <button
               type="button"
               className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+              onClick={handleLogout}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +196,6 @@ const Nav = () => {
 
 
 export default Nav;
-
 
 
 
