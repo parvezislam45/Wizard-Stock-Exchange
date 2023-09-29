@@ -10,6 +10,9 @@ from rest_framework.views import APIView
 from django.http import JsonResponse
 from django.contrib.auth import logout
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 
@@ -42,13 +45,9 @@ def user_login(request):
         
         
         
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def logout_view(request):
-    logout(request)
-    return JsonResponse({'message': 'Logout successful'})
+@method_decorator(csrf_exempt, name='dispatch')
+class Profile(APIView):
+    permission_classes = [IsAuthenticated]
 
-@api_view(['GET'])
-def check_auth(request):
-    is_authenticated = request.user.is_authenticated
-    return JsonResponse({'isAuthenticated': is_authenticated})
+    def get(self, request):
+        return JsonResponse({'username': request.user.username, 'email': request.user.email})

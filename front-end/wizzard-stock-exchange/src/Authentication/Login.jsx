@@ -18,6 +18,7 @@ const Login = () => {
         }
       );
       const token = response.data.token;
+      console.log(token)
       localStorage.setItem("token", token);
       window.location.href = "/dashboard";
     } catch (err) {
