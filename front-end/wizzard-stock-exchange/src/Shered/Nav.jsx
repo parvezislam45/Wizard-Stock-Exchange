@@ -1,6 +1,33 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    // Check authentication status when the component mounts
+    checkAuthentication();
+  }, []);
+
+  const checkAuthentication = async () => {
+    try {
+      const response = await axios.get("check-auth");
+      setIsAuthenticated(response.data.isAuthenticated);
+    } catch (error) {
+      console.error("Error checking authentication:", error);
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("logout");
+      setIsAuthenticated(false);
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
+  };
+ 
   return (
     <div>
       <div className="navbar bg-black">
@@ -87,6 +114,15 @@ const Nav = () => {
           </ul>
         </div>
         <div className="navbar-end">
+        {isAuthenticated ? (
+            // If user is authenticated, show "Dashboard" and "Logout" buttons
+            <>
+              <Link to="/dashboard">
+                <button>Dashboard</button>
+              </Link>
+              <button onClick={handleLogout}>Logout</button>
+            </>
+          ) : (
           <div className="flex justify-center items-center gap-5 px-10">
             <Link to="login"><button
               type="button"
@@ -125,6 +161,7 @@ const Nav = () => {
             </Link>
             
           </div>
+          )}
         </div>
       </div>
     </div>

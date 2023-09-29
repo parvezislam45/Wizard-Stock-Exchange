@@ -7,6 +7,10 @@ from rest_framework.authtoken.models import Token
 from .models import CustomUser
 from .serializer import CustomUserSerializer
 from rest_framework.views import APIView
+from django.http import JsonResponse
+from django.contrib.auth import logout
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+
 
 
 @api_view(['POST'])
@@ -35,3 +39,16 @@ def user_login(request):
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        
+        
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def logout_view(request):
+    logout(request)
+    return JsonResponse({'message': 'Logout successful'})
+
+@api_view(['GET'])
+def check_auth(request):
+    is_authenticated = request.user.is_authenticated
+    return JsonResponse({'isAuthenticated': is_authenticated})
