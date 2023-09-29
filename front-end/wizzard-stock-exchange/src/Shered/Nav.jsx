@@ -1,6 +1,36 @@
+import  { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Nav = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // Fetch user profile data from the API
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/account/profile/", {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchProfile();
+  }, []); // Empty dependency array ensures the effect runs once after the initial render
+
+  const handleLogout = () => {
+    // Clear the user's authentication token from localStorage
+    localStorage.removeItem("token");
+    window.location.href = "/";
+    // Redirect the user to the logout page or another relevant page
+    history.push("/logout"); // Replace "/logout" with your desired logout route
+  };
+
   return (
     <div>
       <div className="navbar bg-black">
@@ -87,8 +117,40 @@ const Nav = () => {
           </ul>
         </div>
         <div className="navbar-end">
+        {user ? (
+            // If user is authenticated, show "Dashboard" and "Logout" buttons
+            <>
+              <Link to="/dashboard">
+              <button
+              
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 mr-6"
+            >
+              dashboard
+            </button>
+              </Link>
+              <button
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+              onClick={handleLogout}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                className="bi bi-box-arrow-in-right w-6 h-5 text-white mr-2"
+                viewBox="0 0 16 16"
+              >
+                {" "}
+                <path d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />{" "}
+                <path d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />{" "}
+              </svg>
+              Logout
+            </button>
+            </>
+          ) : (
           <div className="flex justify-center items-center gap-5 px-10">
-            <Link to="login"><button
+            <Link to="login">
+              <button
               type="button"
               className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
             >
@@ -125,10 +187,19 @@ const Nav = () => {
             </Link>
             
           </div>
+          )}
         </div>
       </div>
     </div>
   );
 };
 
+
 export default Nav;
+
+
+
+
+
+
+

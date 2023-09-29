@@ -7,6 +7,13 @@ from rest_framework.authtoken.models import Token
 from .models import CustomUser
 from .serializer import CustomUserSerializer
 from rest_framework.views import APIView
+from django.http import JsonResponse
+from django.contrib.auth import logout
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+
+
 
 
 @api_view(['POST'])
@@ -35,3 +42,12 @@ def user_login(request):
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        
+        
+@method_decorator(csrf_exempt, name='dispatch')
+class Profile(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        return JsonResponse({'username': request.user.username, 'email': request.user.email})
