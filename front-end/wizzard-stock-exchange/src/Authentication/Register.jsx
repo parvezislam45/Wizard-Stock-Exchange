@@ -5,7 +5,7 @@ function Registration() {
   const [formData, setFormData] = useState({
     email: '',
     username: '',
-    password: '',  // Make sure this is 'password1'
+    password: '',  // Make sure this is 'password'
     full_name: '',
     phone_number: '',
     address: '',
@@ -24,8 +24,11 @@ function Registration() {
 
     try {
       const response = await axios.post('http://127.0.0.1:8000/account/register/', formData);
+      const token = response.data.token;
+      console.log(token)
+      localStorage.setItem("token", token);
       console.log('Registration successful:', response.data);
-      // Redirect to login or do something else after successful registration
+      // Redirect to dashboard after successful registration
       window.location.href = '/dashboard';
     } catch (error) {
       console.error('Registration failed:', error);
