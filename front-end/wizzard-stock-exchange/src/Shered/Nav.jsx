@@ -118,7 +118,7 @@ const Nav = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        {token ? (
+        {user || token ? (
             // If user is authenticated, show "Dashboard" and "Logout" buttons
             <>
               <Link to="/dashboard">
