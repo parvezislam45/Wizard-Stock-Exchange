@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   const [user, setUser] = useState(null);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     // Fetch user profile data from the API
     const fetchProfile = async () => {
@@ -31,6 +31,7 @@ const Nav = () => {
     history.push("/logout"); // Replace "/logout" with your desired logout route
   };
 
+  
   return (
     <div>
       <div className="navbar bg-black">
@@ -117,7 +118,7 @@ const Nav = () => {
           </ul>
         </div>
         <div className="navbar-end">
-        {user ? (
+        {user || token ? (
             // If user is authenticated, show "Dashboard" and "Logout" buttons
             <>
               <Link to="/dashboard">
