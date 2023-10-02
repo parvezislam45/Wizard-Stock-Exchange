@@ -85,38 +85,49 @@ const Nav = () => {
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <Link to="/"><a>Home</a></Link>
-              
-            </li>
-            <li>
-              <a>Buy Crypto</a>
-            </li>
-            <li>
-            <Link to="dashboard"><a>Dashboard</a></Link>
-            </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Trade</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Features</a>
-            </li>
-            <li>
-              <a>Earn</a>
-            </li>
-          </ul>
-        </div>
+  <ul className="menu menu-horizontal px-1">
+  <li key="home">
+        <Link to="/">
+          <a href="/">Home</a>
+        </Link>
+      </li>
+    {user || token ? (
+      <>
+      </>
+    ) : (
+      <>
+        <li key="buy-crypto">
+          <a href="/buy-crypto">Buy Crypto</a>
+        </li>
+        <li key="dashboard">
+          <Link to="/dashboard">
+            <a href="/dashboard">Dashboard</a>
+          </Link>
+        </li>
+        <li key="trade" tabIndex={0}>
+          <details>
+            <summary>Trade</summary>
+            <ul className="p-2">
+              <li key="submenu-1">
+                <a href="/submenu-1">Submenu 1</a>
+              </li>
+              <li key="submenu-2">
+                <a href="/submenu-2">Submenu 2</a>
+              </li>
+            </ul>
+          </details>
+        </li>
+        <li key="features">
+          <a href="/features">Features</a>
+        </li>
+        <li key="earn">
+          <a href="/earn">Earn</a>
+        </li>
+      </>
+    )}
+  </ul>
+</div>
+
         <div className="navbar-end">
         {user || token ? (
             // If user is authenticated, show "Dashboard" and "Logout" buttons
