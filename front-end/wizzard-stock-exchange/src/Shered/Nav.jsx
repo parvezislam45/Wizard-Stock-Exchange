@@ -91,6 +91,11 @@ const Nav = () => {
           <a href="/">Home</a>
         </Link>
       </li>
+  <li key="home">
+        <Link to="/">
+          <a href="/">Documentation</a>
+        </Link>
+      </li>
     {user || token ? (
       <>
       </>
