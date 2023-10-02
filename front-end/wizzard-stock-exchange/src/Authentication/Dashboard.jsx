@@ -205,7 +205,7 @@ const Dashboard = () => {
                     <span className="ml-4">Upgrade to Pro</span>
                   </a>
                   <a
-                    href="#"
+                    href="documentation"
                     target="_blank"
                     className="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
                   >
