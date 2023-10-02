@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Dashboard from "../Authentication/Dashboard";
+import UserProfile from "../Authentication/UserProfile";
 
 
 
@@ -29,6 +30,10 @@ import Dashboard from "../Authentication/Dashboard";
         {
           path : 'dashboard',
           element : <Dashboard/>
+      },
+        {
+          path : 'profile',
+          element : <UserProfile/>
       },
       ]
     },
