@@ -6,17 +6,17 @@ const Documentation = () => {
             <div className='flex'>
                 <aside className='w-1/6 '>
                     <ul className='fixed mt-10 px-10'>
-                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group'><a href="#introduction">Introduction</a></li>
-                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group'><a href="#project-overview">Project Overview</a></li>
-                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group'><a href="#user-authentication">User Authentication</a></li>
-                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group'><a href="#user-registration">User Registration</a></li>
-                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group'><a href="#data-security"></a>Data Security</li>
-                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-gray-100 group'><a href="#conclusion">Conclusion</a></li>
+                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-cyan-50 group'><a href="#introduction">Introduction</a></li>
+                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-cyan-50 group'><a href="#project-overview">Project Overview</a></li>
+                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-cyan-50 group'><a href="#user-authentication">User Authentication</a></li>
+                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-cyan-50 group'><a href="#user-registration">User Registration</a></li>
+                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-cyan-50 group'><a href="#data-security"></a>Data Security</li>
+                        <li className='text-base text-gray-900 font-normal rounded-lg flex items-center p-2 hover:bg-cyan-50 group'><a href="#conclusion">Conclusion</a></li>
                     </ul>
                 </aside>
                 
                 <div className='w-4/5'>
-                    <h1 className="text-center text-xl font-bold text-gray-900 my-5"> Wizard Stock Exchange Project Documentation</h1>
+                    <h1 className="text-center text-3xl font-extrabold text-gray-900 my-5"> Wizard Stock Exchange Project Documentation</h1>
 
                     <div id='introduction' className='mb-10'>
                        <h3 className="w-3/5 text-xl font-bold text-gray-900 mb-2">Introduction</h3>
