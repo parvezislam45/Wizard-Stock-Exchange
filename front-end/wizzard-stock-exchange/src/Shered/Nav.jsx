@@ -84,23 +84,77 @@ const Nav = () => {
             ) : null}
           </ul>
         </div>
-        <div className="navbar-end">
-          {user || token ? (
-            <div className="dropdown dropdown-end">
-              {/* ... Dropdown content for authenticated user */}
-              <button onClick={handleLogout} type="button">
-                Logout
-              </button>
-            </div>
+       <div className="navbar-end">
+        {user || token ? (
+            // If user is authenticated, show "Dashboard" and "Logout" buttons
+            <>
+              <Link to="/dashboard">
+              <button
+              
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 mr-6"
+            >
+              dashboard
+            </button>
+              </Link>
+              <button
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+              onClick={handleLogout}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                className="bi bi-box-arrow-in-right w-6 h-5 text-white mr-2"
+                viewBox="0 0 16 16"
+              >
+                {" "}
+                <path d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />{" "}
+                <path d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />{" "}
+              </svg>
+              Logout
+            </button>
+            </>
           ) : (
-            <div className="flex justify-center items-center gap-5 px-10">
-              <Link to="/login">
-                <button type="button">Login</button>
-              </Link>
-              <Link to="/register">
-                <button type="button">Register</button>
-              </Link>
-            </div>
+          <div className="flex justify-center items-center gap-5 px-10">
+            <Link to="login">
+              <button
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                className="bi bi-box-arrow-in-right w-6 h-5 text-white mr-2"
+                viewBox="0 0 16 16"
+              >
+                {" "}
+                <path d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z" />{" "}
+                <path d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />{" "}
+              </svg>
+              Login
+            </button></Link>
+            <Link to="register">
+            <button
+              type="button"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-sky-900 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-forward-fill w-6 h-5 text-white mr-2"
+                viewBox="0 0 16 16"
+              >
+                {" "}
+                <path d="m9.77 12.11 4.012-2.953a.647.647 0 0 0 0-1.114L9.771 5.09a.644.644 0 0 0-.971.557V6.65H2v3.9h6.8v1.003c0 .505.545.808.97.557z" />{" "}
+              </svg>
+              Register
+            </button>
+            </Link>
+            
+          </div>
           )}
         </div>
       </div>
