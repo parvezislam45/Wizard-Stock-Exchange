@@ -51,7 +51,7 @@ const Nav = () => {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/documentation">Documentation</Link>
+              <Link to="documentation">Documentation</Link>
             </li>
             {user || token ? (
               <>
