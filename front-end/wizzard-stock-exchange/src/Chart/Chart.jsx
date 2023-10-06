@@ -1,10 +1,5 @@
 import { useCallback, useState } from 'react';
-<<<<<<< HEAD
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
-
-=======
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
->>>>>>> 501a1f1f6c2b27cd44802d91cd8406f095667b44
 
 
 const Chart = () => {
@@ -75,11 +70,7 @@ const Chart = () => {
         [opacity, setOpacity]
       );
     return (
-<<<<<<< HEAD
-        <div className=''>
-=======
         <div>
->>>>>>> 501a1f1f6c2b27cd44802d91cd8406f095667b44
            <LineChart
         width={1200}
         height={500}
