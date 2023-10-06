@@ -1,80 +1,6 @@
-import { useCallback, useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
+import LiveChart from "../LiveChart/LiveChart";
+import LiveData from "../LiveData/LiveData";
 const Dashboard = () => {
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
-
-  const [opacity, setOpacity] = useState({
-    uv: 1,
-    pv: 1,
-  });
-
-  const handleMouseEnter = useCallback(
-    (o) => {
-      const { dataKey } = o;
-
-      setOpacity({ ...opacity, [dataKey]: 0.5 });
-    },
-    [opacity, setOpacity]
-  );
-
-  const handleMouseLeave = useCallback(
-    (o) => {
-      const { dataKey } = o;
-      setOpacity({ ...opacity, [dataKey]: 1 });
-    },
-    [opacity, setOpacity]
-  );
   return (
     <div>
       <div className="flex overflow-hidden bg-white pt-16">
@@ -331,7 +257,7 @@ const Dashboard = () => {
             <div className="pt-6 px-4">
               <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                  <div className="flex items-center justify-between mb-4">
+                  {/* <div className="flex items-center justify-between mb-4">
                     <div className="flex-shrink-0">
                       <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
                         $45,385
@@ -351,57 +277,9 @@ const Dashboard = () => {
                         <path d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"></path>
                       </svg>
                     </div>
-                  </div>
-                  <div id="main-chart">
-                    <a role="button" className="btn">
-                      Link
-                    </a>
-                    <button type="submit" className="btn">
-                      Button
-                    </button>
-                    <input type="button" value="Input" className="btn" />
-                    <input type="submit" value="Submit" className="btn" />
-                    <input type="radio" aria-label="Radio" className="btn" />
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox"
-                      className="btn"
-                    />
-                    <input type="reset" value="Reset" className="btn" />
-                    <LineChart
-                      width={600}
-                      height={400}
-                      data={data}
-                      margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="pv"
-                        strokeOpacity={opacity.pv}
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="uv"
-                        strokeOpacity={opacity.uv}
-                        stroke="#82ca9d"
-                      />
-                    </LineChart>
-                  </div>
+                  </div> */}
+                  <LiveData></LiveData>
+                  <LiveChart></LiveChart>
                 </div>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <div className="mb-4 flex items-center justify-between">

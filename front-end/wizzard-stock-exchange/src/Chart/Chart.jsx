@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
 
 
 const Chart = () => {
@@ -70,7 +71,7 @@ const Chart = () => {
         [opacity, setOpacity]
       );
     return (
-        <div>
+        <div className=''>
            <LineChart
         width={1200}
         height={500}
