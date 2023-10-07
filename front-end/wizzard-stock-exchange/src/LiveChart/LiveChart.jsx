@@ -1,13 +1,13 @@
-import  { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const LiveChart = () => {
-  const [symbol, setSymbol] = useState('ethusdt'); // Default symbol
+const LiveChart = ({ symbolData }) => {
   const [interval, setInterval] = useState('1m'); // Default interval
   const [ohlcData, setOhlcData] = useState([]); // State variable for OHLC data
   const [openData, setOpenData] = useState(null);
   const [closeData, setCloseData] = useState(null);
+
   useEffect(() => {
-    const wsEndpoint = `wss://stream.binance.com:9443/ws/${symbol.toLowerCase()}@kline_${interval}`;
+    const wsEndpoint = `wss://stream.binance.com:9443/ws/${symbolData}@kline_${interval}`;
 
     const ws = new WebSocket(wsEndpoint);
 
@@ -18,10 +18,9 @@ const LiveChart = () => {
     ws.onmessage = (event) => {
       const eventData = JSON.parse(event.data);
       const klineData = eventData.k;
-        // console.log(eventData.k)
-        setOpenData(eventData.k.o)
-        setCloseData(eventData.k.c)
-        console.log(eventData.k.o)
+      setOpenData(eventData.k.o);
+      setCloseData(eventData.k.c);
+
       // Extract OHLC data
       const openPrice = parseFloat(klineData.o).toFixed(2);
       const lowPrice = parseFloat(klineData.l).toFixed(2);
@@ -30,13 +29,14 @@ const LiveChart = () => {
 
       // Update ohlcData with the new data point
       setOhlcData((prevData) => [
-        ...prevData,
+        
         {
           open: openPrice,
           low: lowPrice,
           high: highPrice,
           close: closePrice,
         },
+        ...prevData,
       ]);
     };
 
@@ -52,30 +52,26 @@ const LiveChart = () => {
     return () => {
       ws.close();
     };
-  }, [symbol, interval]);
+  }, [symbolData, interval]);
 
-
-console.log(openData);
-console.log(closeData);
   return (
-    <div>
-      <h1>Real-Time OHLC Data for {symbol.toUpperCase()}</h1>
-      <div>
-        <h2>OHLC Data</h2>
-        <ul>
-  {ohlcData.map((dataPoint, index) => {
-    const textColorClass = dataPoint.open > dataPoint.close ? 'text-red-500' : 'text-green-500';
-    
-    return (
-      <li key={index}>
-        <span className={textColorClass}>
-          Open: {dataPoint.open}, Low: {dataPoint.low}, High: {dataPoint.high}, Close: {dataPoint.close}
-        </span>
-      </li>
-    );
-  })}
-</ul>
+    <div className="container">
+      <h1 className="title">Real-Time OHLC Data for {symbolData}</h1>
+      <div className="ohlc-container">
+        <h2 className="ohlc-title">OHLC Data</h2>
+        <ul className="ohlc-list">
+          {ohlcData.map((dataPoint, index) => {
+            const textColorClass = dataPoint.open > dataPoint.close ? 'text-red-500' : 'text-green-500';
 
+            return (
+              <li key={index} className="ohlc-item">
+                <span className={`ohlc-text ${textColorClass}`}>
+                  Open: {dataPoint.open}, Low: {dataPoint.low}, High: {dataPoint.high}, Close: {dataPoint.close}
+                </span>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

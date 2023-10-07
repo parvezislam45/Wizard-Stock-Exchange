@@ -1,44 +1,56 @@
 import  { useEffect, useState } from 'react';
+import LiveChart from '../LiveChart/LiveChart';
 
 
 
 const LiveData = () => {
-  const [stockPrice, setStockPrice] = useState(null);
+  const [stockPrice, setStockPrice] = useState(1);
   const [symbol, setSymbol] = useState('btcusdt'); // Default symbol
-  const [lastPrice, setLastPrice] = useState(null);
 
-
- 
+  const [interval, setInterval] = useState('1m'); // Default interval
+  const [openData, setOpenData] = useState(null);
+  const [closeData, setCloseData] = useState(null);
 
   useEffect(() => {
-    const ws = new WebSocket(`wss://stream.binance.com:9443/ws/${symbol}@trade`);
+    const wsEndpoint = `wss://stream.binance.com:9443/ws/${symbol}@kline_${interval}`;
+
+    const ws = new WebSocket(wsEndpoint);
+
+    ws.onopen = () => {
+      console.log('WebSocket connection opened.');
+    };
 
     ws.onmessage = (event) => {
-      // console.log(event.data)
-      const stockObject = JSON.parse(event.data);
-      const JsonPrice = parseFloat(stockObject.p).toFixed(2);
+      const eventData = JSON.parse(event.data);
+      setOpenData(eventData.k.o);
+      setCloseData(eventData.k.c);
+      const JsonPrice = parseFloat(eventData.p);
       setStockPrice(JsonPrice);
 
-      if (lastPrice === null) {
-        setLastPrice(JsonPrice);
-        
-      }
+    
+    };
 
-      // Update chartData with new data point
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
 
+    ws.onclose = (event) => {
+      console.log(`WebSocket connection closed with code ${event.code} and reason: ${event.reason}`);
     };
 
     // Clean up the WebSocket connection when the component unmounts
     return () => {
       ws.close();
     };
-  }, [symbol, lastPrice, stockPrice]);
+  }, [symbol, interval]);
 
   const handleButtonClick = (newSymbol) => {
     setSymbol(newSymbol);
-    setStockPrice(null); // Reset stockPrice when switching symbols
-    setLastPrice(null); // Reset lastPrice when switching symbols
+    setStockPrice(1); // Reset stockPrice when switching symbols
   };
+
+  console.log(stockPrice);
+  console.log(closeData);
 
   return (
 
@@ -49,13 +61,14 @@ const LiveData = () => {
     {/* Display the selected symbol */}
     <p>Selected Symbol: {symbol}</p>
     <span className="text-2xl sm:text-3xl leading-none font-bold">
-  <h4 className={stockPrice !== null ? (stockPrice > lastPrice ? 'text-green-500' : (stockPrice < lastPrice ? 'text-red-500' : 'text-black')) : ''}>
-    {stockPrice !== null ? `${stockPrice} USDT` : 'Loading...'}
+  <h4 className={openData > closeData ? 'text-red-500' : 'text-green-500'}>
+
+    {closeData}
   </h4>
 </span>
     {/* Display the latest stock price */}
-    <p>Last Price: {lastPrice}</p>
-
+    <p>Last Price: {closeData}</p>
+    <LiveChart symbolData={symbol}></LiveChart>
   </div>
 
   );
