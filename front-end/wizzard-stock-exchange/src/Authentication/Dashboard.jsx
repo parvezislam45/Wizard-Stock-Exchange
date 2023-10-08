@@ -1,4 +1,5 @@
 import LiveChart from "../LiveChart/LiveChart";
+import LiveTradingApp from "../LiveData/LiveData";
 import LiveData from "../LiveData/LiveData";
 const Dashboard = () => {
   return (
@@ -278,7 +279,7 @@ const Dashboard = () => {
                       </svg>
                     </div>
                   </div> */}
-                  <LiveData></LiveData>
+                  <LiveTradingApp></LiveTradingApp>
                   
                 </div>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
