@@ -1,80 +1,7 @@
-import { useCallback, useState } from "react";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from "recharts";
+import LiveTradingApp from "../LiveData/LiveData";
+
+
 const Dashboard = () => {
-  const data = [
-    {
-      name: "Page A",
-      uv: 4000,
-      pv: 2400,
-      amt: 2400,
-    },
-    {
-      name: "Page B",
-      uv: 3000,
-      pv: 1398,
-      amt: 2210,
-    },
-    {
-      name: "Page C",
-      uv: 2000,
-      pv: 9800,
-      amt: 2290,
-    },
-    {
-      name: "Page D",
-      uv: 2780,
-      pv: 3908,
-      amt: 2000,
-    },
-    {
-      name: "Page E",
-      uv: 1890,
-      pv: 4800,
-      amt: 2181,
-    },
-    {
-      name: "Page F",
-      uv: 2390,
-      pv: 3800,
-      amt: 2500,
-    },
-    {
-      name: "Page G",
-      uv: 3490,
-      pv: 4300,
-      amt: 2100,
-    },
-  ];
-
-  const [opacity, setOpacity] = useState({
-    uv: 1,
-    pv: 1,
-  });
-
-  const handleMouseEnter = useCallback(
-    (o) => {
-      const { dataKey } = o;
-
-      setOpacity({ ...opacity, [dataKey]: 0.5 });
-    },
-    [opacity, setOpacity]
-  );
-
-  const handleMouseLeave = useCallback(
-    (o) => {
-      const { dataKey } = o;
-      setOpacity({ ...opacity, [dataKey]: 1 });
-    },
-    [opacity, setOpacity]
-  );
   return (
     <div>
       <div className="flex overflow-hidden bg-white pt-16">
@@ -331,87 +258,24 @@ const Dashboard = () => {
             <div className="pt-6 px-4">
               <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex-shrink-0">
-                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        $45,385
-                      </span>
-                      <h3 className="text-base font-normal text-gray-500">
-                        Sales this week
-                      </h3>
-                    </div>
-                    <div className="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                      12.5%
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"></path>
-                      </svg>
-                    </div>
+                   <div className="flex items-center justify-between mb-4">
+                    <LiveTradingApp></LiveTradingApp>
+
                   </div>
-                  <div id="main-chart">
-                    <a role="button" className="btn">
-                      Link
-                    </a>
-                    <button type="submit" className="btn">
-                      Button
-                    </button>
-                    <input type="button" value="Input" className="btn" />
-                    <input type="submit" value="Submit" className="btn" />
-                    <input type="radio" aria-label="Radio" className="btn" />
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox"
-                      className="btn"
-                    />
-                    <input type="reset" value="Reset" className="btn" />
-                    <LineChart
-                      width={600}
-                      height={400}
-                      data={data}
-                      margin={{
-                        top: 5,
-                        right: 30,
-                        left: 20,
-                        bottom: 5,
-                      }}
-                    >
-                      <CartesianGrid strokeDasharray="3 3" />
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <Tooltip />
-                      <Legend
-                        onMouseEnter={handleMouseEnter}
-                        onMouseLeave={handleMouseLeave}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="pv"
-                        strokeOpacity={opacity.pv}
-                        stroke="#8884d8"
-                        activeDot={{ r: 8 }}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="uv"
-                        strokeOpacity={opacity.uv}
-                        stroke="#82ca9d"
-                      />
-                    </LineChart>
-                  </div>
+                  <div id="main-chart"></div>
                 </div>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <div className="mb-4 flex items-center justify-between">
+                    
                     <div>
+                      <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         Latest Transactions
                       </h3>
                       <span className="text-base font-normal text-gray-500">
                         This is a list of latest transactions
                       </span>
+                    </div>
                     </div>
                     <div className="flex-shrink-0">
                       <a
@@ -449,102 +313,7 @@ const Dashboard = () => {
                                 </th>
                               </tr>
                             </thead>
-                            <tbody className="bg-white">
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Bonnie Green
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment refund to{" "}
-                                  <span className="font-semibold">#00910</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  -$670
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment failed from{" "}
-                                  <span className="font-semibold">#087651</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 18 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $234
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Byrd
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $5000
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Jese Leos
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    THEMESBERG LLC
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 11 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $560
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Lysle
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 6 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $1437
-                                </td>
-                              </tr>
-                            </tbody>
+                            {/* <SecData></SecData> */}
                           </table>
                         </div>
                       </div>
@@ -625,7 +394,7 @@ const Dashboard = () => {
               </div>
               <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
                 <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center justify-between mb-6">
                     <div className="flex justify-center items-center gap-6">
                       <a href="">
                         <h3 className="text-sm font-semibold leading-none text-gray-900">
