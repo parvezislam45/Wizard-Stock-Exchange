@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Help Center</title>
+    <style>
+      /* Add your CSS styles here */
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .faq-section {
+        margin-bottom: 30px;
+      }
+      .faq-section h2 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .faq-question {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .contact-section {
+        padding-top: 30px;
+        border-top: 1px solid #ccc;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .contact-form button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .contact-form button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Help Center</h1>
+    <div class="container">
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-question">
+          <strong>Q: What is the stock exchange?</strong>
+          <p>
+            A: The stock exchange is a marketplace where financial securities
+            are bought and sold.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: How can I invest in stocks?</strong>
+          <p>
+            A: To invest in stocks, you need to open a brokerage account and
+            start buying shares of companies.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: How can users authenticate themselves on the stock exchange platform?</strong>
+          <p>
+            A: Users can authenticate themselves by creating an account on the platform. During registration, they provide necessary details like email, username, and password. This information is stored securely and used for future logins. Django offers built-in authentication mechanisms that simplify the process of user registration, login, and account management.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q:  How are stocks listed on the platform, and how can users view them?</strong>
+          <p>
+            A: Stocks are listed in a database where each entry represents a stock. Information about each stock, such as its name, symbol, current price, etc., is stored. Users can view available stocks by accessing the platform's stock listing page, where they can see a comprehensive list of all stocks.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: How do users buy and sell stocks on the platform?</strong>
+          <p>
+            A: Users can buy and sell stocks by navigating to the stock details page and placing orders. To buy a stock, they enter the quantity they want and confirm the purchase. Similarly, for selling, they choose the stocks they wish to sell and specify the quantity. The system handles the transaction, updates the user's portfolio, and adjusts their account balance accordingly.
+
+
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: Can users track their investment portfolios?</strong>
+          <p>
+            A: Yes, users can track their investment portfolios on the platform. The system keeps a record of the stocks they own and their current value. Users can view their portfolios, check the current value of their investments, and get insights into their overall performance.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: How is sensitive financial information secured on the platform?</strong>
+          <p>
+            A: Sensitive financial information, like passwords and transaction data, is encrypted and stored securely in the database. Django provides secure authentication mechanisms and best practices to ensure data privacy. SSL (Secure Socket Layer) is used to encrypt data transmitted between the user's browser and the server, adding an extra layer of security.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: How is sensitive financial information secured on the platform?</strong>
+          <p>
+            A: Sensitive financial information, like passwords and transaction data, is encrypted and stored securely in the database. Django provides secure authentication mechanisms and best practices to ensure data privacy. SSL (Secure Socket Layer) is used to encrypt data transmitted between the user's browser and the server, adding an extra layer of security.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: Can users get historical data or trends for stocks?</strong>
+          <p>
+            A: Yes, users can access historical data or trends for stocks. The system can integrate with financial APIs or databases to provide historical stock prices, trends, and other relevant data. Users can use this data to make informed decisions about their investments.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q:  How is real-time data handled on the platform?</strong>
+          <p>
+            A: Real-time data can be achieved by integrating with financial data providers that offer real-time stock market information through APIs. The platform continuously fetches and updates stock prices, ensuring users have access to the latest and most accurate data for making investment choices.
+          </p>
+        </div>
+        <div class="faq-question">
+          <strong>Q: How can users contact support for assistance?</strong>
+          <p>
+            A: Users can contact support by visiting the platform's contact page or using a dedicated support email. The support team will respond to their inquiries, provide assistance, and address any issues or concerns they may have while using the platform.
+          </p>
+        </div>
+        <!-- Add more FAQs as needed -->
+      </div>
+
+      <div class="contact-section">
+        <h2>Contact Us</h2>
+        <form class="contact-form" method="post">
+          {% csrf_token %}
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required /><br />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br />
+
+          <label for="subject">Subject:</label>
+          <input type="text" id="subject" name="subject" required /><br />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" rows="4" required></textarea
+          ><br />
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
