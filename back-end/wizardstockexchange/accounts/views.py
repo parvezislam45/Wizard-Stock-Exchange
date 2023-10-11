@@ -51,3 +51,15 @@ class Profile(APIView):
 
     def get(self, request):
         return JsonResponse({'username': request.user.username, 'email': request.user.email})
+    
+    
+    
+    
+    
+    
+
+def user_logout_fun(request):
+    if request.method == 'POST':
+        # When a user logs out, you can delete their authentication token
+        request.auth.delete()
+        return Response({'message': 'Logout successful'}, status=status.HTTP_200_OK)

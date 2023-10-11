@@ -7,6 +7,7 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Dashboard from "../Authentication/Dashboard";
 import UserProfile from "../Authentication/UserProfile";
+import Documentation from "../Pages/Home/Documentation";
 
 
 
@@ -35,6 +36,10 @@ import UserProfile from "../Authentication/UserProfile";
           path : 'profile',
           element : <UserProfile/>
       },
+      {
+        path : 'documentation',
+        element : <Documentation/>
+      }
       ]
     },
   ]);

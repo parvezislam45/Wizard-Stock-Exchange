@@ -38,14 +38,14 @@ const Banner = () => {
     ],
   };
   return (
-    <div>
+    <div >
       {/* -------------------------- Slider --------------------------- */}
-      <div className="mt-10">
+      <div className="mt-10 bg-gray-800">
         <Slider {...settings}>
           {Data.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-800 text-white w-60 flex flex-col rounded-xl shadow-lg p-4"
+              className=" text-white w-60 flex flex-col rounded-xl shadow-lg p-4"
             >
               <div className="flex items-center justify-between gap-8">
                 <div className="text-md font-bold">{item.text}</div>
