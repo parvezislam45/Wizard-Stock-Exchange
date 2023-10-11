@@ -1,7 +1,9 @@
-import  { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import LiveChart from '../LiveChart/LiveChart';
+import SecData from '../SecData/SecData';
 
 const LiveTradingApp = () => {
-  const [symbol, setSymbol] = useState('btcusdt'); // Default symbol
+  const [symbol, setSymbol] = useState('solusdt'); // Default symbol
   const [interval, setInterval] = useState('1m'); // Default interval
   const [openData, setOpenData] = useState(null);
   const [closeData, setCloseData] = useState(null);
@@ -96,7 +98,7 @@ const LiveTradingApp = () => {
       </span>
       {/* Display the latest stock price */}
       <p>Last Price: {closeData}</p>
-      <div className="container">
+      {/* <div className="container">
         <h1 className="title">Real-Time OHLC Data for {symbol}</h1>
         <div className="ohlc-container">
           <h2 className="ohlc-title">OHLC Data</h2>
@@ -113,21 +115,10 @@ const LiveTradingApp = () => {
               );
             })}
           </ul>
-          <div>
-          <svg ref={SVGRect} className="w-500 h-500">
-  <g id="x-axis"></g>
-  <g id="y-axis"></g>
-  <g id="graph">
-    <rect x="10" y="10" width="100%" height="100%" fill="blue" />
-  </g>
-</svg>
-          </div>
         </div>
-      </div>
-
-
-
-
+      </div> */}
+      <LiveChart ohlcData={ohlcData}></LiveChart>
+      <SecData ohlcData={ohlcData}></SecData>
     </div>
   );
 };

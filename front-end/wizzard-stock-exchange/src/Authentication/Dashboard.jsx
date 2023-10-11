@@ -1,6 +1,6 @@
-import LiveChart from "../LiveChart/LiveChart";
 import LiveTradingApp from "../LiveData/LiveData";
-import LiveData from "../LiveData/LiveData";
+
+
 const Dashboard = () => {
   return (
     <div>
@@ -258,39 +258,24 @@ const Dashboard = () => {
             <div className="pt-6 px-4">
               <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                  {/* <div className="flex items-center justify-between mb-4">
-                    <div className="flex-shrink-0">
-                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        $45,385
-                      </span>
-                      <h3 className="text-base font-normal text-gray-500">
-                        Sales this week
-                      </h3>
-                    </div>
-                    <div className="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                      12.5%
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"></path>
-                      </svg>
-                    </div>
-                  </div> */}
-                  <LiveTradingApp></LiveTradingApp>
-                  
+                   <div className="flex items-center justify-between mb-4">
+                    <LiveTradingApp></LiveTradingApp>
+
+                  </div>
+                  <div id="main-chart"></div>
                 </div>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <div className="mb-4 flex items-center justify-between">
+                    
                     <div>
+                      <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         Latest Transactions
                       </h3>
                       <span className="text-base font-normal text-gray-500">
                         This is a list of latest transactions
                       </span>
+                    </div>
                     </div>
                     <div className="flex-shrink-0">
                       <a
@@ -328,102 +313,7 @@ const Dashboard = () => {
                                 </th>
                               </tr>
                             </thead>
-                            <tbody className="bg-white">
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Bonnie Green
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment refund to{" "}
-                                  <span className="font-semibold">#00910</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 23 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  -$670
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment failed from{" "}
-                                  <span className="font-semibold">#087651</span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 18 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $234
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Byrd
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $5000
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Jese Leos
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 15 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $2300
-                                </td>
-                              </tr>
-                              <tr className="bg-gray-50">
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900 rounded-lg rounded-left">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    THEMESBERG LLC
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 11 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $560
-                                </td>
-                              </tr>
-                              <tr>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-                                  Payment from{" "}
-                                  <span className="font-semibold">
-                                    Lana Lysle
-                                  </span>
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
-                                  Apr 6 ,2021
-                                </td>
-                                <td className="p-4 whitespace-nowrap text-sm font-semibold text-gray-900">
-                                  $1437
-                                </td>
-                              </tr>
-                            </tbody>
+                            {/* <SecData></SecData> */}
                           </table>
                         </div>
                       </div>
@@ -504,16 +394,133 @@ const Dashboard = () => {
               </div>
               <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
                 <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-bold leading-none text-gray-900">
-                      Latest Customers
-                    </h3>
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex justify-center items-center gap-6">
+                      <a href="">
+                        <h3 className="text-sm font-semibold leading-none text-gray-900">
+                          Open Docker(2)
+                        </h3>
+                      </a>
+                      <a href="">
+                        <h3 className="text-sm font-semibold leading-none text-gray-900">
+                          Position (1)
+                        </h3>
+                      </a>
+                    </div>
+
                     <a
                       href="#"
                       className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
                     >
-                      View all
+                      <img className="w-5 h-6" src="https://static.vecteezy.com/system/resources/thumbnails/026/753/173/small/save-icon-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg" alt="" />
                     </a>
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      <img
+                        className="mr-2 w-5 h-5 rounded-full"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
+                        alt=""
+                      />
+
+                      <p>
+                        <span className="text-md font-semibold">
+                          Hide Other Pairs
+                        </span>
+                      </p>
+                    </div>
+                    <a
+                      href="#"
+                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+                    >
+                      Clear All
+                    </a>
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center">
+                      <img
+                        className="mr-2 w-7 h-7 rounded-full"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
+                        alt=""
+                      />
+
+                      <p>
+                        <span className="text-lg font-bold">
+                          {" "}
+                          BIDKUT{" "}
+                          <span className="text-md font-semibold">
+                            Prpitual
+                          </span>
+                        </span>
+                      </p>
+                    </div>
+                    <a
+                      href="#"
+                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+                    >
+                      <img className="w-5" src="https://cdn.icon-icons.com/icons2/2645/PNG/512/box_arrow_in_up_right_icon_160373.png" alt="" />
+                    </a>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <h6 className="text-xl font-normal">Cross 5X !!! ?</h6>
+                    <div className="flex items-center ">
+                      <img
+                        className="mr-2 w-5 h-5 rounded-full"
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
+                        alt=""
+                      />
+
+                      <p>
+                        <span className="text-md font-semibold">
+                          Risk 1.74 %
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <h1 className="text-md font-semibold">Size (BTC)</h1>
+                    <h1 className="text-md font-semibold">
+                      UnRealize PNL(%RDC)
+                    </h1>
+                    <h1 className="text-md font-semibold">Margin</h1>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <h1 className="text-md font-semibold">0.0007</h1>
+                    <h1 className="text-md font-semibold text-red-600">
+                      -0.01[-0.15%]
+                    </h1>
+                    <h1 className="text-md font-semibold">6.81</h1>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <h1 className="text-md font-semibold">Entry Price</h1>
+                    <h1 className="text-md font-semibold">Mark Price</h1>
+                    <h1 className="text-md font-semibold">Licudation Price</h1>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <h1 className="text-md font-semibold">340.4953</h1>
+                    <h1 className="text-md font-semibold">367.6590</h1>
+                    <h1 className="text-md font-semibold">426.8752</h1>
+                  </div>
+                  <h1 className="mb-8">TP/SL -- / --</h1>
+                  <div className="flex justify-between items-center mb-3">
+                    <button
+                      type="button"
+                      className="py-2.5 px-5 text-xs font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                      Adjust Avarage
+                    </button>
+                    <button
+                      type="button"
+                      className="py-2.5 px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                      Stop Profit & Loss
+                    </button>
+                    <button
+                      type="button"
+                      className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    >
+                      Close Position
+                    </button>
                   </div>
                 </div>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
