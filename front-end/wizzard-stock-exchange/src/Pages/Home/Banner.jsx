@@ -1,5 +1,6 @@
 import Slider from "react-slick";
 import { Data } from "../../Data/Data";
+import { useEffect, useState } from "react";
 
 const Banner = () => {
   const settings = {
@@ -37,23 +38,29 @@ const Banner = () => {
       },
     ],
   };
+  const [trades,setTrades]=useState([])
+  useEffect(()=>{
+    fetch('http://localhost:9000/api')
+    .then(res => res.json())
+    .then(data =>{setTrades(data)})
+  },[])
   return (
     <div >
       {/* -------------------------- Slider --------------------------- */}
       <div className="mt-10 bg-gray-800">
         <Slider {...settings}>
-          {Data.map((item, index) => (
+          {trades.map((item, index) => (
             <div
               key={index}
               className=" text-white w-60 flex flex-col rounded-xl shadow-lg p-4"
             >
               <div className="flex items-center justify-between gap-8">
-                <div className="text-md font-bold">{item.text}</div>
+                <div className="text-md font-bold">{item.description}</div>
                 <div className="text-md font-bold">{item.title}</div>
               </div>
               <div className="flex items-center justify-between gap-8">
-                <div className="text-md font-bold">{item.value}</div>
-                <div className="text-md font-bold">{item.value2}</div>
+                <div className="text-md font-bold">{item.price}</div>
+                <div className="text-sm text-red-600 font-bold">- {item.price}</div>
               </div>
             </div>
           ))}
