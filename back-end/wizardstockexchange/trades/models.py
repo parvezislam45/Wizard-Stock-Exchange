@@ -2,10 +2,6 @@ from django.db import models
 from django.conf import settings
 
 User = settings.AUTH_USER_MODEL
-# class Share(models.Model):
-#     name = models.CharField(max_length=255)
-#     symbol = models.CharField(max_length=10)
-#     price = models.FloatField()
 
 class UserWallet(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,8 +11,7 @@ class UserWallet(models.Model):
         return str(self.user)
 
 class BuyTransaction(models.Model):
-    user_wallet = models.ForeignKey(UserWallet, on_delete=models.CASCADE)
-    # share = models.ForeignKey(Share, on_delete=models.CASCADE)
+    # user_wallet = models.ForeignKey(UserWallet, on_delete=models.CASCADE)
     share_name = models.CharField(max_length=255)
     share_symbol = models.CharField(max_length=10)
     quantity = models.IntegerField()
@@ -29,7 +24,6 @@ class BuyTransaction(models.Model):
     
 class SellTransaction(models.Model):
     user_wallet = models.ForeignKey(UserWallet, on_delete=models.CASCADE)
-    # share = models.ForeignKey(Share, on_delete=models.CASCADE)
     share_name = models.CharField(max_length=255)
     share_symbol = models.CharField(max_length=10)
     quantity = models.IntegerField()

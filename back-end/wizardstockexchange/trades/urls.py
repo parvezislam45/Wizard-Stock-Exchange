@@ -1,9 +1,8 @@
 from django.urls import path
-from .views import buy_share, sell_share,success,allTransaction
+from .views import BuyShareAPIView, SellShareAPIView, AllTransactionAPIView
 
 urlpatterns = [
-    path('buy_share/', buy_share, name='buy_share'),
-    path('sell_share/', sell_share, name='sell_share'),
-    path('success/', success, name='success'),
-    path('wallet/',allTransaction, name='transaction')
+    path('buy_share/', BuyShareAPIView.as_view(), name='buy_share'),
+    path('sell_share/', SellShareAPIView.as_view(), name='sell_share'),
+    path('all_transactions/', AllTransactionAPIView.as_view(), name='all_transactions')
 ]
