@@ -98,27 +98,10 @@ const LiveTradingApp = () => {
       </span>
       {/* Display the latest stock price */}
       <p>Last Price: {closeData}</p>
-      {/* <div className="container">
-        <h1 className="title">Real-Time OHLC Data for {symbol}</h1>
-        <div className="ohlc-container">
-          <h2 className="ohlc-title">OHLC Data</h2>
-          <ul className="ohlc-list">
-            {ohlcData.map((dataPoint, index) => {
-              const textColorClass = dataPoint.open > dataPoint.close ? 'text-red-500' : 'text-green-500';
-
-              return (
-                <li key={index} className="ohlc-item">
-                  <span className={`ohlc-text ${textColorClass}`}>
-                    Open: {dataPoint.open}, Low: {dataPoint.low}, High: {dataPoint.high}, Close: {dataPoint.close}
-                  </span>
-                </li>
-              );
-            })}
-          </ul>
-        </div>
-      </div> */}
       <LiveChart ohlcData={ohlcData}></LiveChart>
       <SecData ohlcData={ohlcData}></SecData>
+    
+      
     </div>
   );
 };

@@ -1,7 +1,93 @@
 import LiveTradingApp from "../LiveData/LiveData";
-
+import { useEffect, useRef, useState } from "react";
+import LiveChart from "../LiveChart/LiveChart";
+import SecData from "../SecData/SecData";
 
 const Dashboard = () => {
+  const [symbol, setSymbol] = useState("solusdt"); // Default symbol
+  const [interval, setInterval] = useState("1m"); // Default interval
+  const [openData, setOpenData] = useState(null);
+  const [closeData, setCloseData] = useState(null);
+  const [ohlcData, setOhlcData] = useState([]);
+  const [stockPrice, setStockPrice] = useState(1);
+  const [ws, setWs] = useState(null); // Store the WebSocket reference
+  const SVGRect = useRef(null);
+
+  useEffect(() => {
+    const wsEndpoint = `wss://stream.binance.com:9443/ws/${symbol}@kline_${interval}`;
+
+    // Check if the WebSocket connection exists and is open
+    if (ws && ws.readyState === WebSocket.OPEN) {
+      // If it's open, we don't need to open a new one
+      return;
+    }
+
+    // If the WebSocket doesn't exist or is not open, create a new one
+    const newWs = new WebSocket(wsEndpoint);
+
+    newWs.onopen = () => {
+      console.log("WebSocket connection opened.");
+    };
+
+    newWs.onmessage = (event) => {
+      const eventData = JSON.parse(event.data);
+      const klineData = eventData.k;
+      setOpenData(klineData.o);
+      setCloseData(klineData.c);
+
+      // Extract OHLC data
+      const openPrice = parseFloat(klineData.o).toFixed(2);
+      const lowPrice = parseFloat(klineData.l).toFixed(2);
+      const highPrice = parseFloat(klineData.h).toFixed(2);
+      const closePrice = parseFloat(klineData.c).toFixed(2);
+
+      // Update ohlcData with the new data point
+      setOhlcData((prevData) => [
+        {
+          open: openPrice,
+          low: lowPrice,
+          high: highPrice,
+          close: closePrice,
+        },
+        ...prevData,
+      ]);
+
+      const JsonPrice = parseFloat(parseInt(eventData.p));
+      setStockPrice(JsonPrice);
+    };
+
+    newWs.onerror = (error) => {
+      console.error("WebSocket error:", error);
+    };
+
+    newWs.onclose = async (event) => {
+      console.log(
+        `WebSocket connection closed with code ${event.code} and reason: ${event.reason}`
+      );
+
+      // Example asynchronous operation when WebSocket closes
+      try {
+        // Simulating some asynchronous operation
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        console.log("Async operation completed after WebSocket closed.");
+      } catch (error) {
+        console.error("Error during async operation:", error);
+      }
+    };
+
+    // Save the new WebSocket reference
+    setWs(newWs);
+
+    // Clean up the WebSocket connection when the component unmounts
+    return () => {
+      newWs.close();
+    };
+  }, [symbol, interval]);
+
+  const handleButtonClick = (newSymbol) => {
+    setSymbol(newSymbol);
+    setStockPrice(1); // Reset stockPrice when switching symbols
+  };
   return (
     <div>
       <div className="flex overflow-hidden bg-white pt-16">
@@ -257,141 +343,190 @@ const Dashboard = () => {
           <main>
             <div className="pt-6 px-4">
               <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+                <button onClick={() => handleButtonClick("ethusdt")}>
+                  ETH/USDT
+                </button>
+                <button onClick={() => handleButtonClick("btcusdt")}>
+                  BTC/USDT
+                </button>
+                <button onClick={() => handleButtonClick("solusdt")}>
+                  SOL/USDT
+                </button>
+                {/* Display the selected symbol */}
+                <p>Selected Symbol: {symbol}</p>
+                <span className="text-2xl sm:text-3xl leading-none font-bold">
+                  <h4
+                    className={
+                      openData > closeData ? "text-red-500" : "text-green-500"
+                    }
+                  >
+                    {closeData}
+                  </h4>
+                </span>
+                {/* Display the latest stock price */}
+                <p>Last Price: {closeData}</p>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                   <div className="flex items-center justify-between mb-4">
-                    <LiveTradingApp></LiveTradingApp>
-
+                  <div className="">
+                    {/* <LiveTradingApp></LiveTradingApp> */}
+                    <LiveChart
+                      className="w-full"
+                      ohlcData={ohlcData}
+                    ></LiveChart>
+                    <div className="text-center mt-5">
+                      <label htmlFor="my_modal_7" className="btn px-5">
+                        <span className="text-xl font-black">Buy Now</span>
+                      </label>
+                    </div>
                   </div>
-                  <div id="main-chart"></div>
+                  {/* <div id="main-chart"></div> */}
                 </div>
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <div className="mb-4 flex items-center justify-between">
-                    
-                    <div>
-                      <div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        Latest Transactions
-                      </h3>
-                      <span className="text-base font-normal text-gray-500">
-                        This is a list of latest transactions
-                      </span>
-                    </div>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <a
-                        href="#"
-                        className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2"
-                      >
-                        View all
-                      </a>
-                    </div>
+                  <div className="mb-4 w-full h-72 overflow-hidden">
+                    <SecData ohlcData={ohlcData}></SecData>
                   </div>
-                  <div className="flex flex-col mt-8">
-                    <div className="overflow-x-auto rounded-lg">
-                      <div className="align-middle inline-block min-w-full">
-                        <div className="shadow overflow-hidden sm:rounded-lg">
-                          <table className="min-w-full divide-y divide-gray-200">
-                            <thead className="bg-gray-50">
-                              <tr>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Transaction
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Date & Time
-                                </th>
-                                <th
-                                  scope="col"
-                                  className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                >
-                                  Amount
-                                </th>
-                              </tr>
-                            </thead>
-                            {/* <SecData></SecData> */}
-                          </table>
+                </div>
+              </div>
+              {/* --------------------- Modal ---------------------------- */}
+
+              {/* The button to open modal */}
+
+              {/* Put this part before </body> tag */}
+              <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+              <div className="modal">
+                <div className="modal-box">
+                  <div className="font-manrope flex h-screen w-full items-center justify-center">
+                    <div className="mx-auto box-border w-[365px] border bg-white p-4">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[#64748B]">Buy Your Stock</span>
+                        <div className="cursor-pointer border rounded-[4px]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-6 w-6 text-[#64748B]"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <div className="font-semibold">
+                          How much would you like to send?
+                        </div>
+                        <div>
+                          <input
+                            className="mt-1 w-full rounded-[4px] border border-[#A0ABBB] p-2"
+                           
+                            type="text"
+                            placeholder="Stock Name"
+                          />
+                        </div>
+                        <div>
+                        <input
+                            className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
+                           
+                            type="text"
+                            placeholder="Stock Symbol"
+                          />
+                        <input
+                            className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
+                           
+                            type="number"
+                            placeholder=" Price"
+                          />
+                        <input
+                            className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
+                           
+                            type="number"
+                            placeholder="Quantity"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <div className="font-semibold">From</div>
+                        <div className="mt-2">
+                          <div className="flex w-full items-center justify-between bg-neutral-100 p-3 rounded-[4px]">
+                            <div className="flex items-center gap-x-2">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-8 w-8 text-[#299D37]"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                              </svg>
+                              <span className="font-semibold">Checking</span>
+                            </div>
+
+                            <div className="flex items-center gap-x-2">
+                              <div className="text-[#64748B]">
+                                card ending in 6678
+                              </div>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-5 w-5 cursor-pointer"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <div className="flex justify-between">
+                          <span className="font-semibold text-[#191D23]">
+                            Receiving
+                          </span>
+                          <div className="flex cursor-pointer items-center gap-x-2">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5 text-green-700"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div className="font-semibold text-green-700">
+                              Add recipient
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-x-[10px] bg-neutral-100 p-3 mt-2 rounded-[4px]">
+                          <img
+                            className="h-10 w-10 rounded-full"
+                            src="https://images.unsplash.com/photo-1507019403270-cca502add9f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
+                            alt=""
+                          />
+                          <div>
+                            <div className="font-semibold">Kathy Miller</div>
+                            <div className="text-[#64748B]">@KittyKatmills</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-6">
+                        <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
+                        Buy
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                <label className="modal-backdrop" htmlFor="my_modal_7">
+                  Close
+                </label>
               </div>
-              <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        2,340
-                      </span>
-                      <h3 className="text-base font-normal text-gray-500">
-                        New products this week
-                      </h3>
-                    </div>
-                    <div className="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                      14.6%
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        5,355
-                      </span>
-                      <h3 className="text-base font-normal text-gray-500">
-                        Visitors this week
-                      </h3>
-                    </div>
-                    <div className="ml-5 w-0 flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                      32.9%
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0">
-                      <span className="text-2xl sm:text-3xl leading-none font-bold text-gray-900">
-                        385
-                      </span>
-                      <h3 className="text-base font-normal text-gray-500">
-                        User signups this week
-                      </h3>
-                    </div>
-                    <div className="ml-5 w-0 flex items-center justify-end flex-1 text-red-500 text-base font-bold">
-                      -2.7%
-                      <svg
-                        className="w-5 h-5"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 012 0v11.586l2.293-2.293a1 1 0 011.414 0z"></path>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* --------------------- Modal ---------------------------- */}
               <div className="grid grid-cols-1 2xl:grid-cols-2 xl:gap-4 my-4">
                 <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
                   <div className="flex items-center justify-between mb-6">
@@ -412,7 +547,11 @@ const Dashboard = () => {
                       href="#"
                       className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
                     >
-                      <img className="w-5 h-6" src="https://static.vecteezy.com/system/resources/thumbnails/026/753/173/small/save-icon-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg" alt="" />
+                      <img
+                        className="w-5 h-6"
+                        src="https://static.vecteezy.com/system/resources/thumbnails/026/753/173/small/save-icon-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg"
+                        alt=""
+                      />
                     </a>
                   </div>
                   <div className="flex items-center justify-between mb-4">
@@ -458,7 +597,11 @@ const Dashboard = () => {
                       href="#"
                       className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
                     >
-                      <img className="w-5" src="https://cdn.icon-icons.com/icons2/2645/PNG/512/box_arrow_in_up_right_icon_160373.png" alt="" />
+                      <img
+                        className="w-5"
+                        src="https://cdn.icon-icons.com/icons2/2645/PNG/512/box_arrow_in_up_right_icon_160373.png"
+                        alt=""
+                      />
                     </a>
                   </div>
                   <div className="flex justify-between items-center mb-3">
