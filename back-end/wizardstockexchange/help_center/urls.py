@@ -7,6 +7,6 @@ router = DefaultRouter()
 router.register(r'contact-messages', ContactMessageViewSet)
 
 urlpatterns = [
-    path('', help_center, name='help_center'),
+    path('send/', help_center, name='help_center'),
     path('api/', include(router.urls)),  # Include the API URLs
 ]
