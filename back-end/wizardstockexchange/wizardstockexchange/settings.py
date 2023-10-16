@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'help_center',
+    'tradeApi',
 ]
 
 MIDDLEWARE = [
