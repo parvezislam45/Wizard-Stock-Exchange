@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const Buy = () => {
@@ -123,9 +124,10 @@ const Buy = () => {
                       </div>
 
                       <div className="mt-6">
-                        <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
+                        <Link to="wallet"><div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
                           Buy
-                        </div>
+                        </div></Link>
+                        
                       </div>
                     </div>
                   </div>

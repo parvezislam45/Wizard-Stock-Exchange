@@ -47,7 +47,7 @@ import Wallet from "../Wallet/Wallet";
         element : <Payment/>
       },
       {
-        path : 'wallet',
+        path : 'dashboard/wallet',
         element : <Wallet/>
       }
       ]
