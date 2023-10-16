@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import LiveChart from '../LiveChart/LiveChart';
 import SecData from '../SecData/SecData';
+import Buy from '../Buy/Buy';
 
 const LiveTradingApp = () => {
   const [symbol, setSymbol] = useState('solusdt'); // Default symbol
@@ -87,22 +88,67 @@ const LiveTradingApp = () => {
   };
 
   return (
-    <div>
-      <button onClick={() => handleButtonClick('ethusdt')}>ETH/USDT</button>
-      <button onClick={() => handleButtonClick('btcusdt')}>BTC/USDT</button>
-      <button onClick={() => handleButtonClick('solusdt')}>SOL/USDT</button>
-      {/* Display the selected symbol */}
-      <p>Selected Symbol: {symbol}</p>
-      <span className="text-2xl sm:text-3xl leading-none font-bold">
-        <h4 className={openData > closeData ? 'text-red-500' : 'text-green-500'}>{closeData}</h4>
-      </span>
-      {/* Display the latest stock price */}
-      <p>Last Price: {closeData}</p>
-      <LiveChart ohlcData={ohlcData}></LiveChart>
-      <SecData ohlcData={ohlcData}></SecData>
+    // <div>
+    //   <button onClick={() => handleButtonClick('ethusdt')}>ETH/USDT</button>
+    //   <button onClick={() => handleButtonClick('btcusdt')}>BTC/USDT</button>
+    //   <button onClick={() => handleButtonClick('solusdt')}>SOL/USDT</button>
+    //   {/* Display the selected symbol */}
+    //   <p>Selected Symbol: {symbol}</p>
+    //   <span className="text-2xl sm:text-3xl leading-none font-bold">
+    //     <h4 className={openData > closeData ? 'text-red-500' : 'text-green-500'}>{closeData}</h4>
+    //   </span>
+    //   {/* Display the latest stock price */}
+    //   <p>Last Price: {closeData}</p>
+    //   <LiveChart ohlcData={ohlcData}></LiveChart>
+    //   <SecData ohlcData={ohlcData}></SecData>
     
       
-    </div>
+    // </div>
+    <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+                <button onClick={() => handleButtonClick("ethusdt")}>
+                  ETH/USDT
+                </button>
+                <button onClick={() => handleButtonClick("btcusdt")}>
+                  BTC/USDT
+                </button>
+                <button onClick={() => handleButtonClick("solusdt")}>
+                  SOL/USDT
+                </button>
+                {/* Display the selected symbol */}
+                <p>Selected Symbol: {symbol}</p>
+                <span className="text-2xl sm:text-3xl leading-none font-bold">
+                  <h4
+                    className={
+                      openData > closeData ? "text-red-500" : "text-green-500"
+                    }
+                  >
+                    {closeData}
+                  </h4>
+                </span>
+                {/* Display the latest stock price */}
+                <p>Last Price: {closeData}</p>
+                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                  <div className="">
+                    {/* <LiveTradingApp></LiveTradingApp> */}
+                    <LiveChart
+                      className="w-full"
+                      ohlcData={ohlcData}
+                    ></LiveChart>
+                    <div className="text-center mt-5">
+                      <label htmlFor="my_modal_7" className="btn px-5">
+                        <span className="text-xl font-black">Buy Now</span>
+                      </label>
+                    </div>
+                  </div>
+                  {/* <div id="main-chart"></div> */}
+                </div>
+                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                  <div className="mb-4 w-full h-72 overflow-hidden">
+                    <SecData ohlcData={ohlcData}></SecData>
+                  </div>
+                </div>
+                <Buy/>
+              </div>
   );
 };
 

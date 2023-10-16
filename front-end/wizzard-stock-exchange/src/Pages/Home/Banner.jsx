@@ -43,7 +43,7 @@ const Banner = () => {
     fetch('http://localhost:9000/api')
     .then(res => res.json())
     .then(data =>{setTrades(data)})
-  },[])
+  },[trades])
   return (
     <div >
       {/* -------------------------- Slider --------------------------- */}
@@ -59,8 +59,8 @@ const Banner = () => {
                 <div className="text-md font-bold">{item.title}</div>
               </div>
               <div className="flex items-center justify-between gap-8">
-                <div className="text-md font-bold">{item.price}</div>
-                <div className="text-sm text-red-600 font-bold">- {item.price}</div>
+                <div className="text-md font-bold">{item.value}</div>
+                <div className="text-xl text-red-600 font-bold">- {item.price}</div>
               </div>
             </div>
           ))}

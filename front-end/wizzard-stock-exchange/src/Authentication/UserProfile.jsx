@@ -1,4 +1,29 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+
 const UserProfile = () => {
+  const [user, setUser] = useState(null);
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const response = await axios.get("http://127.0.0.1:8000/account/profile/", {
+          headers: {
+            Authorization: `Token ${localStorage.getItem("token")}`,
+          },
+        });
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    if (token) {
+      fetchProfile();
+    }
+  }, [token]);
+  console.log(user)
   return (
     <div>
       <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4 mt-20">
@@ -17,9 +42,14 @@ const UserProfile = () => {
           <h1 className="mx-3 text-white font-semibold text-lg">Focusing</h1>
         </div>
         <div className="py-4 px-6">
-          <h1 className="text-2xl font-semibold text-gray-800">
-            Patterson johnson
-          </h1>
+        {user ? (
+        <div>
+          <p>Name: {user.username}</p>
+          <p>Email: {user.email}</p>
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
           <p className="py-2 text-lg text-gray-700">
             Full Stack maker & UI / UX Designer , love hip hop music Author of
             Building UI.
