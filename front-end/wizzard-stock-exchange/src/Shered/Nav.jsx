@@ -56,30 +56,12 @@ const Nav = () => {
             {user || token ? (
               <>
                 <li>
-                  <a href="/buy-crypto">Buy Crypto</a>
+                  <Link to="/dashboard">Buy Crypto</Link>
                 </li>
                 <li>
-                  <Link to="/dashboard">Dashboard</Link>
+                  <a href="/wallet">Wallet</a>
                 </li>
-                <li tabIndex={0}>
-                  <details>
-                    <summary>Trade</summary>
-                    <ul className="p-2">
-                      <li>
-                        <a href="/submenu-1">Submenu 1</a>
-                      </li>
-                      <li>
-                        <a href="/submenu-2">Submenu 2</a>
-                      </li>
-                    </ul>
-                  </details>
-                </li>
-                <li>
-                  <a href="/features">Features</a>
-                </li>
-                <li>
-                  <a href="/earn">Earn</a>
-                </li>
+                
               </>
             ) : null}
           </ul>
@@ -88,13 +70,13 @@ const Nav = () => {
         {user || token ? (
             // If user is authenticated, show "Dashboard" and "Logout" buttons
             <>
-              <Link to="/dashboard">
+              <Link to="/profile">
               <button
               
               type="button"
               className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 mr-6"
             >
-              dashboard
+              Profile
             </button>
               </Link>
               <button

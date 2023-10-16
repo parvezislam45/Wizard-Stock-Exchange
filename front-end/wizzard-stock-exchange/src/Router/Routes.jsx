@@ -8,6 +8,8 @@ import Register from "../Authentication/Register";
 import Dashboard from "../Authentication/Dashboard";
 import UserProfile from "../Authentication/UserProfile";
 import Documentation from "../Pages/Home/Documentation";
+import Payment from "../../Payment/Payment";
+import Wallet from "../Wallet/Wallet";
 
 
 
@@ -39,6 +41,14 @@ import Documentation from "../Pages/Home/Documentation";
       {
         path : 'documentation',
         element : <Documentation/>
+      },
+      {
+        path : 'dashboard/payment',
+        element : <Payment/>
+      },
+      {
+        path : 'wallet',
+        element : <Wallet/>
       }
       ]
     },
