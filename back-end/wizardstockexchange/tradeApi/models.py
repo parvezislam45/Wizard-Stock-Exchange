@@ -7,6 +7,7 @@ class UserWallet(models.Model):
         CustomUser,
         on_delete=models.CASCADE,
         primary_key=True,
+        related_name='user_wallet_tradeapi'
     )
     balance = models.DecimalField(max_digits=10, decimal_places=2)
     
