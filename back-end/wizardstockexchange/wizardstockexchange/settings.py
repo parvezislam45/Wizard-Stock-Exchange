@@ -41,8 +41,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'accounts',
+<<<<<<< HEAD
     'help_center',
     'tradeApi',
+=======
+    'trades',
+>>>>>>> origin/rasel
 ]
 
 MIDDLEWARE = [
@@ -63,7 +67,7 @@ ROOT_URLCONF = 'wizardstockexchange.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -628,7 +628,7 @@ const Dashboard = () => {
                     <h1 className="text-md font-semibold">Margin</h1>
                   </div>
                   <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold">0.0007</h1>
+                    <h1 className="text-md font-semibold" id='size'>0.0007</h1>
                     <h1 className="text-md font-semibold text-red-600">
                       -0.01[-0.15%]
                     </h1>
@@ -666,6 +666,8 @@ const Dashboard = () => {
                     </button>
                   </div>
                 </div>
+
+
                 <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <h3 className="text-xl leading-none font-bold text-gray-900 mb-10">
                     Acquisition Overview
