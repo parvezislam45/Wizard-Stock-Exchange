@@ -41,12 +41,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'accounts',
-<<<<<<< HEAD
     'help_center',
     'tradeApi',
-=======
-    'trades',
->>>>>>> origin/rasel
 ]
 
 MIDDLEWARE = [
