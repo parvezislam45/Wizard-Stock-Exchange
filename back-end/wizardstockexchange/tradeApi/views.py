@@ -40,13 +40,11 @@ class SellShareViewSet(viewsets.ModelViewSet):
     
 
     def create(self, request, *args, **kwargs):
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
         
-        user_wallet = serializer.validated_data["user_wallet"]
-        stock_name = serializer.validated_data["stock_name"]
-        quantity = serializer.data['quantity']
-        price = serializer.data['price']
+        user_wallet = request.data['user_wallet']
+        stock_name = request.data['stock_name']
+        quantity = request.data['quantity']
+        price = request.data['price']
 
         # Check if the user wallet exists.
         try:
@@ -60,15 +58,15 @@ class SellShareViewSet(viewsets.ModelViewSet):
         except BuyShare.DoesNotExist:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        if buyshare.quantity <= quantity:
+        if buyshare.quantity < int(quantity):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         # Update the BuyShare model to reflect the sale.
-        buyshare.quantity -= quantity
+        buyshare.quantity -= int(quantity)
         buyshare.save()
 
         # Update the user's wallet balance to reflect the proceeds from the sale.
-        user_wallet.balance += quantity * price
+        user_wallet.balance += int(quantity) * int(price)
         user_wallet.save()
 
         # Create the SellShare object.
