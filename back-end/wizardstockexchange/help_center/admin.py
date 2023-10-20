@@ -1,13 +1,16 @@
 from django.contrib import admin
-from .models import ContactMessage
+from .models import ContactMessage, LiveChatMessage
 
-# Register your models here.
-
-# admin.site.register(ContactMessage)
-
-# Register the ContactMessage model with the admin
-@admin.register(ContactMessage)
 class ContactMessageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'email', 'subject']
-    search_fields = ['name', 'email', 'subject']
-    list_filter = ['subject']
+    list_display = ('name', 'email', 'subject', 'message')
+    search_fields = ('name', 'email', 'subject', 'message')
+    list_filter = ('subject',)
+
+class LiveChatMessageAdmin(admin.ModelAdmin):
+    list_display = ('sender_name', 'message', 'timestamp')
+    search_fields = ('sender_name', 'message')
+    list_filter = ('timestamp',)
+
+# Register the models and associated admin classes
+admin.site.register(ContactMessage, ContactMessageAdmin)
+admin.site.register(LiveChatMessage, LiveChatMessageAdmin)

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'help_center',
+    'channels',
     'tradeApi',
 ]
 
@@ -76,7 +77,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wizardstockexchange.wsgi.application'
+# WSGI_APPLICATION = 'wizardstockexchange.wsgi.application'
+ASGI_APPLICATION = 'wizardstockexchange.asgi.application'
 
 
 # Database
