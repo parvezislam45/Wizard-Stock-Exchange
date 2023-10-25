@@ -7,5 +7,4 @@ urlpatterns = [
     path('account/', include('accounts.urls')),
     path('help-center/', include('help_center.urls')),
     path('trade/', include('tradeApi.urls')),
-    path('trades/',include('trades.urls'))
 ]

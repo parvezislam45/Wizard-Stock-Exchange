@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'help_center',
     'channels',
     'tradeApi',
-    'trades',
 ]
 
 MIDDLEWARE = [
