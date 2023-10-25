@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
 import LiveChart from '../LiveChart/LiveChart';
 import SecData from '../SecData/SecData';
 import Buy from '../Buy/Buy';
+import axios from 'axios';
 
 const LiveTradingApp = () => {
   const [symbol, setSymbol] = useState('solusdt'); // Default symbol
@@ -12,6 +14,7 @@ const LiveTradingApp = () => {
   const [stockPrice, setStockPrice] = useState(1);
   const [ws, setWs] = useState(null); // Store the WebSocket reference
   const SVGRect = useRef(null);
+
 
   useEffect(() => {
     const wsEndpoint = `wss://stream.binance.com:9443/ws/${symbol}@kline_${interval}`;
@@ -87,6 +90,8 @@ const LiveTradingApp = () => {
     setStockPrice(1); // Reset stockPrice when switching symbols
   };
 
+
+ 
   return (
     // <div>
     //   <button onClick={() => handleButtonClick('ethusdt')}>ETH/USDT</button>
@@ -139,6 +144,7 @@ const LiveTradingApp = () => {
                         <span className="text-xl font-black">Buy Now</span>
                       </label>
                     </div>
+                    
                   </div>
                   {/* <div id="main-chart"></div> */}
                 </div>
@@ -147,7 +153,11 @@ const LiveTradingApp = () => {
                     <SecData ohlcData={ohlcData}></SecData>
                   </div>
                 </div>
-                <Buy/>
+                <Buy 
+                ohlcData={ohlcData}
+                closeData={closeData}
+                symbol={symbol}
+                ></Buy>
               </div>
   );
 };
