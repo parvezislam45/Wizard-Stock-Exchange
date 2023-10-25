@@ -5,10 +5,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
-<<<<<<< HEAD
     path('help-center/', include('help_center.urls')),
     path('trade/', include('tradeApi.urls')),
-=======
-    path('trades/',include('trades.urls'))
->>>>>>> origin/rasel
 ]
