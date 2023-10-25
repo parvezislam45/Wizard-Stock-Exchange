@@ -6,7 +6,8 @@ import Template from "../Template/Template";
 const Wallet = () => {
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
-  const [userWallets, setUserWallets] = useState([]);
+  const [userWallets, setUserWallets] = useState([]); 
+  const [wallet, setWallet] = useState([])
 
   useEffect(() => {
     const url = 'http://127.0.0.1:8000/trade/buy-shares/';
@@ -24,7 +25,22 @@ const Wallet = () => {
     // console.log(userWallets); // Log the userWallets when it changes
   }, [userWallets]);
 
+  useEffect(() => {
+    const url = 'http://127.0.0.1:8000/trade/user-wallets/';
 
+    axios.get(url)
+      .then(response => {
+        setWallet(response.data);
+        // console.log(response.data);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  }, []); // The empty dependency array ensures this runs once after the initial render
+  console.log(wallet);
+  useEffect(() => {
+    // console.log(userWallets); // Log the userWallets when it changes
+  }, [wallet]);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -125,9 +141,22 @@ const Wallet = () => {
                   <h3 className="text-center text-white text-lg">
                     Total Balance
                   </h3>
-                  <h3 className="text-center text-white text-3xl mt-2 font-bold">
-                    RM 27,580
+                  {wallet.map(wall => {
+      if ( user && wall.user_email === user.email ) {
+        // console.log('Found:', wallet.user_email, user.email);
+        return (
+           <div>
+            <h3 className="text-center text-white text-3xl mt-2 font-bold">
+                    {wall.balance}
                   </h3>
+           </div>
+        );
+      }
+
+    })}
+                  <div>
+    
+  </div>
                   <div className="flex space-x-4 mt-4">
                     <button
                       className="block uppercase mx-auto shadow bg-white text-indigo-600 focus:shadow-outline 
@@ -197,7 +226,7 @@ const Wallet = () => {
 
 <div>
     {userWallets.map(wallet => {
-      if (wallet.user_email === user.email) {
+      if ( user && wallet.user_email === user.email ) {
         // console.log('Found:', wallet.user_email, user.email);
         return (
           <div key={wallet.id}>
@@ -321,9 +350,9 @@ const Wallet = () => {
             </button>
             <button
               type="button"
-              className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+              className="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 bg-red-500"
             >
-              Close Position
+              Sell
             </button>
           </div>
           </div>

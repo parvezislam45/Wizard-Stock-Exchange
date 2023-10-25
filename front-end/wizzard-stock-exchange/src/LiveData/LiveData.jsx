@@ -144,6 +144,7 @@ const LiveTradingApp = () => {
                         <span className="text-xl font-black">Buy Now</span>
                       </label>
                     </div>
+                    
                   </div>
                   {/* <div id="main-chart"></div> */}
                 </div>

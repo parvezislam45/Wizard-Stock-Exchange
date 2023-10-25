@@ -21,17 +21,28 @@ class BuyShareViewSet(viewsets.ModelViewSet):
         serializer.is_valid(raise_exception=True)
 
         user_wallet = serializer.validated_data["user_wallet"]
+        stock_name = request.data['stock_name']
+        quantity = request.data['quantity']
+        price = request.data['price']
         print(user_wallet.balance)
         if user_wallet.balance < serializer.validated_data["price"] * serializer.validated_data["quantity"]:
             raise ValidationError("Insufficient balance.")
-
-        buy_share = serializer.save()
+        
+        
+        buyshare = BuyShare.objects.get(user_wallet=user_wallet, stock_name=stock_name)
+        if buyshare:
+            buyshare.quantity += int(quantity)
+            buyshare.price = price
+            buyshare.save()
+        else:
+            buyshare = serializer.save()
+            print(buyshare)
 
         # Decrement the user's wallet balance by the price of the shares they are buying.
         user_wallet.balance -= serializer.validated_data["price"] * serializer.validated_data["quantity"]
         user_wallet.save()
 
-        return Response(buy_share.id, status=status.HTTP_201_CREATED)
+        return Response(buyshare.id, status=status.HTTP_201_CREATED)
     
 
 class SellShareViewSet(viewsets.ModelViewSet):
@@ -60,10 +71,13 @@ class SellShareViewSet(viewsets.ModelViewSet):
 
         if buyshare.quantity < int(quantity):
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
+        elif buyshare.quantity == int(quantity):
+            buyshare.delete()
+        else:
+            buyshare.quantity -= int(quantity)
+            buyshare.save()
         # Update the BuyShare model to reflect the sale.
-        buyshare.quantity -= int(quantity)
-        buyshare.save()
+        
 
         # Update the user's wallet balance to reflect the proceeds from the sale.
         user_wallet.balance += int(quantity) * int(price)
