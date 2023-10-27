@@ -22,8 +22,8 @@ const UserProfile = () => {
     if (token) {
       fetchProfile();
     }
-  }, [token]);
-  console.log(user)
+  }, []);
+  // console.log(user.email)
   return (
     <div>
       <div className="max-w-sm mx-auto bg-white shadow-lg rounded-lg overflow-hidden my-4 mt-20">

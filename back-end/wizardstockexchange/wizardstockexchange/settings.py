@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'accounts',
     'help_center',
+    'channels',
+    'tradeApi',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'wizardstockexchange.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -75,7 +77,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'wizardstockexchange.wsgi.application'
+# WSGI_APPLICATION = 'wizardstockexchange.wsgi.application'
+ASGI_APPLICATION = 'wizardstockexchange.asgi.application'
 
 
 # Database

@@ -5,6 +5,7 @@ import axios from "axios";
 const Nav = () => {
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
+ 
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -29,7 +30,7 @@ const Nav = () => {
     localStorage.removeItem("token");
     window.location.href = "/";
   };
-
+  
   return (
     <div>
       <div className="navbar bg-black">
@@ -53,13 +54,16 @@ const Nav = () => {
             <li>
               <Link to="documentation">Documentation</Link>
             </li>
+            <li>
+              <Link to="help-center">Help_center</Link>
+            </li>
             {user || token ? (
               <>
                 <li>
                   <Link to="/dashboard">Buy Crypto</Link>
                 </li>
                 <li>
-                  <a href="/wallet">Wallet</a>
+                <Link to="/dashboard/wallet">Wallet</Link>
                 </li>
                 
               </>
