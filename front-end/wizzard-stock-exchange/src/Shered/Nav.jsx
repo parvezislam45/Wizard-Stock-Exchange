@@ -54,13 +54,16 @@ const Nav = () => {
             <li>
               <Link to="documentation">Documentation</Link>
             </li>
+            <li>
+              <Link to="help-center">Help_center</Link>
+            </li>
             {user || token ? (
               <>
                 <li>
                   <Link to="/dashboard">Buy Crypto</Link>
                 </li>
                 <li>
-                  <a href="/wallet">Wallet</a>
+                <Link to="/dashboard/wallet">Wallet</Link>
                 </li>
                 
               </>
