@@ -150,7 +150,7 @@ const Wallet = () => {
                     if (user && wall.user_email === user.email) {
                       // console.log('Found:', wallet.user_email, user.email);
                       return (
-                        <div>
+                        <div key={wall.id}>
                           <h3 className="text-center text-white text-3xl mt-2 font-bold">
                             {wall.balance}
                           </h3>
