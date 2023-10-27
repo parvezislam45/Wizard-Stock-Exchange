@@ -10,6 +10,7 @@ import UserProfile from "../Authentication/UserProfile";
 import Documentation from "../Pages/Home/Documentation";
 import Payment from "../../Payment/Payment";
 import Wallet from "../Wallet/Wallet";
+import HelpCenter from "../helpcenter/helpcenter"
 
 
 
@@ -49,6 +50,10 @@ import Wallet from "../Wallet/Wallet";
       {
         path : 'dashboard/wallet',
         element : <Wallet/>
+      },
+      {
+        path : 'help-center',
+        element : <HelpCenter/>
       }
       ]
     },

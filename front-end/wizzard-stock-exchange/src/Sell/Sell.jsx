@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Sell = (props) => {
+  console.log(props)
   const [priceValue, setPriceValue] = useState(props.closeData);
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [user, setUser] = useState(null);
@@ -57,7 +58,7 @@ const Sell = (props) => {
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/trade/buy-shares/", {
+      const response = await fetch("http://127.0.0.1:8000/trade/sell-shares/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -225,7 +226,7 @@ const Sell = (props) => {
                 <div className="mt-6">
                   <button type="submit">
                     <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
-                      Buy
+                      Sell Now
                     </div>
                   </button>
                 </div>
