@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Sell = (props) => {
-  console.log(props)
-  const [priceValue, setPriceValue] = useState(props.closeData);
-  const [symbolValue, setSymbolValue] = useState(props.symbol);
+  console.log(props.walled_id)
+  const [priceValue, setPriceValue] = useState(props.stockPrice);
+  const [symbolValue, setSymbolValue] = useState(props.stockSymbol);
+  const [Wallet, setWallet] = useState(props.userWallet);
   const [user, setUser] = useState(null);
   const [quantity, setQuantity] = useState(0);
   const [stockName, setStockName] = useState("");
   const [stockSymbol, setStockSymbol] = useState("");
   const [price, setPrice] = useState("");
-  const [Wallet, setWallet] = useState("");
+  // const [Wallet, setWallet] = useState("");
   
 
   const token = localStorage.getItem("token");
@@ -53,7 +54,7 @@ const Sell = (props) => {
       stock_name: stockName,
       stock_symbol: stockSymbol,
       user_wallet: Wallet,
-      price: parseFloat(price), // Ensure the price is a valid number
+      price: price, // Ensure the price is a valid number
       quantity: quantity,
     };
 
@@ -114,6 +115,7 @@ const Sell = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Stock name"
+                      value={symbolValue}
                       onChange={(e) => setStockName(e.target.value)}
                     />
                   </div>
@@ -122,6 +124,7 @@ const Sell = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Stock Symbol"
+                      value={symbolValue}
                       onChange={(e) => setStockSymbol(e.target.value)}
 
                       // readOnly
@@ -130,6 +133,7 @@ const Sell = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Wallet"
+                      value={Wallet}
                       // value={user ? user.email : "Your wallet is not available yet"}
                       // readOnly
                       onChange={(e) => setWallet(e.target.value)}
@@ -138,6 +142,7 @@ const Sell = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="number"
                       placeholder="Price"
+                      value={priceValue}
                       onChange={(e) => setPrice(e.target.value)}
                       // value={priceValue}
                       // readOnly // Add the readOnly attribute

@@ -39,7 +39,7 @@ const Wallet = () => {
         console.error("Error:", error);
       });
   }, []); // The empty dependency array ensures this runs once after the initial render
-  console.log(wallet);
+  // console.log(wallet);
   useEffect(() => {
     // console.log(userWallets); // Log the userWallets when it changes
   }, [wallet]);
@@ -85,7 +85,7 @@ const Wallet = () => {
     // console.log(userWallets); // Log the userWallets when it changes
   }, []);
 
-  console.log(MainUserWallets);
+  // console.log(MainUserWallets);
   return (
     <div>
       <main className="relative z-0 flex-1 pb-8 px-6 bg-white mt-20">
@@ -148,9 +148,13 @@ const Wallet = () => {
                   </h3>
                   {wallet.map((wall) => {
                     if (user && wall.user_email === user.email) {
+                      // console.log(wall.user)
                       // console.log('Found:', wallet.user_email, user.email);
                       return (
                         <div>
+                          <h1 className="text-center text-white text-3xl mt-2 font-bold">
+                            user: {wall.user}
+                          </h1>
                           <h3 className="text-center text-white text-3xl mt-2 font-bold">
                             {wall.balance}
                           </h3>
@@ -235,7 +239,7 @@ const Wallet = () => {
 <div>
     {userWallets.map(wallet => {
       if ( user && wallet.user_email === user.email ) {
-        console.log(wallet.id)
+        // console.log(wallet)
         // console.log('Found:', wallet.user_email, user.email);
         return (
           <div key={wallet.id}>
@@ -360,7 +364,9 @@ const Wallet = () => {
             <label htmlFor="my_modal_7" className="btn px-5">
                       <span className="text-xl font-black">Sell</span>
                     </label>
-                    <Sell/>
+                    <Sell
+                    walled_id = {wallet.id}
+                    />
           </div>
           </div>
           </div>
