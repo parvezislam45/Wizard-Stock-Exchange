@@ -135,80 +135,63 @@ const LiveTradingApp = () => {
 
  
   return (
-    // <div>
-    //   <button onClick={() => handleButtonClick('ethusdt')}>ETH/USDT</button>
-    //   <button onClick={() => handleButtonClick('btcusdt')}>BTC/USDT</button>
-    //   <button onClick={() => handleButtonClick('solusdt')}>SOL/USDT</button>
-    //   {/* Display the selected symbol */}
-    //   <p>Selected Symbol: {symbol}</p>
-    //   <span className="text-2xl sm:text-3xl leading-none font-bold">
-    //     <h4 className={openData > closeData ? 'text-red-500' : 'text-green-500'}>{closeData}</h4>
-    //   </span>
-    //   {/* Display the latest stock price */}
-    //   <p>Last Price: {closeData}</p>
-    //   <LiveChart ohlcData={ohlcData}></LiveChart>
-    //   <SecData ohlcData={ohlcData}></SecData>
-    
-      
-    // </div>
     <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
-                <button onClick={() => handleButtonClick("ethusdt")}>
-                  ETH/USDT
-                </button>
-                <button onClick={() => handleButtonClick("btcusdt")}>
-                  BTC/USDT
-                </button>
-                <button onClick={() => handleButtonClick("solusdt")}>
-                  SOL/USDT
-                </button>
-                {/* Display the selected symbol */}
-                <p>Selected Symbol: {symbol}</p>
-                <span className="text-2xl sm:text-3xl leading-none font-bold">
-                  <h4
-                    className={
-                      openData > closeData ? "text-red-500" : "text-green-500"
-                    }
-                  >
-                    {closeData}
-                  </h4>
-                </span>
-                {/* Display the latest stock price */}
-                <p>Last Price: {closeData}</p>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
-                  <div className="">
-                    {/* <LiveTradingApp></LiveTradingApp> */}
-                    <LiveChart
-                      className="w-full"
-                      ohlcData={ohlcData}
-                    ></LiveChart>
-                    <div className="text-center mt-5">
-                    {closeData !== null && (
-          <label htmlFor="my_modal_7" className="btn px-5">
-            <span className="text-xl font-black">Buy Now</span>
-          </label>
-        )}
-                    </div>
-                    
+        <button onClick={() => handleButtonClick("ethusdt")}>
+          ETH/USDT
+        </button>
+        <button onClick={() => handleButtonClick("btcusdt")}>
+          BTC/USDT
+        </button>
+        <button onClick={() => handleButtonClick("solusdt")}>
+          SOL/USDT
+        </button>
+              {/* Display the selected symbol */}
+              <p>Selected Symbol: {symbol}</p>
+              <span className="text-2xl sm:text-3xl leading-none font-bold">
+                <h4
+                  className={
+                    openData > closeData ? "text-red-500" : "text-green-500"
+                  }
+                >
+                  {closeData}
+                </h4>
+              </span>
+              {/* Display the latest stock price */}
+              <p>Last Price: {closeData}</p>
+              <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <div className="">
+                  {/* <LiveTradingApp></LiveTradingApp> */}
+                  <LiveChart
+                    className="w-full"
+                    ohlcData={ohlcData}
+                  ></LiveChart>
+                  <div className="text-center mt-5">
+                  {closeData !== null && (
+                    <label htmlFor="my_modal_7" className="btn px-5">
+                      <span className="text-xl font-black">Buy Now</span>
+                    </label>
+                  )}
                   </div>
-                  {/* <div id="main-chart"></div> */}
+                  
                 </div>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-                  <div className="mb-4 w-full h-72 overflow-hidden">
-                    <SecData ohlcData={ohlcData}></SecData>
-                  </div>
+                {/* <div id="main-chart"></div> */}
+              </div>
+              <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <div className="mb-4 w-full h-72 overflow-hidden">
+                  <SecData ohlcData={ohlcData}></SecData>
                 </div>
-                <Buy 
-                ohlcData={ohlcData}
-                closeData={closeData}
-                symbol={symbol}
-                ></Buy> 
-
-
+              </div>
+              <Buy 
+              ohlcData={ohlcData}
+              closeData={closeData}
+              symbol={symbol}
+              ></Buy> 
 <div>
     {userWallets.map(wallet => {
       if ( user && wallet.user_email === user.email && wallet.stock_symbol === symbol ) {
         // console.log(wallet)
         // console.log('Found:', wallet.user_email, user.email);
+        const calculatedValue = (closeData - wallet.price) * wallet.quantity;
         return (
           <div key={wallet.id}>
           <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full w-6/6 mx-auto">
@@ -294,50 +277,47 @@ const LiveTradingApp = () => {
           <div className="flex justify-between items-center mb-3">
             <h1 className="text-md font-semibold">{wallet.stock_name}</h1>
             <h1 className="text-md font-semibold">
-              UnRealize PNL(%RDC)
+              <h1><span className="text-green-500">Profit</span> & <span className="text-red-500">Loss</span></h1>
             </h1>
-            <h1 className="text-md font-semibold">Margin</h1>
           </div>
           <div className="flex justify-between items-center mb-3">
             <h1 className="text-md font-semibold">Size : {wallet.quantity}</h1>
-            <h1 className="text-md font-semibold text-red-600">
-              -0.01[-0.15%]
-            </h1>
-            <h1 className="text-md font-semibold">6.81</h1>
+            
+            {closeData !== null && (
+                    <h1 className={
+                      wallet.price > closeData ? "text-md font-semibold text-red-600" : "text-md font-semibold text-green-600"
+                    }>
+                      $ {calculatedValue}
+                    </h1>
+            )}
           </div>
           <div className="flex justify-between items-center mb-3">
             <h1 className="text-md font-semibold">Entry Price</h1>
-            <h1 className="text-md font-semibold">Mark Price</h1>
-            <h1 className="text-md font-semibold">Licudation Price</h1>
+            <h1 className="text-md font-semibold">Current Price</h1>
           </div>
           <div className="flex justify-between items-center mb-3">
             <h1 className="text-md font-semibold text-green-500">{wallet.price}</h1>
-            <h1 className="text-md font-semibold">215.00</h1>
-            <h1 className="text-md font-semibold">426.8752</h1>
+            {closeData !== null && (
+                    <h1 className={
+                      wallet.price > closeData ? "text-md font-semibold text-red-600" : "text-md font-semibold text-green-600"
+                    }>
+                      $ {closeData}
+                    </h1>
+            )}
           </div>
           <h1 className="mb-8">TP/SL -- / --</h1>
-          <div className="flex justify-between items-center mb-3">
-            <button
-              type="button"
-              className="py-2.5 px-5 text-xs font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Adjust Avarage
-            </button>
-            <button
-              type="button"
-              className="py-2.5 px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-            >
-              Stop Profit & Loss
-            </button>
-            {closeData !== null && (
-                    <label htmlFor="my_modal_6" className="btn px-5">
-                      <span className="text-xl font-black">Sell</span>
-                    </label>)}
-                    <Sell
-                    ohlcData={ohlcData}
-                    closeData={closeData}
-                    symbol={symbol}
-                    />
+          <div className="text-center mb-3">
+              {closeData !== null && (
+                  <label htmlFor="my_modal_6" className="btn px-5">
+                    <span className="text-xl font-black">Sell</span>
+                  </label>
+              )}
+            <Sell
+            user_wallet = {wallet.user_wallet}
+            ohlcData={ohlcData}
+            closeData={closeData}
+            symbol={symbol}
+            />
           </div>
           </div>
           </div>

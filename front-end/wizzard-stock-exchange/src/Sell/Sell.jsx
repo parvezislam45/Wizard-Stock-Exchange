@@ -10,7 +10,7 @@ const Sell = (props) => {
   const [stockName, setStockName] = useState('');
   const [stockSymbol, setStockSymbol] = useState('');
   const [price, setPrice] = useState('');
-  const [Wallet, setWallet] = useState('');
+  const [Wallet, setWallet] = useState(props.user_wallet);
 
   const token = localStorage.getItem("token");
 
@@ -127,18 +127,17 @@ const Sell = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Wallet"
+                      value={Wallet}
                       // value={user ? user.email : "Your wallet is not available yet"}
-                      // readOnly 
-                      onChange={(e) => setWallet(e.target.value)}
+                      readOnly 
+                      // onChange={(e) => setWallet(e.target.value)}
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="number"
                       placeholder="Price"
                       value={priceValue}
-                      onChange={(e) => setPrice(e.target.value)}
-                      // value={priceValue}
-                      // readOnly // Add the readOnly attribute
+                      readOnly // Add the readOnly attribute
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
