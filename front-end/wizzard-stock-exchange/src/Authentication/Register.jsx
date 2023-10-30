@@ -29,7 +29,7 @@ function Registration() {
       localStorage.setItem("token", token);
       console.log('Registration successful:', response.data);
       // Redirect to dashboard after successful registration
-      window.location.href = '/dashboard';
+      window.location.href = '/login';
     } catch (error) {
       console.error('Registration failed:', error);
     }
