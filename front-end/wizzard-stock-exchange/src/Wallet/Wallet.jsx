@@ -5,6 +5,7 @@ import Template from "../Template/Template";
 import Sell from "../Sell/Sell";
 
 const Wallet = () => {
+  
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
   const [userWallets, setUserWallets] = useState([]); 
@@ -43,6 +44,7 @@ const Wallet = () => {
   useEffect(() => {
     // console.log(userWallets); // Log the userWallets when it changes
   }, [wallet]);
+
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -361,12 +363,6 @@ const Wallet = () => {
             >
               Stop Profit & Loss
             </button>
-            <label htmlFor="my_modal_7" className="btn px-5">
-                      <span className="text-xl font-black">Sell</span>
-                    </label>
-                    <Sell
-                    walled_id = {wallet.id}
-                    />
           </div>
           </div>
           </div>
