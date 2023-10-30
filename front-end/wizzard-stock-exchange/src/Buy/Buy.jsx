@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Buy = (props) => {
-  console.log(props)
+  // console.log(props)
   const [priceValue, setPriceValue] = useState(props.closeData);
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [user, setUser] = useState(null);
