@@ -11,6 +11,7 @@ const Wallet = () => {
   const token = localStorage.getItem("token");
   const [userWallets, setUserWallets] = useState([]);
   const [wallet, setWallet] = useState([]);
+  const [userWalletId, setUserWalletId] = useState(6)
   const [inputBalance, setInputBalance] = useState("");
   const stripePromise = loadStripe(
     "pk_test_51O1C3WIXrs8l40b4FeFgjHmMpDjLoVo4IzgphFZhkZJCR6pjRKXdUf78VzXPpTPVEfEwSG7VoAKGxN4Z6pKmOvMl000km5hTLd"
@@ -20,29 +21,40 @@ const Wallet = () => {
     setInputBalance(e.target.value);
   };
 
-  const handleAddBalance = (walletId) => {
-    const updatedWallets = wallet.map((wall) => {
-      if (wall.id === walletId) {
-        const newBalance = parseFloat(wall.balance) + parseFloat(inputBalance);
-        return { ...wall, balance: newBalance };
-      }
-      return wall;
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    setWallet(updatedWallets);
-    setInputBalance("");
-    const url = `http://127.0.0.1:8000/trade/user-wallets/6`;
-    console.log(url)
-    axios
-      .put(url, { balance: updatedWallets.find(w => w.id === walletId).balance })
-      .then((response) => {
-      
-        console.log("Balance updated on the server");
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    // Input validation
+    // if (!stockName || !stockSymbol || isNaN(price) || price <= 0) {
+    //   alert("Please fill in all required fields with valid values.");
+    //   return;
+    // }
+
+    const requestBody = {
+      amount: inputBalance,
+    };
+
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/trade/add-balance/${userWalletId}/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add any other headers as needed
+        },
+        body: JSON.stringify(requestBody),
       });
-  };
+
+      if (response.ok) {
+        console.log('Request was successful');
+        window.location.href = '/dashboard/wallet';
+      } else {
+        console.error('Request failed with status:', response.status);
+        console.error('Response text:', await response.text());
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  }; 
   
 
   useEffect(() => {
@@ -228,12 +240,14 @@ const Wallet = () => {
                   if (user && wall.user_email === user.email) {
                     return (
                       <div key={wall.id} className="text-center mt-5">
-                        <button
-                          className="text-white bg-green-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-md px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-blue-600 dark:hover:bg-green-700 dark:focus:ring-blue-800"
-                          onClick={() => handleAddBalance(wall.id)}
-                        >
-                          Add Balance
-                        </button>
+                        <form onSubmit={handleSubmit}>
+                    <button type="submit">
+                    <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
+                      Add Balance
+                    </div>
+                  </button>
+                        </form>
+                        
                       </div>
                     );
                   }
