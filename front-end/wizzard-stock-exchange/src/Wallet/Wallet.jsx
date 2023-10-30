@@ -178,14 +178,10 @@ const Wallet = () => {
                       // console.log(wall.user)
                       // console.log('Found:', wallet.user_email, user.email);
                       return (
-<<<<<<< HEAD
                         <div>
                           <h1 className="text-center text-white text-3xl mt-2 font-bold">
                             user: {wall.user}
                           </h1>
-=======
-                        <div key={wall.id}>
->>>>>>> ecdcaca0638450d5e482d640242c72c7d14f6e9e
                           <h3 className="text-center text-white text-3xl mt-2 font-bold">
                             {wall.balance}
                           </h3>
@@ -280,7 +276,6 @@ const Wallet = () => {
   <Template></Template>
 ) : null} */}
 
-<<<<<<< HEAD
 <div>
     {userWallets.map(wallet => {
       if ( user && wallet.user_email === user.email ) {
@@ -416,148 +411,6 @@ const Wallet = () => {
   </div>
 
   </div>
-=======
-      <div>
-        {userWallets.map((wallet) => {
-          if (user && wallet.user_email === user.email) {
-            console.log(wallet.id);
-            // console.log('Found:', wallet.user_email, user.email);
-            return (
-              <div key={wallet.id}>
-                <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full w-2/4 mx-auto">
-                  <div className="flex items-center justify-between mb-6">
-                    <div className="flex justify-center items-center gap-6">
-                      <a href="">
-                        <h3 className="text-sm font-semibold leading-none text-gray-900">
-                          Open Docker(2)
-                        </h3>
-                      </a>
-                      <a href="">
-                        <h3 className="text-sm font-semibold leading-none text-gray-900">
-                          Position (1)
-                        </h3>
-                      </a>
-                    </div>
-
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-                    >
-                      <img
-                        className="w-5 h-6"
-                        src="https://static.vecteezy.com/system/resources/thumbnails/026/753/173/small/save-icon-icon-for-your-website-mobile-presentation-and-logo-design-vector.jpg"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <img
-                        className="mr-2 w-5 h-5 rounded-full"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
-                        alt=""
-                      />
-
-                      <p>
-                        <span className="text-md font-semibold">
-                          Hide Other Pairs
-                        </span>
-                      </p>
-                    </div>
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-                    >
-                      Clear All
-                    </a>
-                  </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center">
-                      <img
-                        className="mr-2 w-7 h-7 rounded-full"
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
-                        alt=""
-                      />
-
-                      <p>
-                        <span className="text-lg font-bold">
-                          {" "}
-                          BIDKUT{" "}
-                          <span className="text-md font-semibold">
-                            Prpitual
-                          </span>
-                        </span>
-                      </p>
-                    </div>
-                    <a
-                      href="#"
-                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-                    >
-                      <img
-                        className="w-5"
-                        src="https://cdn.icon-icons.com/icons2/2645/PNG/512/box_arrow_in_up_right_icon_160373.png"
-                        alt=""
-                      />
-                    </a>
-                  </div>
-                  <div className="flex justify-between items-center mb-3"></div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold">
-                      {wallet.stock_name}
-                    </h1>
-                    <h1 className="text-md font-semibold">
-                      UnRealize PNL(%RDC)
-                    </h1>
-                    <h1 className="text-md font-semibold">Margin</h1>
-                  </div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold">
-                      Size : {wallet.quantity}
-                    </h1>
-                    <h1 className="text-md font-semibold text-red-600">
-                      -0.01[-0.15%]
-                    </h1>
-                    <h1 className="text-md font-semibold">6.81</h1>
-                  </div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold">Entry Price</h1>
-                    <h1 className="text-md font-semibold">Mark Price</h1>
-                    <h1 className="text-md font-semibold">Licudation Price</h1>
-                  </div>
-                  <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold text-green-500">
-                      {wallet.price}
-                    </h1>
-                    <h1 className="text-md font-semibold">215.00</h1>
-                    <h1 className="text-md font-semibold">426.8752</h1>
-                  </div>
-                  <h1 className="mb-8">TP/SL -- / --</h1>
-                  <div className="flex justify-between items-center mb-3">
-                    <button
-                      type="button"
-                      className="py-2.5 px-5 text-xs font-bold text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                    >
-                      Adjust Avarage
-                    </button>
-                    <button
-                      type="button"
-                      className="py-2.5 px-5  text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-                    >
-                      Stop Profit & Loss
-                    </button>
-                    <label htmlFor="my_modal_7" className="btn px-5">
-                      <span className="text-xl font-black">Sell</span>
-                    </label>
-                    <Sell />
-                  </div>
-                </div>
-              </div>
-            );
-          }
-        })}
-      </div>
-    </div>
->>>>>>> ecdcaca0638450d5e482d640242c72c7d14f6e9e
   );
 };
 
