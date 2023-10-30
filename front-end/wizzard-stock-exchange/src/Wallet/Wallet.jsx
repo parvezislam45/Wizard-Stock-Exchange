@@ -11,6 +11,8 @@ const Wallet = () => {
   const token = localStorage.getItem("token");
   const [userWallets, setUserWallets] = useState([]);
   const [wallet, setWallet] = useState([]);
+  //currently this state set value static.
+  //Mr.parvez will set it dhynamically.please completed in the morning.
   const [userWalletId, setUserWalletId] = useState(6)
   const [inputBalance, setInputBalance] = useState("");
   const stripePromise = loadStripe(
@@ -20,16 +22,9 @@ const Wallet = () => {
   const handleChangeInput = (e) => {
     setInputBalance(e.target.value);
   };
-
+  //this is add balance 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Input validation
-    // if (!stockName || !stockSymbol || isNaN(price) || price <= 0) {
-    //   alert("Please fill in all required fields with valid values.");
-    //   return;
-    // }
-
     const requestBody = {
       amount: inputBalance,
     };
