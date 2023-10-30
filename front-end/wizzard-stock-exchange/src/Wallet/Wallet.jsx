@@ -266,9 +266,6 @@ const Wallet = () => {
                 <th scope="col" className="px-6 py-3 text-md font-bold">
                   Buying Price
                 </th>
-                <th scope="col" className="px-6 py-3 text-md font-bold">
-                  Action
-                </th>
               </tr>
             </thead>
             <tbody>
@@ -289,10 +286,6 @@ const Wallet = () => {
                       </td>
                       <td className="px-6 py-4 font-semibold text-md text-gray-900 dark:text-white">
                       {wallet.price}
-                      </td>
-                      <td className="px-6 py-4 text-md font-semibold text-gray-900 dark:text-white">
-                        <Link to="/dashboard"><button className="btn btn-outline btn-secondary text-md rounded-full px-14 py-1">SELL</button></Link>
-                    
                       </td>
                     </tr>
                   );
