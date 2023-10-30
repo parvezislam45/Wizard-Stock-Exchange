@@ -10,7 +10,8 @@ import UserProfile from "../Authentication/UserProfile";
 import Documentation from "../Pages/Home/Documentation";
 import Payment from "../../Payment/Payment";
 import Wallet from "../Wallet/Wallet";
-import HelpCenter from "../helpcenter/helpcenter"
+import Customer from "../CustomerSuport/Customer";
+
 
 
 
@@ -53,7 +54,7 @@ import HelpCenter from "../helpcenter/helpcenter"
       },
       {
         path : 'help-center',
-        element : <HelpCenter/>
+        element :<Customer/>
       }
       ]
     },
