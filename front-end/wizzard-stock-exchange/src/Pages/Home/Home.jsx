@@ -1,6 +1,7 @@
 
 import Chart from "../../Chart/Chart";
 import Banner from "./Banner";
+import Media from "./Media";
 import Member from "./Member";
 import Ratio from "./Ratio";
 
@@ -11,6 +12,7 @@ const Home = () => {
            <Banner/>
            <Ratio/>
            <Chart/>
+           <Media/>
            <Member/>
         </div>
     );
