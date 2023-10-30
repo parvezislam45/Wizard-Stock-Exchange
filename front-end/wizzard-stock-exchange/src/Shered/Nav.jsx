@@ -47,7 +47,7 @@ const Nav = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="text-slate-400 menu menu-horizontal px-1">
             <li>
               <Link to="/">Home</Link>
             </li>
@@ -55,7 +55,7 @@ const Nav = () => {
               <Link to="documentation">Documentation</Link>
             </li>
             <li>
-              <Link to="help-center">Help_center</Link>
+              <Link to="help-center">Help center</Link>
             </li>
             {user || token ? (
               <>
