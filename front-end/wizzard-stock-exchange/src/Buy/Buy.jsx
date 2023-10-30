@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Buy = (props) => {
+  // console.log(props)
   const [priceValue, setPriceValue] = useState(props.closeData);
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [user, setUser] = useState(null);
@@ -46,10 +47,10 @@ const Buy = (props) => {
     // }
 
     const requestBody = {
-      stock_name: stockName,
-      stock_symbol: stockSymbol,
+      stock_name: symbolValue,
+      stock_symbol: symbolValue,
       user_wallet : Wallet,
-      price: parseFloat(price), // Ensure the price is a valid number
+      price: priceValue, // Ensure the price is a valid number
       quantity: quantity,
     };
 
@@ -107,7 +108,9 @@ const Buy = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Stock name"
-                      onChange={(e) => setStockName(e.target.value)}
+                      value={symbolValue}
+                      
+                      // onChange={(e) => setStockName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -115,6 +118,7 @@ const Buy = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Stock Symbol"
+                      value={symbolValue}
                       onChange={(e) => setStockSymbol(e.target.value)}
                      
                       // readOnly 
@@ -131,6 +135,7 @@ const Buy = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="number"
                       placeholder="Price"
+                      value={priceValue}
                       onChange={(e) => setPrice(e.target.value)}
                       // value={priceValue}
                       // readOnly // Add the readOnly attribute

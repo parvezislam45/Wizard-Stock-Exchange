@@ -36,7 +36,7 @@ const Wallet = () => {
     axios
       .put(url, { balance: updatedWallets.find(w => w.id === walletId).balance })
       .then((response) => {
-        // Handle success (you may want to add error handling too)
+      
         console.log("Balance updated on the server");
       })
       .catch((error) => {
@@ -73,7 +73,7 @@ const Wallet = () => {
       });
   }, []);
   console.log(wallet);
-  useEffect(() => {}, [wallet]);
+ 
 
   useEffect(() => {
     const fetchProfile = async () => {

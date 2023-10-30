@@ -4,12 +4,12 @@ const Customer = () => {
       <section className="py-6 dark:bg-gray-800 dark:text-gray-50 mt-10">
         <div className="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols-2 md:divide-x">
           <div className="py-6 md:py-0 md:px-6">
-            <h1 className="text-4xl font-bold">Get in touch</h1>
-            <p className="pt-2 pb-4">
+            <h1 className="text-4xl font-bold text-slate-50">Get in touch</h1>
+            <p className="text-slate-100 pt-2 pb-4">
               Fill in the form to start a conversation
             </p>
             <div className="space-y-4">
-              <p className="flex items-center">
+              <p className="flex items-center text-slate-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -25,7 +25,7 @@ const Customer = () => {
                 </svg>
                 <span>Fake address, 9999 City</span>
               </p>
-              <p className="flex items-center">
+              <p className="flex items-center text-slate-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -37,7 +37,7 @@ const Customer = () => {
                 </svg>
                 <span>123456789</span>
               </p>
-              <p className="flex items-center">
+              <p className="flex items-center text-slate-200">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
@@ -54,7 +54,7 @@ const Customer = () => {
           </div>
           <form className="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
             <label className="block">
-              <span className="mb-1">Your Name</span>
+              <span className="text-slate-200 mb-1">Your Name</span>
               <input
                 type="text"
                 placeholder="Leroy Jenkins"
@@ -62,7 +62,7 @@ const Customer = () => {
               />
             </label>
             <label className="block">
-              <span className="mb-1">Email address</span>
+              <span className="text-slate-200 mb-1">Email address</span>
               <input
                 type="email"
                 placeholder="leroy@jenkins.com"
@@ -70,7 +70,7 @@ const Customer = () => {
               />
             </label>
             <label className="block">
-              <span className="mb-1">Subject</span>
+              <span className="text-slate-200 mb-1">Subject</span>
               <input
                 type="email"
                 placeholder="leroy@jenkins.com"
@@ -78,7 +78,7 @@ const Customer = () => {
               />
             </label>
             <label className="block">
-              <span className="mb-1">Message</span>
+              <span className="text-slate-200 mb-1">Message</span>
               <textarea
                 rows="3"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -86,7 +86,7 @@ const Customer = () => {
             </label>
             <button
               type="button"
-              className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri dark:bg-violet-400 dark:text-gray-900 focus:ri hover:ri"
+              className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri bg-violet-400 text-gray-900 focus:ri hover:ri"
             >
               Submit
             </button>

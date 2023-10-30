@@ -12,9 +12,7 @@ from django.contrib.auth import logout
 from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
-
-
+from tradeApi.models import UserWallet
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
@@ -39,6 +37,14 @@ def user_login(request):
 
         if user and user.check_password(password):
             token, created = Token.objects.get_or_create(user=user)
+            
+            try:
+                user_wallet = UserWallet.objects.get(user=user)
+                print(user_wallet)
+            except UserWallet.DoesNotExist:
+                # If the user doesn't have a wallet, create one
+                user_wallet = UserWallet.objects.create(user=user, balance=0.0)
+            
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
