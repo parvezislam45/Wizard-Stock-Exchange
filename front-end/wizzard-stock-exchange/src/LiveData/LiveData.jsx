@@ -5,6 +5,7 @@ import SecData from '../SecData/SecData';
 import Buy from '../Buy/Buy';
 import axios from 'axios';
 import Sell from "../Sell/Sell";
+import { toast } from 'react-toastify';
 
 const LiveTradingApp = () => {
   const [symbol, setSymbol] = useState('solusdt'); // Default symbol
@@ -64,6 +65,7 @@ const LiveTradingApp = () => {
     };
 
     newWs.onerror = (error) => {
+      toast("Data is Loading !!!")
       console.error('WebSocket error:', error);
     };
 
@@ -199,11 +201,6 @@ const LiveTradingApp = () => {
             <div className="flex justify-center items-center gap-6">
               <a href="">
                 <h3 className="text-sm font-semibold leading-none text-gray-900">
-                  Open Docker(2)
-                </h3>
-              </a>
-              <a href="">
-                <h3 className="text-sm font-semibold leading-none text-gray-900">
                   Position (1)
                 </h3>
               </a>
@@ -223,52 +220,20 @@ const LiveTradingApp = () => {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center">
               <img
-                className="mr-2 w-5 h-5 rounded-full"
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
-                alt=""
-              />
-    
-              <p>
-                <span className="text-md font-semibold">
-                  Hide Other Pairs
-                </span>
-              </p>
-            </div>
-            <a
-              href="#"
-              className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-            >
-              Clear All
-            </a>
-          </div>
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center">
-              <img
                 className="mr-2 w-7 h-7 rounded-full"
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjMiX1PusL0DZjwvQCE5nmT8XDvRZhVqDDLjMJ9EG7YpoFwG62VzSqprkuu7ydokIJdwc&usqp=CAU"
                 alt=""
               />
     
               <p>
-                <span className="text-lg font-bold">
+                <span className="text-xl text-center font-bold">
                   {" "}
-                  BIDKUT{" "}
-                  <span className="text-md font-semibold">
-                    Prpitual
-                  </span>
+                  {wallet.stock_name}
+                  
                 </span>
               </p>
             </div>
-            <a
-              href="#"
-              className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
-            >
-              <img
-                className="w-5"
-                src="https://cdn.icon-icons.com/icons2/2645/PNG/512/box_arrow_in_up_right_icon_160373.png"
-                alt=""
-              />
-            </a>
+           
           </div>
           <div className="flex justify-between items-center mb-3">
             
@@ -305,7 +270,6 @@ const LiveTradingApp = () => {
                     </h1>
             )}
           </div>
-          <h1 className="mb-8">TP/SL -- / --</h1>
           <div className="text-center mb-3">
               {closeData !== null && (
                   <label htmlFor="my_modal_6" className="btn px-5">
@@ -326,8 +290,9 @@ const LiveTradingApp = () => {
 
     })}
   </div>
-
+  
     </div>
+    
     
 
   );

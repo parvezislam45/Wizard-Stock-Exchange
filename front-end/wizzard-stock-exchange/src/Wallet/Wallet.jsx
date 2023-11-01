@@ -168,7 +168,7 @@ const Wallet = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 mt-10 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
+          <div className="grid grid-cols-1 mt-10 gap-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
             <div
               className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
               style={{
@@ -179,7 +179,7 @@ const Wallet = () => {
               <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
               <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
                 <div>
-                  <h3 className="text-center text-white text-lg">
+                  <h3 className="text-center text-white text-xl font-black">
                     Total Balance
                   </h3>
                   {wallet.map((wall) => {
@@ -193,24 +193,10 @@ const Wallet = () => {
                       );
                     }
                   })}
-                  <div></div>
-                  <div className="flex space-x-4 mt-4">
-                    <button
-                      className="block uppercase mx-auto shadow bg-white text-indigo-600 focus:shadow-outline 
-                                  focus:outline-none text-xs py-3 px-4 rounded font-bold"
-                    >
-                      Transfer
-                    </button>
-                    <button
-                      className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline 
-                                   focus:outline-none text-white text-xs py-3 px-4 rounded font-bold"
-                    >
-                      Request
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
+           
             <div
               className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
               style={{
@@ -218,7 +204,7 @@ const Wallet = () => {
                   "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
               }}
             >
-              <div className="absolute inset-0 bg-yellow-600  transition duration-300 ease-in-out">
+              <div className="absolute inset-0 bg-yellow-700  transition duration-300 ease-in-out">
                 <div>
                   <Elements stripe={stripePromise}>
                     <CheckoutForm></CheckoutForm>
@@ -237,7 +223,45 @@ const Wallet = () => {
                       <div key={wall.id} className="text-center mt-5">
                         <form onSubmit={handleSubmit}>
                     <button type="submit">
-                    <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
+                    <div className="btn btn-outline btn-secondary cursor-pointer rounded-[4px] dark:bg-white px-3 py-[6px] text-center font-semibold text-white">
+                      Withdraw Balance
+                    </div>
+                  </button>
+                        </form>
+                        
+                      </div>
+                    );
+                  }
+                })}
+              </div>
+            </div>
+            <div
+              className="relative w-full h-52 bg-cover mt-10 mx-auto bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+              style={{
+                backgroundImage:
+                  "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
+              }}
+            >
+              <div className="absolute inset-0 bg-yellow-700  transition duration-300 ease-in-out">
+                <div>
+                  <Elements stripe={stripePromise}>
+                    <CheckoutForm></CheckoutForm>
+                  </Elements>
+                </div>
+
+                <input
+                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  type="text"
+                  value={inputBalance}
+                  onChange={handleChangeInput}
+                />
+                {wallet.map((wall) => {
+                  if (user && wall.user_email === user.email) {
+                    return (
+                      <div key={wall.id} className="text-center mt-5">
+                        <form onSubmit={handleSubmit}>
+                    <button type="submit">
+                    <div className="btn btn-outline btn-secondary cursor-pointer rounded-[4px] dark:bg-white px-3 py-[6px] text-center font-semibold text-white">
                       Add Balance
                     </div>
                   </button>

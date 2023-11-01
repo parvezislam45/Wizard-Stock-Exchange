@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Sell = (props) => {
   // console.log(props)
@@ -65,8 +66,9 @@ const Sell = (props) => {
       });
 
       if (response.ok) {
+        toast("Sale Success")
         console.log('Request was successful');
-        window.location.href = '/dashboard/wallet';
+        // window.location.href = '/dashboard/wallet';
       } else {
         console.error('Request failed with status:', response.status);
         console.error('Response text:', await response.text());
