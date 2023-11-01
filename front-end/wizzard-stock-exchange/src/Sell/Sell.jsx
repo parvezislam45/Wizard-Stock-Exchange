@@ -86,9 +86,9 @@ const Sell = (props) => {
         <dialog id="my_modal_7" className="modal">
           <div className="modal-box">
             <div className="font-manrope flex h-screen w-full items-center justify-center">
-              <div className="mx-auto box-border w-[365px] border bg-white p-4">
+              <div className="mx-auto box-border w-[365px] border bg-slate-700 p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-[#64748B]">Buy Your Stock</span>
+                  <span className="text-[#64748B] text-slate-200">Buy Your Stock</span>
                   <form method="dialog">
                   <div className="cursor-pointer border rounded-[4px]">
                     <svg
@@ -106,7 +106,7 @@ const Sell = (props) => {
                 </div>
 
                 <div className="mt-6">
-                  <div className="font-semibold">
+                  <div className="font-semibold text-slate-200">
                     How much would you like to send?
                   </div>
                   <div>
@@ -155,7 +155,7 @@ const Sell = (props) => {
                 </div>
 
                 <div className="mt-6">
-                  <div className="font-semibold">From</div>
+                  <div className="font-semibold text-slate-200">From</div>
                   <div className="mt-2">
                     <div className="flex w-full items-center justify-between bg-neutral-100 p-3 rounded-[4px]">
                       <div className="flex items-center gap-x-2">
@@ -168,7 +168,7 @@ const Sell = (props) => {
                         >
                           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
-                        <span className="font-semibold">Checking</span>
+                        <span className="font-semibold text-slate-400">Checking</span>
                       </div>
 
                       <div className="flex items-center gap-x-2">
@@ -191,20 +191,20 @@ const Sell = (props) => {
 
                 <div className="mt-6">
                   <div className="flex justify-between">
-                    <span className="font-semibold text-[#191D23]">
+                    <span className="font-semibold text-[#191D23] text-slate-200">
                       Receiving
                     </span>
                     <div className="flex cursor-pointer items-center gap-x-2">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-green-700"
+                        className="h-5 w-5 text-green-500"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
                       >
                         <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                      <div className="font-semibold text-green-700">
+                      <div className="font-semibold text-green-500">
                         Add recipient
                       </div>
                     </div>

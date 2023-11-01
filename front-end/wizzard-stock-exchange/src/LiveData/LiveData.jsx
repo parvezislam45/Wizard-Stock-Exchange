@@ -109,7 +109,7 @@ const LiveTradingApp = () => {
     
       
     // </div>
-    <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+    <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 text-slate-200">
                 <button onClick={() => handleButtonClick("ethusdt")}>
                   ETH/USDT
                 </button>
@@ -132,7 +132,7 @@ const LiveTradingApp = () => {
                 </span>
                 {/* Display the latest stock price */}
                 <p>Last Price: {closeData}</p>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+                <div className="bg-slate-300 shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
                   <div className="">
                     {/* <LiveTradingApp></LiveTradingApp> */}
                     <LiveChart
@@ -140,15 +140,15 @@ const LiveTradingApp = () => {
                       ohlcData={ohlcData}
                     ></LiveChart>
                     <div className="text-center mt-5">
-                      <label htmlFor="my_modal_7" className="btn px-5">
-                        <span className="text-xl font-black">Buy Now</span>
+                      <label htmlFor="my_modal_7" className="btn px-5 bg-green-500 hover:bg-green-900">
+                        <span className="text-xl font-black text-slate-900 hover:text-slate-200">Buy Now</span>
                       </label>
                     </div>
                     
                   </div>
                   {/* <div id="main-chart"></div> */}
                 </div>
-                <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+                <div className="bg-slate-300 shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                   <div className="mb-4 w-full h-72 overflow-hidden">
                     <SecData ohlcData={ohlcData}></SecData>
                   </div>

@@ -36,8 +36,8 @@ const Member = () => {
     return (
         <div>
            <div className="mt-10">
-           <p className="p-2 text-xl font-medium tracki text-center uppercase">Development team</p>
-		<h1 className="text-4xl font-bold leadi text-center sm:text-5xl">The Talented People Behind The Scenes</h1>
+           <p className="p-2 text-xl text-slate-200 font-medium tracki text-center uppercase">Development team</p>
+		<h1 className="text-4xl font-bold text-slate-200 leadi text-center sm:text-5xl">The Talented People Behind The Scenes</h1>
         <Slider {...settings}>
           {Members.map((item, index) => (
             <div
@@ -46,14 +46,14 @@ const Member = () => {
             <div className="w-96 mt-20">
             <img src={item.img} alt=" random image" className="w-72 h-96 object-cover object-center rounded-lg shadow-md" />
             <div className="relative -mt-16  ">
-                <div className="bg-white p-6 rounded-lg shadow-lg flex justify-between">
+                <div className="bg-slate-600 p-6 rounded-lg shadow-lg flex justify-between">
                     <div >
-                        <h4 className="mt-1 text-xl font-bold leading-tight text-center truncate">{item.title}</h4>
+                        <h4 className="mt-1 text-xl text-slate-200 font-bold leading-tight text-left truncate">{item.title}</h4>
                         <div className="">
-                            <span className="text-red-600 text-md font-semibold text-center">Web Developer</span>
+                            <span className="text-red-600 text-md text-slate-300 font-semibold text-center">Web Developer</span>
                         </div>
                         <div className="flex justify-center">
-                            <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
+                            <a href="#!" type="button" className="rounded-full border-2 border-white text-slate-200 leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
                                 <svg aria-hidden="true"
                                     focusable="false"
                                     data-prefix="fab"
@@ -70,7 +70,7 @@ const Member = () => {
                                 </svg>
                             </a>
 
-                            <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
+                            <a href="#!" type="button" className="rounded-full border-2 border-white text-slate-200 leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
                                 <svg aria-hidden="true"
                                     focusable="false"
                                     data-prefix="fab"
@@ -87,7 +87,7 @@ const Member = () => {
                                 </svg>
                             </a>
 
-                            <a href="#!" type="button" className="rounded-full border-2 border-white text-white leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
+                            <a href="#!" type="button" className="rounded-full border-2 border-white text-slate-200 leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
                                 <svg aria-hidden="true"
                                     focusable="false"
                                     data-prefix="fab"

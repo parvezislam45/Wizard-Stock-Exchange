@@ -2,8 +2,8 @@ const Media = () => {
   return (
     <div>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <h1 className="text-center text-3xl font-black">Build your investing foundation</h1>
-        <p className="text-center text-xl font-semibold mt-5">We all have to start somewhere. Let us help get you on the right track as you start your investing<br/>journey. With our video tutorials section be ready to start in no time</p>
+        <h1 className="text-center text-3xl text-slate-300">Build your investing foundation</h1>
+        <p className="text-center text-xl text-slate-300 font-semibold mt-5">We all have to start somewhere. Let us help get you on the right track as you start your investing<br/>journey. With our video tutorials section be ready to start in no time</p>
       <div className="grid max-w-screen-lg gap-8 row-gap-5 md:row-gap-8 sm:mx-auto lg:grid-cols-2">
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="mx-auto lg:max-w-2xl">
@@ -31,8 +31,8 @@ const Media = () => {
           </div>
         </div>
         <div className="flex justify-between items-center px-10">
-            <h1 className="text-md font-bold">How to Use News in Trading</h1>
-            <h1 className="text-md font-bold">03.27</h1>
+            <h1 className="text-md font-bold text-slate-300">How to Use News in Trading</h1>
+            <h1 className="text-md font-bold text-slate-300">03.27</h1>
         </div>
       </div>
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
@@ -61,8 +61,8 @@ const Media = () => {
           </div>
         </div>
         <div className="flex justify-between items-center px-10">
-            <h1 className="text-md font-bold">How to Use Technical Indicator</h1>
-            <h1 className="text-md font-bold">05.37</h1>
+            <h1 className="text-md font-bold text-slate-300">How to Use Technical Indicator</h1>
+            <h1 className="text-md font-bold text-slate-300">05.37</h1>
         </div>
       </div>
       </div>

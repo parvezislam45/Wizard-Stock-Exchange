@@ -4,7 +4,7 @@ const Hero = () => {
     return (
         <div>
          <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-2 dark:bg-gray-900">
+        <div className="grid gap-10 lg:grid-cols-2">
           <div className="lg:pr-10">
             <a
               href="/"
@@ -28,7 +28,7 @@ const Hero = () => {
                 </svg>
               </div>
             </a>
-            <h5 className="mb-4 text-4xl font-extrabold leading-none">
+            <h5 className="mb-4 text-4xl font-extrabold leading-none text-slate-300">
               Instant access to
               <br className="hidden md:block" />
               investing, anytime{" "}
@@ -36,21 +36,21 @@ const Hero = () => {
                 and anywhere
               </span>
             </h5>
-            <p className="mt-5 text-white text-lg font-bold">
+            <p className="mt-5 text-slate-400 text-lg font-bold">
               Investing has never been easier. Everything you are looking for in
               an ultimate investment platform — on the device of your choice.
             </p>
             <hr className="mb-5 border-gray-300" />
             <button
               type="button"
-              className="text-gray-900 bg-red-700 hover:bg-gray-100 mt-3 focus:ring-4 focus:outline-none focus:ring-gray-100 font-bold text-md px-8 py-3 text-center inline-flex items-center dark:focus:ring-gray-600 dark:bg-red-700 dark:text-white dark:hover:bg-green-700 mr-2 mb-2"
+              className="text-slate-200 bg-red-700 hover:bg-red-900 mt-3 focus:ring-4 focus:outline-none focus:ring-gray-100 font-bold text-md px-8 py-3 text-center inline-flex items-center mr-2 mb-2"
             >
               GET STARTED WITH FREE
             </button>
             <div className="flex items-center space-x-6 mt-5">
               <a
                 href="/"
-                className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
+                className="text-slate-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -77,7 +77,7 @@ const Hero = () => {
               </a>
               <a
                 href="/"
-                className="text-gray-600 transition-colors duration-300 hover:text-deep-purple-accent-400"
+                className="text-slate-300 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

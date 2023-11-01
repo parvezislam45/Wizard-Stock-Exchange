@@ -4,10 +4,10 @@
 const SecData = ({ohlcData}) => {
     return (
         <div>
-        <h2>Live OHLC Data:</h2>
+        <h2 className="text-slate-900">Live OHLC Data:</h2>
         <ul>
             {ohlcData.map((dataPoint, index) => {
-                const textColorClass = dataPoint.open > dataPoint.close ? 'text-red-500' : 'text-green-500';
+                const textColorClass = dataPoint.open > dataPoint.close ? 'text-red-600' : 'text-green-600';
 
                 return (
                     <li key={index} className="ohlc-item">
