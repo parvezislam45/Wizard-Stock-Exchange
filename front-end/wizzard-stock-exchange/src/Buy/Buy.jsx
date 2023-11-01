@@ -6,18 +6,15 @@ const Buy = (props) => {
   // console.log(props)
   const [priceValue, setPriceValue] = useState(props.closeData);
   const [symbolValue, setSymbolValue] = useState(props.symbol);
+  const [Wallet, setWallet] = useState(props.user_wallet);
   const [user, setUser] = useState(null);
   const [quantity, setQuantity] = useState(0);
-  const [stockName, setStockName] = useState("");
-  const [stockSymbol, setStockSymbol] = useState("");
-  const [price, setPrice] = useState("");
-  const [Wallet, setWallet] = useState("");
-
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     setPriceValue(props.closeData);
     setSymbolValue(props.symbol);
+    setWallet(props.user_wallet)
 
     const fetchUserProfile = async () => {
       if (token) {
@@ -94,6 +91,7 @@ const Buy = (props) => {
                         type="text"
                         placeholder="Stock name"
                         value={symbolValue}
+                        readOnly
                       />
                     </div>
                     <div>
@@ -102,22 +100,22 @@ const Buy = (props) => {
                         type="text"
                         placeholder="Stock Symbol"
                         value={symbolValue}
-                        onChange={(e) => setStockSymbol(e.target.value)}
-
-                        // readOnly
+                        readOnly
                       />
                       <input
                         className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                         type="text"
                         placeholder="Wallet"
-                        onChange={(e) => setWallet(e.target.value)}
+                        value = {Wallet}
+                        readOnly
+                        // onChange={(e) => setWallet(e.target.value)}
                       />
                       <input
                         className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                         type="number"
                         placeholder="Price"
                         value={priceValue}
-                        onChange={(e) => setPrice(e.target.value)}
+                        readOnly
                       />
                       <input
                         className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"

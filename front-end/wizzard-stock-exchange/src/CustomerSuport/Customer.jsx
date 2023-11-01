@@ -1,4 +1,45 @@
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
 const Customer = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const requestBody = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/help-center/api/help-center/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Add any other headers as needed
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        toast("Message Successfully Send");
+        console.log("Request was successful");
+        window.location.href = '/';
+      } else {
+        console.error("Request failed with status:", response.status);
+        console.error("Response text:", await response.text());
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
   return (
     <div>
       <section className="py-6 dark:bg-gray-800 dark:text-gray-50 mt-10">
@@ -52,13 +93,14 @@ const Customer = () => {
               </p>
             </div>
           </div>
-          <form className="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
+          <form onSubmit={handleSubmit} className="flex flex-col py-6 space-y-6 md:py-0 md:px-6">
             <label className="block">
               <span className="text-slate-200 mb-1">Your Name</span>
               <input
                 type="text"
                 placeholder="Leroy Jenkins"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e) => setName(e.target.value)}
               />
             </label>
             <label className="block">
@@ -67,14 +109,16 @@ const Customer = () => {
                 type="email"
                 placeholder="leroy@jenkins.com"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </label>
             <label className="block">
               <span className="text-slate-200 mb-1">Subject</span>
               <input
-                type="email"
-                placeholder="leroy@jenkins.com"
+                type="text"
+                placeholder="Write here Subject"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                onChange={(e) => setSubject(e.target.value)}
               />
             </label>
             <label className="block">
@@ -82,10 +126,13 @@ const Customer = () => {
               <textarea
                 rows="3"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              ></textarea>
+                placeholder="Please, Write here details!"
+                onChange={(e) => setMessage(e.target.value)}
+              >
+              </textarea>
             </label>
             <button
-              type="button"
+              type="submit"
               className="self-center px-8 py-3 text-lg rounded focus:ring hover:ring focus:ri bg-violet-400 text-gray-900 focus:ri hover:ri"
             >
               Submit

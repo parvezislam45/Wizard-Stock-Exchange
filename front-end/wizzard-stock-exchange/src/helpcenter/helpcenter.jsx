@@ -1,5 +1,38 @@
 import React from 'react';
 
+const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const requestBody = {
+        name: symbolValue,
+        email: symbolValue,
+        subject: Wallet,
+        message: priceValue
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/trade/sell-shares/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Add any other headers as needed
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      if (response.ok) {
+        toast("Message Successfully Send");
+        console.log("Request was successful");
+        window.location.href = '/';
+      } else {
+        console.error("Request failed with status:", response.status);
+        console.error("Response text:", await response.text());
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
 const helpcenter = () => {
     return (
         <div>
@@ -20,7 +53,7 @@ const helpcenter = () => {
                 
                 <div className="w-4/6">
                     <h3>Contact Form</h3>
-                    <form action="" method="post">
+                    <form action="" method="post" onSubmit={handleSubmit}>
                         <div className="flex">
                             <div className="w-3/6">
                             <div className="form-group">

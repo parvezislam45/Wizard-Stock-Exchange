@@ -14,7 +14,7 @@ const Wallet = () => {
   //currently this state set value static.
   //Mr.parvez will set it dhynamically.please completed in the morning.
   const [userWalletId, setUserWalletId] = useState(0);
-
+  const [inputBalanceWithdraw, setInputBalanceWithdraw] = useState("");
   const [inputBalance, setInputBalance] = useState("");
   const stripePromise = loadStripe(
     "pk_test_51O1C3WIXrs8l40b4FeFgjHmMpDjLoVo4IzgphFZhkZJCR6pjRKXdUf78VzXPpTPVEfEwSG7VoAKGxN4Z6pKmOvMl000km5hTLd"
@@ -34,6 +34,42 @@ const Wallet = () => {
     try {
       const response = await fetch(
         `http://127.0.0.1:8000/trade/add-balance/${userWalletId}/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Add any other headers as needed
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Request was successful");
+        window.location.href = "/dashboard/wallet";
+      } else {
+        console.error("Request failed with status:", response.status);
+        console.error("Response text:", await response.text());
+      }
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
+  };
+
+  const handleChangeInputWithdraw = (e) => {
+    setInputBalanceWithdraw(e.target.value);
+  };
+  //this is withdrew balance 
+  const handleSubmitWithdraw = async (e) => {
+    e.preventDefault();
+
+    const requestBody = {
+      amount: inputBalanceWithdraw,
+    };
+
+    try {
+      const response = await fetch(
+        `http://127.0.0.1:8000/trade/withdraw-balance/${userWalletId}/`,
         {
           method: "POST",
           headers: {
@@ -226,11 +262,11 @@ const Wallet = () => {
                       <input
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         type="text"
-                        value={inputBalance}
-                        onChange={handleChangeInput}
+                        value={inputBalanceWithdraw}
+                        onChange={handleChangeInputWithdraw}
                       />
                       <div key={wall.id} className="text-center mt-5">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleSubmitWithdraw}>
                           <button type="submit">
                             <div className="w-full btn btn-outline btn-secondary dark:bg-white cursor-pointer rounded-[4px] px-3 py-[6px] text-center font-semibold text-white">
                               Withdraw Balance

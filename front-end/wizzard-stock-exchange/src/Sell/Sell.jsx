@@ -43,12 +43,6 @@ const Sell = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Input validation
-    // if (!stockName || !stockSymbol || isNaN(price) || price <= 0) {
-    //   alert("Please fill in all required fields with valid values.");
-    //   return;
-    // }
-
     const requestBody = {
       stock_name: symbolValue,
       stock_symbol: symbolValue,
