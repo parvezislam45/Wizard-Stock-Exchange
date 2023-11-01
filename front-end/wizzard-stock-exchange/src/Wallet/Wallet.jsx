@@ -13,18 +13,17 @@ const Wallet = () => {
   const [wallet, setWallet] = useState([]);
   //currently this state set value static.
   //Mr.parvez will set it dhynamically.please completed in the morning.
-  const [userWalletId, setUserWalletId] = useState(0)
+  const [userWalletId, setUserWalletId] = useState(0);
 
   const [inputBalance, setInputBalance] = useState("");
   const stripePromise = loadStripe(
     "pk_test_51O1C3WIXrs8l40b4FeFgjHmMpDjLoVo4IzgphFZhkZJCR6pjRKXdUf78VzXPpTPVEfEwSG7VoAKGxN4Z6pKmOvMl000km5hTLd"
   );
 
-
   const handleChangeInput = (e) => {
     setInputBalance(e.target.value);
   };
-  //this is add balance 
+  //this is add balance
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -33,28 +32,31 @@ const Wallet = () => {
     };
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/trade/add-balance/${userWalletId}/`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any other headers as needed
-        },
-        body: JSON.stringify(requestBody),
-      });
+      const response = await fetch(
+        `http://127.0.0.1:8000/trade/add-balance/${userWalletId}/`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            // Add any other headers as needed
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
 
       if (response.ok) {
-        console.log('Request was successful');
-        window.location.href = '/dashboard/wallet';
+        console.log("Request was successful");
+        window.location.href = "/dashboard/wallet";
       } else {
-        console.error('Request failed with status:', response.status);
-        console.error('Response text:', await response.text());
+        console.error("Request failed with status:", response.status);
+        console.error("Response text:", await response.text());
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error("An error occurred:", error);
     }
-  }; 
-  
-//fetch buy shares in trade
+  };
+
+  //fetch buy shares in trade
   useEffect(() => {
     const url = "http://127.0.0.1:8000/trade/buy-shares/";
 
@@ -70,7 +72,7 @@ const Wallet = () => {
 
   useEffect(() => {}, [userShares]);
 
-//fetch wallets in trade
+  //fetch wallets in trade
   useEffect(() => {
     const url = "http://127.0.0.1:8000/trade/user-wallets/";
 
@@ -78,20 +80,15 @@ const Wallet = () => {
       .get(url)
       .then((response) => {
         setWallet(response.data);
-        
       })
       .catch((error) => {
         console.error("Error:", error);
       });
-       
-      // console.log(wallet)
-      
 
+    // console.log(wallet)
   }, []);
 
-  
- 
-//fetch user profile in trade
+  //fetch user profile in trade
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -116,7 +113,7 @@ const Wallet = () => {
 
   useEffect(() => {
     if (user) {
-      const filtered = wallet.filter(wall => wall.user_email === user.email);
+      const filtered = wallet.filter((wall) => wall.user_email === user.email);
       if (filtered.length > 0) {
         const id = filtered[0].user;
         setUserWalletId(id);
@@ -183,92 +180,104 @@ const Wallet = () => {
             </div>
           </div>
           {wallet.map((wall) => {
-              if (user && wall.user_email === user.email) {
-                // console.log(wall.user)
-                return (
-                    <div key={wall.id} className="grid grid-cols-1 mt-10 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2">
-                      
-                      <div
-                        className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
-                        style={{
-                          backgroundImage:
-                            "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg8OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
-                        <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
-                          <div>
-                            <h3>Wallet Id : {wall.user}</h3>
-                            <h3 className="text-center text-white text-lg">
-                              Total Balance
-                            </h3>
-                                  <div>
-                                    <h3 className="text-center text-white text-3xl mt-2 font-bold">
-                                      {wall.balance}
-                                    </h3>
-                                  </div>
-                                
-                            <div></div>
-                            <div className="flex space-x-4 mt-4">
-                              <button
-                                className="block uppercase mx-auto shadow bg-white text-indigo-600 focus:shadow-outline 
-                                            focus:outline-none text-xs py-3 px-4 rounded font-bold"
-                              >
-                                Transfer
-                              </button>
-                              <button
-                                className="block uppercase mx-auto shadow bg-indigo-800 hover:bg-indigo-700 focus:shadow-outline 
-                                            focus:outline-none text-white text-xs py-3 px-4 rounded font-bold"
-                              >
-                                Request
-                              </button>
-                            </div>
-                          </div>
+            if (user && wall.user_email === user.email) {
+              // console.log(wall.user)
+              return (
+                <div
+                  key={wall.id}
+                  className="grid grid-cols-1 mt-10 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+                >
+                  <div
+                    className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+                    style={{
+                      backgroundImage:
+                        "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg8OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
+                    <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
+                      <div>
+                        <h3>Wallet Id : {wall.user}</h3>
+                        <h3 className="text-center text-white text-lg">
+                          Total Balance
+                        </h3>
+                        <div>
+                          <h3 className="text-center text-white text-3xl mt-2 font-bold">
+                            {wall.balance}
+                          </h3>
                         </div>
                       </div>
-                      
-                      <div
-                        className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
-                        style={{
-                          backgroundImage:
-                            "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-yellow-600  transition duration-300 ease-in-out">
-                          <div>
-                            <Elements stripe={stripePromise}>
-                              <CheckoutForm></CheckoutForm>
-                            </Elements>
-                          </div>
-
-                          <input
-                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            type="text"
-                            value={inputBalance}
-                            onChange={handleChangeInput}
-                          />
-                          <div key={wall.id} className="text-center mt-5">
-                                  <form onSubmit={handleSubmit}>
-                              <button type="submit">
-                              <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
-                                Add Balance
-                              </div>
-                            </button>
-                                  </form>
-                                  
-                                </div>
-                        </div>
-                      </div>
-
                     </div>
-                    );
-                    }
-                    })}
+                  </div>
+                  <div
+                    className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+                    style={{
+                      backgroundImage:
+                        "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-yellow-700  transition duration-300 ease-in-out">
+                      <div>
+                        <Elements stripe={stripePromise}>
+                          <CheckoutForm></CheckoutForm>
+                        </Elements>
+                      </div>
+
+                      <input
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        type="text"
+                        value={inputBalance}
+                        onChange={handleChangeInput}
+                      />
+                      <div key={wall.id} className="text-center mt-5">
+                        <form onSubmit={handleSubmit}>
+                          <button type="submit">
+                            <div className="w-full btn btn-outline btn-secondary dark:bg-white cursor-pointer rounded-[4px] px-3 py-[6px] text-center font-semibold text-white">
+                              Withdraw Balance
+                            </div>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+                    style={{
+                      backgroundImage:
+                        "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-yellow-700  transition duration-300 ease-in-out">
+                      <div>
+                        <Elements stripe={stripePromise}>
+                          <CheckoutForm></CheckoutForm>
+                        </Elements>
+                      </div>
+
+                      <input
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        type="text"
+                        value={inputBalance}
+                        onChange={handleChangeInput}
+                      />
+                      <div key={wall.id} className="text-center mt-5">
+                        <form onSubmit={handleSubmit}>
+                          <button type="submit">
+                            <div className="w-full btn btn-outline btn-secondary dark:bg-white cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
+                              Add Balance
+                            </div>
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+          })}
         </div>
       </main>
       <div>
-        
-        
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -288,7 +297,7 @@ const Wallet = () => {
               {userShares.map((wallet) => {
                 if (user && wallet.user_email === user.email) {
                   console.log(wallet.id);
-                  console.log(wallet.user)
+                  console.log(wallet.user);
                   return (
                     <tr
                       className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover-bg-gray-600"
@@ -301,7 +310,7 @@ const Wallet = () => {
                         {wallet.quantity}
                       </td>
                       <td className="px-6 py-4 font-semibold text-md text-gray-900 dark:text-white">
-                      {wallet.price}
+                        {wallet.price}
                       </td>
                     </tr>
                   );

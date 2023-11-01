@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Sell = (props) => {
   // console.log(props)
@@ -65,8 +66,9 @@ const Sell = (props) => {
       });
 
       if (response.ok) {
+        toast("Sale Success")
         console.log('Request was successful');
-        window.location.href = '/dashboard/wallet';
+        // window.location.href = '/dashboard/wallet';
       } else {
         console.error('Request failed with status:', response.status);
         console.error('Response text:', await response.text());
@@ -148,75 +150,6 @@ const Sell = (props) => {
                       // value={quantity}
                       onChange={(e) => setQuantity(e.target.value)}
                     />
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <div className="font-semibold">From</div>
-                  <div className="mt-2">
-                    <div className="flex w-full items-center justify-between bg-neutral-100 p-3 rounded-[4px]">
-                      <div className="flex items-center gap-x-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-8 w-8 text-[#299D37]"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="font-semibold">Checking</span>
-                      </div>
-
-                      <div className="flex items-center gap-x-2">
-                        <div className="text-[#64748B]">
-                          card ending in 6678
-                        </div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 cursor-pointer"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex justify-between">
-                    <span className="font-semibold text-[#191D23]">
-                      Receiving
-                    </span>
-                    <div className="flex cursor-pointer items-center gap-x-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-green-700"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div className="font-semibold text-green-700">
-                        Add recipient
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-x-[10px] bg-neutral-100 p-3 mt-2 rounded-[4px]">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src="https://images.unsplash.com/photo-1507019403270-cca502add9f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                      alt=""
-                    />
-                    <div>
-                      <div className="font-semibold">Kathy Miller</div>
-                      <div className="text-[#64748B]">@KittyKatmills</div>
-                    </div>
                   </div>
                 </div>
 
