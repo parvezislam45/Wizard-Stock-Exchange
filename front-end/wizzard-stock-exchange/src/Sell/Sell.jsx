@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Sell = (props) => {
-  console.log(props)
+  // console.log(props)
   const [priceValue, setPriceValue] = useState(props.closeData);
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [user, setUser] = useState(null);
@@ -10,8 +11,7 @@ const Sell = (props) => {
   const [stockName, setStockName] = useState("");
   const [stockSymbol, setStockSymbol] = useState("");
   const [price, setPrice] = useState("");
-  const [Wallet, setWallet] = useState("");
-  
+  const [Wallet, setWallet] = useState(props.user_wallet);
 
   const token = localStorage.getItem("token");
 
@@ -43,17 +43,11 @@ const Sell = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Input validation
-    // if (!stockName || !stockSymbol || isNaN(price) || price <= 0) {
-    //   alert("Please fill in all required fields with valid values.");
-    //   return;
-    // }
-
     const requestBody = {
-      stock_name: stockName,
-      stock_symbol: stockSymbol,
+      stock_name: symbolValue,
+      stock_symbol: symbolValue,
       user_wallet: Wallet,
-      price: parseFloat(price), // Ensure the price is a valid number
+      price: priceValue, // Ensure the price is a valid number
       quantity: quantity,
     };
 
@@ -68,8 +62,9 @@ const Sell = (props) => {
       });
 
       if (response.ok) {
+        toast("Sale Success");
         console.log("Request was successful");
-        window.location.href = "/dashboard/wallet";
+        window.location.href = '/dashboard/wallet';
       } else {
         console.error("Request failed with status:", response.status);
         console.error("Response text:", await response.text());
@@ -81,40 +76,28 @@ const Sell = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="checkbox" id="my_modal_7" className="modal-toggle" />
-        <dialog id="my_modal_7" className="modal">
-          <div className="modal-box">
-            <div className="font-manrope flex h-screen w-full items-center justify-center">
-              <div className="mx-auto box-border w-[365px] border bg-slate-700 p-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-[#64748B] text-slate-200">Buy Your Stock</span>
-                  <form method="dialog">
-                  <div className="cursor-pointer border rounded-[4px]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-[#64748B]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </div>
-                  </form>
-                  
-                </div>
-
+      <dialog id="my_modal_7" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <form onSubmit={handleSubmit}>
+          <div>
                 <div className="mt-6">
-                  <div className="font-semibold text-slate-200">
-                    How much would you like to send?
+                  <div className="font-semibold">
+                    How much would you like to sell?
                   </div>
                   <div>
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Stock name"
-                      onChange={(e) => setStockName(e.target.value)}
+                      value={symbolValue}
+                      
+                      // onChange={(e) => setStockName(e.target.value)}
                     />
                   </div>
                   <div>
@@ -122,25 +105,26 @@ const Sell = (props) => {
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Stock Symbol"
+                      value={symbolValue}
                       onChange={(e) => setStockSymbol(e.target.value)}
-
-                      // readOnly
+                     
+                      // readOnly 
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Wallet"
+                      value={Wallet}
                       // value={user ? user.email : "Your wallet is not available yet"}
-                      // readOnly
-                      onChange={(e) => setWallet(e.target.value)}
+                      readOnly 
+                      // onChange={(e) => setWallet(e.target.value)}
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="number"
                       placeholder="Price"
-                      onChange={(e) => setPrice(e.target.value)}
-                      // value={priceValue}
-                      // readOnly // Add the readOnly attribute
+                      value={priceValue}
+                      readOnly // Add the readOnly attribute
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
@@ -155,86 +139,25 @@ const Sell = (props) => {
                 </div>
 
                 <div className="mt-6">
-                  <div className="font-semibold text-slate-200">From</div>
-                  <div className="mt-2">
-                    <div className="flex w-full items-center justify-between bg-neutral-100 p-3 rounded-[4px]">
-                      <div className="flex items-center gap-x-2">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-8 w-8 text-[#299D37]"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span className="font-semibold text-slate-400">Checking</span>
-                      </div>
-
-                      <div className="flex items-center gap-x-2">
-                        <div className="text-[#64748B]">
-                          card ending in 6678
-                        </div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-5 w-5 cursor-pointer"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex justify-between">
-                    <span className="font-semibold text-[#191D23] text-slate-200">
-                      Receiving
-                    </span>
-                    <div className="flex cursor-pointer items-center gap-x-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-green-500"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+                <button
+                        className="btn text-white bg-blue-600 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
                       >
-                        <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div className="font-semibold text-green-500">
-                        Add recipient
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-x-[10px] bg-neutral-100 p-3 mt-2 rounded-[4px]">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src="https://images.unsplash.com/photo-1507019403270-cca502add9f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                      alt=""
-                    />
-                    <div>
-                      <div className="font-semibold">Kathy Miller</div>
-                      <div className="text-[#64748B]">@KittyKatmills</div>
-                    </div>
-                  </div>
+                        <svg
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 18 21"
+                        >
+                          <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                        </svg>
+                        Sell
+                      </button>
                 </div>
-
-                <div className="mt-6">
-                  <button type="submit">
-                    <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
-                      Sell Now
-                    </div>
-                  </button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </dialog>
-      </form>
+          </form>
+        </div>
+      </dialog>   
     </div>
   );
 };

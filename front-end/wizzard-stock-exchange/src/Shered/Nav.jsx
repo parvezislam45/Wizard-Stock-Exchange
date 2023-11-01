@@ -47,7 +47,7 @@ const Nav = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-slate-200">
+          <ul className="text-slate-400 menu menu-horizontal px-1">
             <li>
               <Link className="hover:text-slate-400" to="/">Home</Link>
             </li>
@@ -55,7 +55,7 @@ const Nav = () => {
               <Link className="hover:text-slate-400" to="documentation">Documentation</Link>
             </li>
             <li>
-              <Link className="hover:text-slate-400" to="help-center">Help Center</Link>
+              <Link to="help-center">Help center</Link>
             </li>
             {user || token ? (
               <>

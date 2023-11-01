@@ -28,7 +28,7 @@ const CheckoutForm = () => {
     }
   };
   return (
-    <div className="bg-yellow-600 text-white h-40 w-3/4 p-6  mx-auto mt-">
+    <div className="bg-yellow-700 text-white h-40 w-3/4 p-6  mx-auto mt-">
       <form className="w-full px-10" onSubmit={handleSubmit}>
         <CardElement
           options={{

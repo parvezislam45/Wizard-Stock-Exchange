@@ -40,7 +40,7 @@ const Banner = () => {
   };
   const [trades,setTrades]=useState([])
   useEffect(()=>{
-    fetch('http://localhost:9000/api')
+    fetch('https://stockapi-i947.onrender.com/api')
     .then(res => res.json())
     .then(data =>{setTrades(data)})
   },[trades])

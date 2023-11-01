@@ -1,17 +1,57 @@
 from rest_framework import viewsets
 
 from .models import UserWallet,BuyShare,SellShare
-from .serializers import UserWalletSerializer,BuyShareSerializer,SellShareSerializer
+from .serializers import UserWalletSerializer,BuyShareSerializer,SellShareSerializer,AddBalanceSerializer,WithdrawBalanceSerializer
 from django.core.exceptions import ValidationError
 from rest_framework.response import Response
 from .models import UserWallet
 from rest_framework import status
 
+from rest_framework import status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+
+class AddBalanceView(APIView):
+    def post(self, request, user_wallet_id):
+        try:
+            user_wallet = UserWallet.objects.get(pk=user_wallet_id)
+        except UserWallet.DoesNotExist:
+            return Response({"error": "UserWallet not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = AddBalanceSerializer(data=request.data)
+        if serializer.is_valid():
+            amount = serializer.validated_data['amount']
+            user_wallet.balance += amount
+            user_wallet.save()
+            return Response({"message": "Balance added successfully"}, status=status.HTTP_200_OK)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class WithdrawBalanceView(APIView):
+    def post(self, request, user_wallet_id):
+        try:
+            user_wallet = UserWallet.objects.get(pk=user_wallet_id)
+        except UserWallet.DoesNotExist:
+            return Response({"error": "UserWallet not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = WithdrawBalanceSerializer(data=request.data)
+        if serializer.is_valid():
+            amount = serializer.validated_data['amount']
+            if user_wallet.balance >= amount:
+                user_wallet.balance -= amount
+                user_wallet.save()
+                return Response({"message": "Balance withdraw successfully"}, status=status.HTTP_200_OK)
+            else:
+                return Response({"message": "This amount is not availabe in your wallet"}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserWalletViewSet(viewsets.ModelViewSet):
     queryset = UserWallet.objects.all()
     serializer_class = UserWalletSerializer
     
+    
+
 class BuyShareViewSet(viewsets.ModelViewSet):
     queryset = BuyShare.objects.all()
     serializer_class = BuyShareSerializer
@@ -24,7 +64,7 @@ class BuyShareViewSet(viewsets.ModelViewSet):
         stock_name = serializer.validated_data["stock_name"]
         quantity = serializer.validated_data["quantity"]
         price = serializer.validated_data["price"]
-        print(user_wallet.balance)
+        # print(user_wallet.balance)
         
         if user_wallet.balance < price * quantity:
             raise ValidationError("Insufficient balance.")
@@ -42,7 +82,7 @@ class BuyShareViewSet(viewsets.ModelViewSet):
         except BuyShare.DoesNotExist:
             # If there is no existing BuyShare, create a new one
             buyshare = serializer.save()
-            print(buyshare)
+            # print(buyshare)
 
         # Decrement the user's wallet balance by the price of the shares they are buying.
         user_wallet.balance -= serializer.validated_data["price"] * serializer.validated_data["quantity"]

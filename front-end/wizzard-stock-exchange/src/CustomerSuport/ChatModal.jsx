@@ -43,7 +43,7 @@ const ChatModal = () => {
     if (isOpen) {
       // Simulate a welcome message when the chat modal is opened
       setChatHistory([
-        { sender: 'Support', message: 'Welcome to our customer support chat!' },
+        
       ]);
     }
   }, [isOpen]);
@@ -60,7 +60,7 @@ const ChatModal = () => {
       </button>
 
       {isOpen && (
-        <div className="fixed right-4 bottom-4 w-72 h-2/5 bg-red-600 p-4 rounded shadow-md">
+        <div className="fixed right-4 bottom-4 w-80 h-2/4 bg-black p-4 rounded shadow-md">
           <div className="flex justify-between items-center">
             <h2 className="text-lg font-semibold">Customer Support</h2>
             <button
@@ -71,10 +71,13 @@ const ChatModal = () => {
             </button>
           </div>
           <div className="mt-4 h-3/5">
-            <div className="h-4/5 border p-2 overflow-y-auto">
+            <div className="h-4/5 p-2 overflow-y-auto">
               {chatHistory.map((entry, index) => (
-                <div key={index}>
-                  <p className="text-end">{entry.message}</p>
+                <div key={index} className={`${
+                  entry.sender === 'You' ? 'text-end' : ''
+                } mt-5 mb-5 text-md`}>
+                  <p className="text-end bg-yellow-600 text-white rounded-lg py-2 px-4 inline-block">{entry.message}</p>
+                  
                 </div>
               ))}
             </div>
