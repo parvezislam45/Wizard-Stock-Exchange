@@ -18,7 +18,7 @@ const LiveTradingApp = () => {
   const SVGRect = useRef(null);
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
-  const [userWallets, setUserWallets] = useState([]);
+  const [buyShares, setBuyShares] = useState([]);
   const [wallet, setWallet] = useState([]);
   const [userWalletId, setUserWalletId] = useState(0);
 
@@ -100,7 +100,7 @@ const LiveTradingApp = () => {
     setStockPrice(1); // Reset stockPrice when switching symbols
   };
   
-    //fetch wallets in trade
+    //axios wallets in trade
     useEffect(() => {
       const url = "http://127.0.0.1:8000/trade/user-wallets/";
   
@@ -116,13 +116,15 @@ const LiveTradingApp = () => {
       // console.log(wallet)
     }, []);
   
+
+  //axios buy shares in trade 
   useEffect(() => {
     const url = "http://127.0.0.1:8000/trade/buy-shares/";
 
     axios
       .get(url)
       .then((response) => {
-        setUserWallets(response.data);
+        setBuyShares(response.data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -130,9 +132,10 @@ const LiveTradingApp = () => {
   }, []); // The empty dependency array ensures this runs once after the initial render
 
   useEffect(() => {
-    // console.log(userWallets); // Log the userWallets when it changes
-  }, [userWallets]);
+    // console.log(buyShares); // Log the buyShares when it changes
+  }, [buyShares]);
 
+  //axios user in trade
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -155,13 +158,14 @@ const LiveTradingApp = () => {
     }
   }, []);
 
+  //Specific user set id in setUserWalletId
   useEffect(() => {
     if (user) {
       const filtered = wallet.filter((wall) => wall.user_email === user.email);
       if (filtered.length > 0) {
         const id = filtered[0].user;
         setUserWalletId(id);
-        console.log(filtered[0].user); // Update state with the filtered data
+        // console.log(filtered[0].user); // Update state with the filtered data
       }
     }
   }, [user, wallet]);
@@ -222,7 +226,7 @@ const LiveTradingApp = () => {
       symbol={symbol}>
       </Buy>
       <div>
-        {userWallets.map((wallet) => {
+        {buyShares.map((wallet) => {
           if (
             user &&
             wallet.user_email === user.email &&

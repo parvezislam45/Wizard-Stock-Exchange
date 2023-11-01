@@ -11,8 +11,6 @@ const Wallet = () => {
   const token = localStorage.getItem("token");
   const [userShares, setUserShares] = useState([]);
   const [wallet, setWallet] = useState([]);
-  //currently this state set value static.
-  //Mr.parvez will set it dhynamically.please completed in the morning.
   const [userWalletId, setUserWalletId] = useState(0);
   const [inputBalanceWithdraw, setInputBalanceWithdraw] = useState("");
   const [inputBalance, setInputBalance] = useState("");
@@ -92,7 +90,7 @@ const Wallet = () => {
     }
   };
 
-  //fetch buy shares in trade
+  //axios buy shares in trade
   useEffect(() => {
     const url = "http://127.0.0.1:8000/trade/buy-shares/";
 
@@ -108,7 +106,7 @@ const Wallet = () => {
 
   useEffect(() => {}, [userShares]);
 
-  //fetch wallets in trade
+  //axios wallets in trade
   useEffect(() => {
     const url = "http://127.0.0.1:8000/trade/user-wallets/";
 
@@ -124,7 +122,7 @@ const Wallet = () => {
     // console.log(wallet)
   }, []);
 
-  //fetch user profile in trade
+  //axios user profile in trade
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -147,6 +145,7 @@ const Wallet = () => {
     }
   }, []);
 
+  //Specific user set id in setUserWalletId
   useEffect(() => {
     if (user) {
       const filtered = wallet.filter((wall) => wall.user_email === user.email);
@@ -157,17 +156,6 @@ const Wallet = () => {
       }
     }
   }, [user, wallet]);
-
-  // if (user) {
-  //   const filtered = wallet.filter(wall => wall.user_email === user.email);
-  //   let id = filtered[0].user
-  //   setUserWalletId(id)
-  //   console.log(filtered[0].user)// Update state with the filtered data
-  // }
-  // {wallet.map((wall) => {
-  //   if (user && wall.user_email === user.email) {
-  //     userWalletId = wall.id
-  //   }})}
 
   return (
     <div>
