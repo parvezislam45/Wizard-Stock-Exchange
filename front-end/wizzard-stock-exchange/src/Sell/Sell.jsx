@@ -8,9 +8,9 @@ const Sell = (props) => {
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [user, setUser] = useState(null);
   const [quantity, setQuantity] = useState(0);
-  const [stockName, setStockName] = useState('');
-  const [stockSymbol, setStockSymbol] = useState('');
-  const [price, setPrice] = useState('');
+  const [stockName, setStockName] = useState("");
+  const [stockSymbol, setStockSymbol] = useState("");
+  const [price, setPrice] = useState("");
   const [Wallet, setWallet] = useState(props.user_wallet);
 
   const token = localStorage.getItem("token");
@@ -22,11 +22,14 @@ const Sell = (props) => {
     const fetchUserProfile = async () => {
       if (token) {
         try {
-          const response = await axios.get("http://127.0.0.1:8000/account/profile/", {
-            headers: {
-              Authorization: `Token ${localStorage.getItem("token")}`,
-            },
-          });
+          const response = await axios.get(
+            "http://127.0.0.1:8000/account/profile/",
+            {
+              headers: {
+                Authorization: `Token ${localStorage.getItem("token")}`,
+              },
+            }
+          );
           setUser(response.data);
         } catch (error) {
           console.error("Error fetching user profile:", error);
@@ -35,7 +38,6 @@ const Sell = (props) => {
     };
 
     fetchUserProfile();
-
   }, [props.closeData, props.symbol]);
 
   const handleSubmit = async (e) => {
@@ -50,60 +52,49 @@ const Sell = (props) => {
     const requestBody = {
       stock_name: symbolValue,
       stock_symbol: symbolValue,
-      user_wallet : Wallet,
+      user_wallet: Wallet,
       price: priceValue, // Ensure the price is a valid number
       quantity: quantity,
     };
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/trade/sell-shares/', {
-        method: 'POST',
+      const response = await fetch("http://127.0.0.1:8000/trade/sell-shares/", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           // Add any other headers as needed
         },
         body: JSON.stringify(requestBody),
       });
 
       if (response.ok) {
-        toast("Sale Success")
-        console.log('Request was successful');
-        // window.location.href = '/dashboard/wallet';
+        toast("Sale Success");
+        console.log("Request was successful");
+        window.location.href = '/dashboard/wallet';
       } else {
-        console.error('Request failed with status:', response.status);
-        console.error('Response text:', await response.text());
+        console.error("Request failed with status:", response.status);
+        console.error("Response text:", await response.text());
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error("An error occurred:", error);
     }
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-        <div className="modal">
-          <div className="modal-box">
-            <div className="font-manrope flex h-screen w-full items-center justify-center">
-              <div className="mx-auto box-border w-[365px] border bg-white p-4">
-                <div className="flex items-center justify-between">
-                  <span className="text-[#64748B]">Buy Your Stock</span>
-                  <div className="cursor-pointer border rounded-[4px]">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-[#64748B]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </div>
-                </div>
-
+      <dialog id="my_modal_7" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+          <form onSubmit={handleSubmit}>
+          <div>
                 <div className="mt-6">
                   <div className="font-semibold">
-                    How much would you like to send?
+                    How much would you like to sell?
                   </div>
                   <div>
                     <input
@@ -154,17 +145,25 @@ const Sell = (props) => {
                 </div>
 
                 <div className="mt-6">
-                  <button type="submit">
-                    <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
-                      Sell
-                    </div>
-                  </button>
+                <button
+                        className="btn text-white bg-fuchsia-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-fuchsia-200 dark:hover:bg-rose-950 dark:focus:ring-blue-800"
+                      >
+                        <svg
+                          className="w-5 h-5 mr-2"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="currentColor"
+                          viewBox="0 0 18 21"
+                        >
+                          <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                        </svg>
+                        Sell
+                      </button>
                 </div>
-              </div>
-            </div>
-          </div>
+                </div>
+          </form>
         </div>
-      </form>
+      </dialog>   
     </div>
   );
 };

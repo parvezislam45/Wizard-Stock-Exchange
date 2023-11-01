@@ -63,7 +63,7 @@ const Buy = (props) => {
       if (response.ok) {
         console.log("Request was successful");
         toast("Buy This Share Successfully");
-        // window.location.href = '/dashboard/wallet';
+        window.location.href = '/dashboard/wallet';
       } else {
         console.error("Request failed with status:", response.status);
         console.error("Response text:", await response.text());
@@ -75,28 +75,18 @@ const Buy = (props) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <button
-          className="btn"
-          onClick={() => document.getElementById("my_modal_2").showModal()}
-        >
-          open modal
-        </button>
-        <dialog id="my_modal_2" className="modal">
-          <div>
-            <div className="modal-box">
-              <div className="font-manrope flex h-screen w-full items-center justify-center">
-                <div className="mx-auto box-border w-[365px] border bg-white p-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#64748B]">Buy Your Stock</span>
-                    <form method="dialog" className="modal-backdrop">
-                      <button>close</button>
-                    </form>
-                  </div>
-
-                  <div className="mt-6">
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box">
+          <form method="dialog">
+            {/* if there is a button in form, it will close the modal */}
+            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+              ✕
+            </button>
+          </form>
+         <form onSubmit={handleSubmit}>
+         <div className="mt-6">
                     <div className="font-semibold">
-                      How much would you like to send?
+                      How much would you like to Buy?
                     </div>
                     <div>
                       <input
@@ -140,18 +130,25 @@ const Buy = (props) => {
                     </div>
                   </div>
                   <div className="mt-6">
-                    <button type="submit">
-                      <div className="w-full cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
-                        Buy
-                      </div>
-                    </button>
+                  <button
+                className="btn text-white bg-orange-800 hover:bg-purple-950 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-orange-800 dark:hover:bg-purple-950 dark:focus:ring-blue-800"
+               
+              >
+                <svg
+                  className="w-5 h-5 mr-2"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 21"
+                >
+                  <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
+                </svg>
+                Buy
+              </button>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </dialog>
-      </form>
+         </form>
+        </div>
+      </dialog>
     </div>
   );
 };
