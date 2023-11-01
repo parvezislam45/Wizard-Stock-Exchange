@@ -13,6 +13,17 @@ class AddBalanceSerializer(serializers.Serializer):
             'min_value': 'Amount must be greater than or equal to 0.01',
         }
     )
+    
+class WithdrawBalanceSerializer(serializers.Serializer):
+    amount = serializers.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        required=True,
+        min_value=0.01,  # Minimum allowed amount (you can adjust as needed)
+        error_messages={
+            'min_value': 'Amount must be greater than or equal to 0.01',
+        }
+    )
 
 
 class UserWalletSerializer(serializers.ModelSerializer):

@@ -14,7 +14,6 @@ const Wallet = () => {
   //currently this state set value static.
   //Mr.parvez will set it dhynamically.please completed in the morning.
   const [userWalletId, setUserWalletId] = useState(0)
-
   const [inputBalance, setInputBalance] = useState("");
   const stripePromise = loadStripe(
     "pk_test_51O1C3WIXrs8l40b4FeFgjHmMpDjLoVo4IzgphFZhkZJCR6pjRKXdUf78VzXPpTPVEfEwSG7VoAKGxN4Z6pKmOvMl000km5hTLd"
@@ -32,6 +31,7 @@ const Wallet = () => {
       amount: inputBalance,
     };
 
+//balance add in trade
     try {
       const response = await fetch(`http://127.0.0.1:8000/trade/add-balance/${userWalletId}/`, {
         method: 'POST',
@@ -125,16 +125,6 @@ const Wallet = () => {
     }
   }, [user, wallet]);
 
-  // if (user) {
-  //   const filtered = wallet.filter(wall => wall.user_email === user.email);
-  //   let id = filtered[0].user
-  //   setUserWalletId(id)
-  //   console.log(filtered[0].user)// Update state with the filtered data
-  // }
-  // {wallet.map((wall) => {
-  //   if (user && wall.user_email === user.email) {
-  //     userWalletId = wall.id
-  //   }})}
 
   return (
     <div>

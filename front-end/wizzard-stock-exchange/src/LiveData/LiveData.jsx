@@ -17,8 +17,9 @@ const LiveTradingApp = () => {
   const SVGRect = useRef(null);
   const [user, setUser] = useState(null);
   const token = localStorage.getItem("token");
-  const [userWallets, setUserWallets] = useState([]);
-   
+  const [userShares, setUserShares] = useState([]);
+  const [wallet, setWallet] = useState([]);
+  const [userWalletId, setUserWalletId] = useState(0)
 
   useEffect(() => {
     const wsEndpoint = `wss://stream.binance.com:9443/ws/${symbol}@kline_${interval}`;
@@ -94,12 +95,13 @@ const LiveTradingApp = () => {
     setStockPrice(1); // Reset stockPrice when switching symbols
   };
 
+  //all share exist in userShares from trade
   useEffect(() => {
     const url = 'http://127.0.0.1:8000/trade/buy-shares/';
 
     axios.get(url)
       .then(response => {
-        setUserWallets(response.data);
+        setUserShares(response.data);
       })
       .catch(error => {
         console.error('Error:', error);
@@ -107,8 +109,26 @@ const LiveTradingApp = () => {
   }, []); // The empty dependency array ensures this runs once after the initial render
 
   useEffect(() => {
-    // console.log(userWallets); // Log the userWallets when it changes
-  }, [userWallets]);
+    // console.log(userShares); // Log the userShares when it changes
+  }, [userShares]);
+
+//fetch wallets in trade
+useEffect(() => {
+  const url = "http://127.0.0.1:8000/trade/user-wallets/";
+
+  axios
+    .get(url)
+    .then((response) => {
+      setWallet(response.data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+     
+    // console.log(wallet)
+    
+
+}, []);
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -132,7 +152,18 @@ const LiveTradingApp = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      const filtered = wallet.filter(wall => wall.user_email === user.email);
+      if (filtered.length > 0) {
+        const id = filtered[0].user;
+        setUserWalletId(id);
+        // console.log(filtered[0].user); // Update state with the filtered data
+      }
+    }
+  }, [user, wallet]);
 
+  console.log(userWalletId);
  
   return (
     <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
@@ -182,12 +213,13 @@ const LiveTradingApp = () => {
                 </div>
               </div>
               <Buy 
+              user_wallet = {userWalletId}
               ohlcData={ohlcData}
               closeData={closeData}
               symbol={symbol}
               ></Buy> 
 <div>
-    {userWallets.map(wallet => {
+    {userShares.map(wallet => {
       if ( user && wallet.user_email === user.email && wallet.stock_symbol === symbol ) {
         // console.log(wallet)
         // console.log('Found:', wallet.user_email, user.email);

@@ -2,21 +2,18 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const Buy = (props) => {
-  // console.log(props)
+  console.log(props)
   const [priceValue, setPriceValue] = useState(props.closeData);
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [user, setUser] = useState(null);
   const [quantity, setQuantity] = useState(0);
-  const [stockName, setStockName] = useState('');
-  const [stockSymbol, setStockSymbol] = useState('');
-  const [price, setPrice] = useState('');
-  const [Wallet, setWallet] = useState('');
-
+  const [wallet, setWallet] = useState(props.user_wallet);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
     setPriceValue(props.closeData);
     setSymbolValue(props.symbol);
+    setWallet(props.user_wallet)
 
     const fetchUserProfile = async () => {
       if (token) {
@@ -37,19 +34,14 @@ const Buy = (props) => {
 
   }, [props.closeData, props.symbol]);
 
+  // post buyshare in trade
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Input validation
-    // if (!stockName || !stockSymbol || isNaN(price) || price <= 0) {
-    //   alert("Please fill in all required fields with valid values.");
-    //   return;
-    // }
 
     const requestBody = {
       stock_name: symbolValue,
       stock_symbol: symbolValue,
-      user_wallet : Wallet,
+      user_wallet : wallet,
       price: priceValue, // Ensure the price is a valid number
       quantity: quantity,
     };
@@ -101,7 +93,9 @@ const Buy = (props) => {
 
                 <div className="mt-6">
                   <div className="font-semibold">
-                    How much would you like to send?
+                  How many shares do you want to buy?
+                    <br/>
+                    Just enter the Quantity
                   </div>
                   <div>
                     <input
@@ -109,8 +103,7 @@ const Buy = (props) => {
                       type="text"
                       placeholder="Stock name"
                       value={symbolValue}
-                      
-                      // onChange={(e) => setStockName(e.target.value)}
+                      readonly
                     />
                   </div>
                   <div>
@@ -119,16 +112,13 @@ const Buy = (props) => {
                       type="text"
                       placeholder="Stock Symbol"
                       value={symbolValue}
-                      onChange={(e) => setStockSymbol(e.target.value)}
-                     
-                      // readOnly 
+                      readOnly 
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"
                       type="text"
                       placeholder="Wallet"
-                      // value={user ? user.email : "Your wallet is not available yet"}
-                      // readOnly 
+                      value={wallet}
                       onChange={(e) => setWallet(e.target.value)}
                     />
                     <input
@@ -136,9 +126,7 @@ const Buy = (props) => {
                       type="number"
                       placeholder="Price"
                       value={priceValue}
-                      onChange={(e) => setPrice(e.target.value)}
-                      // value={priceValue}
-                      // readOnly // Add the readOnly attribute
+                      readOnly
                     />
                     <input
                       className="mt-3 w-full rounded-[4px] border border-[#A0ABBB] p-2"

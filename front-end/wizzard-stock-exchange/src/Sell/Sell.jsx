@@ -85,7 +85,7 @@ const Sell = (props) => {
             <div className="font-manrope flex h-screen w-full items-center justify-center">
               <div className="mx-auto box-border w-[365px] border bg-white p-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-[#64748B]">Buy Your Stock</span>
+                  <span className="text-[#64748B]">Sell Your Stock</span>
                   <div className="cursor-pointer border rounded-[4px]">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -101,7 +101,9 @@ const Sell = (props) => {
 
                 <div className="mt-6">
                   <div className="font-semibold">
-                    How much would you like to send?
+                    How many shares do you want to sell?
+                    <br/>
+                    Just enter the Quantity
                   </div>
                   <div>
                     <input
@@ -170,7 +172,7 @@ const Sell = (props) => {
 
                       <div className="flex items-center gap-x-2">
                         <div className="text-[#64748B]">
-                          card ending in 6678
+                          share in walledNo: {Wallet}
                         </div>
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -182,40 +184,6 @@ const Sell = (props) => {
                           <path d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-6">
-                  <div className="flex justify-between">
-                    <span className="font-semibold text-[#191D23]">
-                      Receiving
-                    </span>
-                    <div className="flex cursor-pointer items-center gap-x-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-5 w-5 text-green-700"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div className="font-semibold text-green-700">
-                        Add recipient
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-x-[10px] bg-neutral-100 p-3 mt-2 rounded-[4px]">
-                    <img
-                      className="h-10 w-10 rounded-full"
-                      src="https://images.unsplash.com/photo-1507019403270-cca502add9f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
-                      alt=""
-                    />
-                    <div>
-                      <div className="font-semibold">Kathy Miller</div>
-                      <div className="text-[#64748B]">@KittyKatmills</div>
                     </div>
                   </div>
                 </div>
