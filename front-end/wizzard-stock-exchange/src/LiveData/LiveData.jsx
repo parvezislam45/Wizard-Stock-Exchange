@@ -171,7 +171,7 @@ const LiveTradingApp = () => {
   }, [user, wallet]);
 
   return (
-    <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4">
+    <div className="w-full grid grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3 gap-4 text-slate-200">
       <button onClick={() => handleButtonClick("ethusdt")}>ETH/USDT</button>
       <button onClick={() => handleButtonClick("btcusdt")}>BTC/USDT</button>
       <button onClick={() => handleButtonClick("solusdt")}>SOL/USDT</button>
@@ -186,7 +186,7 @@ const LiveTradingApp = () => {
       </span>
       {/* Display the latest stock price */}
       <p>Last Price: {closeData}</p>
-      <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
+      <div className="bg-slate-200 shadow rounded-lg p-4 sm:p-6 xl:p-8  2xl:col-span-2">
         <div className="">
           {/* <LiveTradingApp></LiveTradingApp> */}
           <LiveChart className="w-full" ohlcData={ohlcData}></LiveChart>
@@ -214,7 +214,7 @@ const LiveTradingApp = () => {
         </div>
         {/* <div id="main-chart"></div> */}
       </div>
-      <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+      <div className="bg-slate-200 shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
         <div className="mb-4 w-full h-72 overflow-hidden">
           <SecData ohlcData={ohlcData}></SecData>
         </div>
@@ -238,7 +238,7 @@ const LiveTradingApp = () => {
               (closeData - wallet.price) * wallet.quantity;
             return (
               <div key={wallet.id}>
-                <div className="bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full w-6/6 mx-auto">
+                <div className="bg-slate-200 shadow rounded-lg mb-4 p-4 sm:p-6 h-full w-6/6 mx-auto">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex justify-center items-center gap-6">
                       <a href="">
@@ -250,7 +250,7 @@ const LiveTradingApp = () => {
 
                     <a
                       href="#"
-                      className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
+                      className="text-sm font-medium text-slate-900 hover:bg-gray-100 rounded-lg inline-flex items-center p-2"
                     >
                       <img
                         className="w-5 h-6"
@@ -268,7 +268,7 @@ const LiveTradingApp = () => {
                       />
 
                       <p>
-                        <span className="text-xl text-center font-bold">
+                        <span className="text-xl text-center font-bold text-slate-700">
                           {" "}
                           {wallet.stock_name}
                         </span>
@@ -277,7 +277,7 @@ const LiveTradingApp = () => {
                   </div>
                   <div className="flex justify-between items-center mb-3"></div>
                   <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold">
+                    <h1 className="text-md font-semibold text-slate-700">
                       {wallet.stock_name}
                     </h1>
                     <h1 className="text-md font-semibold">
@@ -288,7 +288,7 @@ const LiveTradingApp = () => {
                     </h1>
                   </div>
                   <div className="flex justify-between items-center mb-3">
-                    <h1 className="text-md font-semibold">
+                    <h1 className="text-md font-semibold text-slate-700">
                       Size : {wallet.quantity}
                     </h1>
 
@@ -304,7 +304,7 @@ const LiveTradingApp = () => {
                       </h1>
                     )}
                   </div>
-                  <div className="flex justify-between items-center mb-3">
+                  <div className="flex justify-between items-center mb-3 text-slate-700">
                     <h1 className="text-md font-semibold">Entry Price</h1>
                     <h1 className="text-md font-semibold">Current Price</h1>
                   </div>
@@ -327,7 +327,7 @@ const LiveTradingApp = () => {
                   <div className="text-center mb-3">
                     {closeData !== null && (
                       <button
-                        className="btn text-white bg-fuchsia-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-fuchsia-200 dark:hover:bg-rose-950 dark:focus:ring-blue-800"
+                        className="btn text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
                         onClick={() =>
                           document.getElementById("my_modal_7").showModal()
                         }

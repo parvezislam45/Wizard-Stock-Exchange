@@ -140,7 +140,7 @@ const Sell = (props) => {
 
                 <div className="mt-6">
                 <button
-                        className="btn text-white bg-fuchsia-200 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 dark:bg-fuchsia-200 dark:hover:bg-rose-950 dark:focus:ring-blue-800"
+                        className="btn text-white bg-blue-600 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center inline-flex items-center mr-2"
                       >
                         <svg
                           className="w-5 h-5 mr-2"

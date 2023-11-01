@@ -71,10 +71,11 @@ const Banner = () => {
       <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-2">
           <div className="lg:pr-10">
-            <h5 className="mb-4 text-4xl font-extrabold leading-none">
-              <span className="text-yellow-500">150+</span>M Users Choose Us
-              <span className="inline-block text-deep-purple-accent-400 mt-5">
-                Find Out Why Today
+            <h5 className="mb-4 text-3xl font-extrabold leading-none">
+              <span className="text-yellow-500">150M+ </span>
+              <span className="inline-block text-slate-200 mt-5">Users Choose Us</span>
+              <span className="inline-block text-slate-200 mt-5">
+                Find Out Why Today!
               </span>
             </h5>
             <div className="md:flex md:items-start md:-mx-4 mt-10">
@@ -84,7 +85,7 @@ const Banner = () => {
                 alt=""
               />
               <div className="mt-4 md:mx-4 md:mt-0">
-                <h1 className="text-md font-semibold text-gray-700 capitalize dark:text-white">
+                <h1 className="text-md font-semibold text-slate-300 capitalize">
                   Register now and get up to 100 USDT in rewards
                 </h1>
               </div>
@@ -93,25 +94,29 @@ const Banner = () => {
               <input
                 type="text"
                 id="voice-search"
-                className="bg-gray-300 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 pl-10 p-5"
+                className="bg-slate-300 border border-gray-300 text-slate-900 text-sm rounded-lg focus:ring-slate-100 focus:border-slate-100 block w-60 pl-10 p-5"
                 placeholder=""
               />
               <button
                 type="submit"
-                className="inline-flex items-center py-4 px-16 ml-2 text-lg font-medium text-white bg-yellow-700 border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                className="inline-flex items-center py-4 px-16 ml-2 text-lg rounded-lg font-medium text-slate-200 bg-yellow-700 border border-blue-700 hover:bg-yellow-800"
               >
                 Register
               </button>
             </div>
+            <h1 className="text-center font-semibold text-md mt-5">
+              <span class="text-slate-300">Already Have Account? </span>
+               <a class="text-slate-200" href="">LOGIN</a>
+            </h1>
 
             <hr className="mb-5 border-gray-300 mt-10" />
-            <h1 className="text-center font-semibold text-md">
-              Or Continue With
+            <h1 className="text-center text-slate-300 font-semibold text-md">
+              Continue With
             </h1>
             <div className="flex items-center mt-10 gap-10">
               <button
                 type="button"
-                className="text-white text-xl bg-gray-300 hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium px-16 py-5 text-center inline-flex items-center mr-2 mb-2"
+                className="text-slate-300 text-xl bg-slate-600 rounded-lg hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium px-16 py-5 text-center inline-flex items-center mr-2 mb-2"
               >
                 <svg
                   className="w-7 h-7 mr-2"
@@ -126,7 +131,7 @@ const Banner = () => {
               </button>
               <button
                 type="button"
-                className="text-white bg-gray-300 hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium text-xl px-16 py-5 text-center inline-flex items-center mr-2 mb-2"
+                className="text-slate-300 bg-slate-600 rounded-lg hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium text-xl px-16 py-5 text-center inline-flex items-center mr-2 mb-2"
               >
                 <svg
                   className="w-7 h-7 mr-2 -ml-1"
@@ -146,12 +151,13 @@ const Banner = () => {
                 Apple
               </button>
             </div>
-            <h1 className="text-center font-semibold text-md mt-10">
-              Already Have Account ? <a href="">LogIn</a>
-            </h1>
+            {/* <h1 className="text-center font-semibold text-md mt-10">
+              <span class="text-slate-300">Already Have Account? </span>
+               <a class="text-slate-200" href="">LOGIN</a>
+            </h1> */}
             <div className="md:flex md:items-start md:-mx-4 mt-10">
               <div className="mt-4 md:mx-4 md:mt-0">
-                <h1 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
+                <h1 className="text-lg text-slate-300 font-semibold  capitalize">
                   Register now and get up to 100 USDT in rewards
                 </h1>
               </div>
@@ -283,7 +289,7 @@ const Banner = () => {
               <a href="#">
                 <div className=" w-full  flex flex-col justify-center items-center">
                   <div className=" text-white w-full max-w-md flex flex-col rounded-xl shadow-lg">
-                    <div className="text-lg font-bold">
+                    <div className="text-lg font-bold text-slate-200">
                       Alchemy Pay to support fiat purchases of Sei SEI token{" "}
                       <span className="font-normal text-sm px-2">
                         20 Minutes Ago
@@ -295,7 +301,7 @@ const Banner = () => {
               <a href="#">
                 <div className=" w-full  flex flex-col justify-center items-center mt-5">
                   <div className=" text-white w-full max-w-md flex flex-col rounded-xl shadow-lg">
-                    <div className="text-lg font-bold">
+                    <div className="text-lg text-slate-200 font-bold">
                       Digital asset investment products see sixth consecutive
                       week of net outflows{" "}
                       <span className="font-normal text-sm px-2">
@@ -308,7 +314,7 @@ const Banner = () => {
               <a href="#">
                 <div className=" w-full  flex flex-col justify-center items-center mt-5">
                   <div className=" text-white w-full max-w-md flex flex-col rounded-xl shadow-lg">
-                    <div className="text-lg font-bold">
+                    <div className="text-lg text-slate-200 font-bold">
                       Terra Classic Protocol to Stop Minting Infamous TerraUSD
                       Token
                       <span className="font-normal text-sm px-2">

@@ -49,10 +49,10 @@ const Nav = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="text-slate-400 menu menu-horizontal px-1">
             <li>
-              <Link to="/">Home</Link>
+              <Link className="hover:text-slate-400" to="/">Home</Link>
             </li>
             <li>
-              <Link to="documentation">Documentation</Link>
+              <Link className="hover:text-slate-400" to="documentation">Documentation</Link>
             </li>
             <li>
               <Link to="help-center">Help center</Link>
@@ -60,10 +60,10 @@ const Nav = () => {
             {user || token ? (
               <>
                 <li>
-                  <Link to="/dashboard">Buy Crypto</Link>
+                  <Link className="hover:text-slate-400" to="/dashboard">Buy Crypto</Link>
                 </li>
                 <li>
-                <Link to="/dashboard/wallet">Wallet</Link>
+                <Link className="hover:text-slate-400" to="/dashboard/wallet">Wallet</Link>
                 </li>
                 
               </>
@@ -78,14 +78,14 @@ const Nav = () => {
               <button
               
               type="button"
-              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300 mr-6"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300 mr-6"
             >
               Profile
             </button>
               </Link>
               <button
               type="button"
-              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
               onClick={handleLogout}
             >
               <svg
@@ -106,7 +106,7 @@ const Nav = () => {
             <Link to="login">
               <button
               type="button"
-              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +123,7 @@ const Nav = () => {
             <Link to="register">
             <button
               type="button"
-              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-sky-900 rounded-lg hover:bg-black focus:ring-4 focus:outline-none focus:ring-blue-300"
+              className="px-3 py-2 text-sm font-medium text-center inline-flex items-center text-white bg-sky-800 rounded-lg hover:bg-sky-900 focus:ring-4 focus:outline-none focus:ring-blue-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

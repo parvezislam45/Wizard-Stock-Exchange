@@ -159,32 +159,32 @@ const Wallet = () => {
 
   return (
     <div>
-      <main className="relative z-0 flex-1 pb-8 px-6 bg-white mt-20">
+      <main className="relative z-0 flex-1 pb-8 px-6 bg-dark mt-20">
         <div className="grid pb-10  mt-4 ">
           <div className="mb-2">
-            <p className="text-lg font-semibold text-gray-400">Invoices</p>
+            <p className="text-lg font-semibold text-slate-200">Invoices</p>
           </div>
           <div className="grid grid-cols-12 gap-6 border-b-2 pb-5">
             <div className="col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8 xxl:col-span-8">
               <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 mt-3">
                 <div className="p-4">
-                  <p className="text-xl font-bold">RM 45,941</p>
+                  <p className="text-xl font-bold text-slate-200">RM 45,941</p>
                   <p className="text-xs font-semibold text-gray-400">Overdue</p>
                 </div>
                 <div className="p-4">
-                  <p className="text-xl font-bold">RM 37,500</p>
+                  <p className="text-xl font-bold text-slate-200">RM 37,500</p>
                   <p className="text-xs font-semibold text-gray-400">
                     Total Outstanding
                   </p>
                 </div>
                 <div className="p-4">
-                  <p className="text-xl font-bold">RM 9,200</p>
+                  <p className="text-xl font-bold text-slate-200">RM 9,200</p>
                   <p className="text-xs font-semibold text-gray-400">
                     In Process
                   </p>
                 </div>
                 <div className=" p-4">
-                  <p className="text-xl font-bold">RM 5,700</p>
+                  <p className="text-xl font-bold text-slate-200">RM 5,700</p>
                   <p className="text-xs font-semibold text-gray-400">
                     Paid Today
                   </p>
@@ -219,14 +219,14 @@ const Wallet = () => {
                     }}
                   >
                     <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
-                    <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center">
+                    <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center text-slate-200">
                       <div>
                         <h3>Wallet Id : {wall.user}</h3>
-                        <h3 className="text-center text-white text-lg">
+                        <h3 className="text-center text-slate-200 text-lg">
                           Total Balance
                         </h3>
                         <div>
-                          <h3 className="text-center text-white text-3xl mt-2 font-bold">
+                          <h3 className="text-center text-slate-200 text-3xl mt-2 font-bold">
                             {wall.balance}
                           </h3>
                         </div>
@@ -248,7 +248,7 @@ const Wallet = () => {
                       </div>
 
                       <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5"
                         type="text"
                         value={inputBalanceWithdraw}
                         onChange={handleChangeInputWithdraw}
@@ -256,7 +256,7 @@ const Wallet = () => {
                       <div key={wall.id} className="text-center mt-5">
                         <form onSubmit={handleSubmitWithdraw}>
                           <button type="submit">
-                            <div className="w-full btn btn-outline btn-secondary dark:bg-white cursor-pointer rounded-[4px] px-3 py-[6px] text-center font-semibold text-white">
+                            <div className="w-full btn btn-outline btn-secondary cursor-pointer rounded-[4px] px-3 py-[6px] text-center font-semibold text-white">
                               Withdraw Balance
                             </div>
                           </button>
@@ -279,7 +279,7 @@ const Wallet = () => {
                       </div>
 
                       <input
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-60 mx-auto p-2.5 "
                         type="text"
                         value={inputBalance}
                         onChange={handleChangeInput}
@@ -287,7 +287,7 @@ const Wallet = () => {
                       <div key={wall.id} className="text-center mt-5">
                         <form onSubmit={handleSubmit}>
                           <button type="submit">
-                            <div className="w-full btn btn-outline btn-secondary dark:bg-white cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-white">
+                            <div className="w-full btn btn-outline btn-secondary cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-slate-200">
                               Add Balance
                             </div>
                           </button>
@@ -303,8 +303,8 @@ const Wallet = () => {
       </main>
       <div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-          <table className="w-full text-sm text-center text-gray-500 dark:text-gray-400">
-            <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <table className="w-full text-sm text-center bg-slate-700">
+            <thead className="text-xs text-slate-200 uppercase bg-slate-700">
               <tr>
                 <th scope="col" className="px-6 py-3 text-md font-bold">
                   Stock Name
@@ -324,16 +324,16 @@ const Wallet = () => {
                   console.log(wallet.user);
                   return (
                     <tr
-                      className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover-bg-gray-600"
+                      className="bg-slate-700 border-b hover:bg-slate-500"
                       key={wallet.id}
                     >
-                      <td className="px-6 py-4 font-bold text-md text-gray-900 dark:text-white">
+                      <td className="px-6 py-4 font-bold text-md text-slate-200 ">
                         {wallet.stock_name}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-md text-gray-900 dark:text-white">
+                      <td className="px-6 py-4 font-semibold text-md text-slate-200 ">
                         {wallet.quantity}
                       </td>
-                      <td className="px-6 py-4 font-semibold text-md text-gray-900 dark:text-white">
+                      <td className="px-6 py-4 font-semibold text-md text-slate-200 ">
                         {wallet.price}
                       </td>
                     </tr>

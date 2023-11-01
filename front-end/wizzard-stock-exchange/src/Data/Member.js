@@ -11,7 +11,7 @@ export const Members = [
     },
     {
       id: 3,
-      title: "Meharabul Zishan",
+      title: "Md Mehrabul Islam Zeshan",
       img: "https://i.postimg.cc/tgTVh3h6/384516208-1441778933061592-7934560404962368445-n.jpg",
     },
     {
@@ -21,7 +21,7 @@ export const Members = [
     },
     {
       id: 1,
-      title: "Hossain ul-Islam",
+      title: "Hosan Ul Islam",
       img: "https://i.postimg.cc/PrSX1BK6/384513923-1314207729481753-8732309255370301657-n.jpg",
     },
     
