@@ -50,7 +50,7 @@ const Member = () => {
                     <div >
                         <h4 className="mt-1 text-xl text-slate-200 font-bold leading-tight text-left truncate">{item.title}</h4>
                         <div className="">
-                            <span className="text-red-600 text-md text-slate-300 font-semibold text-center">Web Developer</span>
+                            <span className=" text-md text-slate-300 font-semibold text-center">Web Developer</span>
                         </div>
                         <div className="flex justify-center">
                             <a href="#!" type="button" className="rounded-full border-2 border-white text-slate-200 leading-normal uppercase bg-red-600 focus:outline-none focus:ring-0 transition duration-150 ease-in-out w-7 h-7 m-1">
