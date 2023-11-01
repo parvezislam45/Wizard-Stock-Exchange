@@ -5,10 +5,10 @@ const ChatModal = () => {
   const [message, setMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
   const [autoReplies] = useState([
-    "This is an auto-reply from customer support 1.",
-    "This is an auto-reply from customer support 2.",
-    "This is an auto-reply from customer support 3.",
-    "This is an auto-reply from customer support 4."
+    "How can we assist you today?",
+    "Whether you have questions about stock trading, investment strategies, or any other related topics, our team of experts is here to help.",
+    "Feel free to ask any questions you have,",
+    "Thank you for choosing Wizards Stock Exchange."
   ]);
 
   const openChatModal = () => {
@@ -51,7 +51,7 @@ const ChatModal = () => {
   return (
     <div>
       <button onClick={openChatModal}>
-        <a className="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
+        <a className="block w-24 h-24 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12">
           <img
             className="object-cover object-center w-full h-full rounded-full"
             src="https://png.pngtree.com/png-vector/20220818/ourlarge/pngtree-rounded-vector-icon-of-a-blue-colored-help-desk-vector-png-image_19578304.jpg"
@@ -76,7 +76,7 @@ const ChatModal = () => {
                 <div key={index} className={`${
                   entry.sender === 'You' ? 'text-end' : ''
                 } mt-5 mb-5 text-md`}>
-                  <p className="text-end bg-yellow-600 text-white rounded-lg py-2 px-4 inline-block">{entry.message}</p>
+                  <p className="text-end bg-blue-600 text-white rounded-lg py-2 px-4 inline-block">{entry.message}</p>
                   
                 </div>
               ))}

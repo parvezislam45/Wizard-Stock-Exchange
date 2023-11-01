@@ -73,67 +73,19 @@ const UserProfile = () => {
             <svg className="h-6 w-6 fill-current" viewBox="0 0 512 512">
               <path d="M437.332 80H74.668C51.199 80 32 99.198 32 122.667v266.666C32 412.802 51.199 432 74.668 432h362.664C460.801 432 480 412.802 480 389.333V122.667C480 99.198 460.801 80 437.332 80zM432 170.667L256 288 80 170.667V128l176 117.333L432 128v42.667z" />
             </svg>
-            <h1 className="px-2 text-sm text-slate-200">patterson@example.com</h1>
+            {user ? (
+        <div>
+        
+          <h1 className="px-2 text-sm text-slate-200">{user.email}</h1>
+        
+        </div>
+      ) : (
+        <p>Loading user data...</p>
+      )}
+            
           </div>
         </div>
       </div>
-
-      <section className="max-w-4xl p-6 mx-auto bg-slate-700 rounded-md shadow-md">
-        <h1 className="text-2xl text-slate-200 text-center">Update Your Profile</h1>
-        <form>
-          <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-            <div>
-              <label className="text-slate-200">
-                Username
-              </label>
-              <input
-                id="username"
-                type="text"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label className="text-slate-200">
-                Email Address
-              </label>
-              <input
-                id="emailAddress"
-                type="email"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label className="text-slate-200">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label className="text-slate-200">
-                Password Confirmation
-              </label>
-              <input
-                id="passwordConfirmation"
-                type="password"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-              />
-            </div>
-          </div>
-
-          <div className="flex justify-end mt-6">
-            <button className="px-8 py-2.5 leading-5 text-slate-200 transition-colors duration-300 transform bg-slate-500 rounded-md hover:bg-slate-800 focus:outline-none focus:bg-gray-600">
-              Save
-            </button>
-          </div>
-        </form>
-      </section>
     </div>
   );
 };

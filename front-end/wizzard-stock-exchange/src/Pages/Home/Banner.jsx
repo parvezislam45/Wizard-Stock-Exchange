@@ -47,7 +47,7 @@ const Banner = () => {
   return (
     <div >
       {/* -------------------------- Slider --------------------------- */}
-      <div className="mt-10 bg-gray-800">
+      <div className="mt-28 bg-gray-800">
         <Slider {...settings}>
           {trades.map((item, index) => (
             <div

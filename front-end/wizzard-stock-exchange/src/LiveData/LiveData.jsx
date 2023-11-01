@@ -237,8 +237,8 @@ const LiveTradingApp = () => {
             const calculatedValue =
               (closeData - wallet.price) * wallet.quantity;
             return (
-              <div key={wallet.id}>
-                <div className="bg-slate-200 shadow rounded-lg mb-4 p-4 sm:p-6 h-full w-6/6 mx-auto">
+              <div key={wallet.id} className="w-full">
+                <div className="bg-slate-200 shadow rounded-lg mb-4 sm:p-6 h-full w-full">
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex justify-center items-center gap-6">
                       <a href="">

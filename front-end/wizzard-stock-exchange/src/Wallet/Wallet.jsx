@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../../Payment/CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
-import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const Wallet = () => {
   const [user, setUser] = useState(null);
@@ -43,8 +43,23 @@ const Wallet = () => {
       );
 
       if (response.ok) {
-        console.log("Request was successful");
-        window.location.href = "/dashboard/wallet";
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Deposit Done',
+          showConfirmButton: false,
+          timer: 1000
+        })
+        const reloadInterval = setInterval(() => {
+          window.location.reload();
+        }, 1000);
+    
+        // Cleanup the interval when the component unmounts
+        return () => {
+          clearInterval(reloadInterval);
+        };
+       
+       
       } else {
         console.error("Request failed with status:", response.status);
         console.error("Response text:", await response.text());
@@ -59,6 +74,7 @@ const Wallet = () => {
   };
   //this is withdrew balance 
   const handleSubmitWithdraw = async (e) => {
+    
     e.preventDefault();
 
     const requestBody = {
@@ -79,8 +95,24 @@ const Wallet = () => {
       );
 
       if (response.ok) {
-        console.log("Request was successful");
-        window.location.href = "/dashboard/wallet";
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Successfully withdrawn',
+          showConfirmButton: false,
+          timer: 2000
+        })
+        const reloadInterval = setInterval(() => {
+          window.location.reload();
+        }, 1000);
+    
+        // Cleanup the interval when the component unmounts
+        return () => {
+          clearInterval(reloadInterval);
+        };
+        
+        
+        // window.location.href = "/dashboard/wallet";
       } else {
         console.error("Request failed with status:", response.status);
         console.error("Response text:", await response.text());
@@ -118,9 +150,9 @@ const Wallet = () => {
       .catch((error) => {
         console.error("Error:", error);
       });
-
+      
     // console.log(wallet)
-  }, []);
+  }, [wallet]);
 
   //axios user profile in trade
   useEffect(() => {
@@ -161,55 +193,13 @@ const Wallet = () => {
     <div>
       <main className="relative z-0 flex-1 pb-8 px-6 bg-dark mt-20">
         <div className="grid pb-10  mt-4 ">
-          <div className="mb-2">
-            <p className="text-lg font-semibold text-slate-200">Invoices</p>
-          </div>
-          <div className="grid grid-cols-12 gap-6 border-b-2 pb-5">
-            <div className="col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8 xxl:col-span-8">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 mt-3">
-                <div className="p-4">
-                  <p className="text-xl font-bold text-slate-200">RM 45,941</p>
-                  <p className="text-xs font-semibold text-gray-400">Overdue</p>
-                </div>
-                <div className="p-4">
-                  <p className="text-xl font-bold text-slate-200">RM 37,500</p>
-                  <p className="text-xs font-semibold text-gray-400">
-                    Total Outstanding
-                  </p>
-                </div>
-                <div className="p-4">
-                  <p className="text-xl font-bold text-slate-200">RM 9,200</p>
-                  <p className="text-xs font-semibold text-gray-400">
-                    In Process
-                  </p>
-                </div>
-                <div className=" p-4">
-                  <p className="text-xl font-bold text-slate-200">RM 5,700</p>
-                  <p className="text-xs font-semibold text-gray-400">
-                    Paid Today
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="col-span-12 sm:col-span-12 md:col-span-4 lg:col-span-4 xxl:col-span-4">
-              <div className="p-4">
-                <p className="text-sm text-gray-400">Outstanding Revenue</p>
-                <div className="shadow w-full bg-gray-100 mt-2">
-                  <div className="bg-indigo-600 text-xs leading-none py-1 text-center text-white"></div>
-                </div>
-                <p className="text-xs font-semibold text-gray-400 mt-2">
-                  RM 45,941 Overdue
-                </p>
-              </div>
-            </div>
-          </div>
           {wallet.map((wall) => {
             if (user && wall.user_email === user.email) {
               // console.log(wall.user)
               return (
                 <div
                   key={wall.id}
-                  className="grid grid-cols-1 mt-10 gap-2 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
+                  className="grid grid-cols-1 mt-10 gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2"
                 >
                   <div
                     className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
@@ -221,12 +211,25 @@ const Wallet = () => {
                     <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
                     <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center text-slate-200">
                       <div>
-                        <h3>Wallet Id : {wall.user}</h3>
-                        <h3 className="text-center text-slate-200 text-lg">
+                        <h3 className="text-4xl font-black">Wallet Id : {wall.user}</h3>
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="relative w-full h-52 bg-cover bg-center group rounded-lg overflow-hidden shadow-lg transition duration-300 ease-in-out"
+                    style={{
+                      backgroundImage:
+                        "url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f868ecef-4b4a-4ddf-8239-83b2568b3a6b/de7hhu3-3eae646a-9b2e-4e42-84a4-532bff43f397.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg8OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y4NjhlY2VmLTRiNGEtNGRkZi04MjM5LTgzYjI1NjhiM2E2YlwvZGU3aGh1My0zZWFlNjQ2YS05YjJlLTRlNDItODRhNC01MzJiZmY0M2YzOTcuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.R0h-BS0osJSrsb1iws4-KE43bUXHMFvu5PvNfoaoi8o')",
+                    }}
+                  >
+                    <div className="absolute inset-0 bg-pink-900 bg-opacity-75 transition duration-300 ease-in-out"></div>
+                    <div className="relative w-full h-full px-4 sm:px-6 lg:px-4 flex items-center justify-center text-slate-200">
+                      <div>
+                        <h3 className="text-center text-slate-200 text-2xl font-black">
                           Total Balance
                         </h3>
                         <div>
-                          <h3 className="text-center text-slate-200 text-3xl mt-2 font-bold">
+                          <h3 className="text-center text-slate-200 text-3xl mt-2 font-black">
                             {wall.balance}
                           </h3>
                         </div>
@@ -256,7 +259,7 @@ const Wallet = () => {
                       <div key={wall.id} className="text-center mt-5">
                         <form onSubmit={handleSubmitWithdraw}>
                           <button type="submit">
-                            <div className="w-full btn btn-outline btn-secondary cursor-pointer rounded-[4px] px-3 py-[6px] text-center font-semibold text-white">
+                            <div className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
                               Withdraw Balance
                             </div>
                           </button>
@@ -287,8 +290,8 @@ const Wallet = () => {
                       <div key={wall.id} className="text-center mt-5">
                         <form onSubmit={handleSubmit}>
                           <button type="submit">
-                            <div className="w-full btn btn-outline btn-secondary cursor-pointer rounded-[4px] bg-green-700 px-3 py-[6px] text-center font-semibold text-slate-200">
-                              Add Balance
+                            <div className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                              Deposit Balance
                             </div>
                           </button>
                         </form>

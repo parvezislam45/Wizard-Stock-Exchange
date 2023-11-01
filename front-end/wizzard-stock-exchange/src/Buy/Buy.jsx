@@ -8,7 +8,7 @@ const Buy = (props) => {
   const [symbolValue, setSymbolValue] = useState(props.symbol);
   const [Wallet, setWallet] = useState(props.user_wallet);
   const [user, setUser] = useState(null);
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -122,7 +122,7 @@ const Buy = (props) => {
                         type="number"
                         placeholder="Quantity"
                         name="quantity"
-                        min="0"
+                        min="1"
                         onChange={(e) => setQuantity(e.target.value)}
                       />
                     </div>
